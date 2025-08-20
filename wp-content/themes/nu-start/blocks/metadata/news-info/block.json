@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "name": "acf/news-info",
+  "title": "News Info",
+  "description": "News Info",
+  "category": "text",
+  "icon": "text-page",
+  "apiVersion": 2,
+  "keywords": ["test"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "block-template.php",
+    "postTypes": ["nu_news"]
+  },
+  "styles": [
+    { "name": "default", "label": "Default", "isDefault": true },
+    { "name": "alternate", "label": "Alternate" }
+  ],
+  "supports": {
+    "align": ["wide", "full"],
+    "anchor": false,
+    "alignContent": false,
+    "alignText": false,
+    "jsx": false,
+    "fullHeight": false,
+    "color": {
+      "text": false,
+      "background": false,
+      "link": false
+    },
+    "spacing": {
+      "margin": false,
+      "padding": false
+    },
+    "typography": {
+      "lineHeight": false,
+      "fontSize": false
+    }
+  },
+  "attributes": {},
+  "style": ["file:./style.css"]
+}

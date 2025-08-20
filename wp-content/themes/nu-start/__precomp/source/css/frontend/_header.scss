@@ -1,0 +1,109 @@
+//
+//
+:root {
+	--nu--utilitynav--height: 32px;
+	--nu--adminbar--height: 32px;
+	--nu--siteheader--height: 64px;
+	--nu--mainel--offset: var(--nu--siteheader--height);
+	--nu--full--screen--height: calc(100vh - var(--nu--siteheader--height));
+}
+
+//
+//
+// ! Below gives 0,0,0 specificity
+//:where(header.header) {
+// * This gives specificity of 0,1,1
+header.header {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 99;
+	//
+	color: var(--wp--preset--color--dark);
+	border-bottom: 1px solid var(--wp--preset--color--neutral-3);
+	background-color: var(--wp--preset--color--white);
+
+	//
+	//
+	~ main {
+		margin-top: var(--nu--mainel--offset);
+	}
+
+	//
+	//
+	> .itsglobalheader--container,
+	> .utilitynav {
+		overflow: hidden;
+		transition: all 0.4s $bezier;
+	}
+	@include media("<medium") {
+		flex-flow: column nowrap;
+	}
+
+	//
+	//
+	> .container {
+		position: relative;
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+		align-items: center;
+		max-width: 100%;
+		height: var(--nu--siteheader--height);
+		padding: 0 var(--wp--custom--spacing--outer);
+		@include media("<=medium") {
+			> .container {
+				height: var(--nu--siteheader--height);
+			}
+			> .utilitynav {
+				height: var(--nu--utilitynav--height);
+			}
+			a.logo.logo--image svg {
+				max-width: 180px;
+			}
+		}
+	}
+} // end header.header
+
+//
+//
+:is(body.is-using-minimal-header-view) {
+	//
+	header.header {
+		> .itsglobalheader--container,
+		> .utilitynav {
+			height: 0;
+		}
+	}
+}
+//
+//
+//
+:where(body.admin-bar) {
+	header.header {
+		top: 32px;
+	}
+	@include media("<medium") {
+		header.header {
+			top: 0px;
+			flex-flow: column nowrap;
+		}
+		#wpadminbar {
+			display: none !important;
+		}
+	}
+}
+
+// ? all styles for the utilitynav
+@import "./header/utilitynav";
+
+// ? all styles for the searchform
+@import "./header/search";
+
+// ? all styling for the navlinks
+@import "./header/navlinks";
+
+// ? all darkmode related adjustments
+@import "./header/dark-enabled";

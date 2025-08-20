@@ -1,0 +1,21 @@
+// 
+// breadcrumbs navXT overrides
+// 
+.breadcrumbs[typeof="BreadcrumbList"] {
+	margin-block-start: 0;
+	padding: $base-margin;
+	font-size: 12px;
+	line-height: 16px;
+	.fa-chevron-right {
+		vertical-align: middle;
+		margin: 0 $half-margin;
+	}
+}
+
+// any div (group) with any hero pattern class
+div[class*="pattern--heroes"] {
+	.breadcrumbs[typeof="BreadcrumbList"] {
+		margin: 0 var(--wp--custom--spacing--outer);
+		padding: $base-margin 0;
+	}
+}

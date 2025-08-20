@@ -1,0 +1,103 @@
+//
+//
+//
+// ? links need to be styled to our brand
+// ? just the base level, no layout or modifiers
+a {
+	color: currentColor;
+	//
+	text-decoration: 1px solid underline var(--wp--preset--color--nu-red);
+	text-decoration-color: var(--wp--preset--color--nu-red);
+	text-decoration-style: solid;
+	text-decoration-thickness: 1px;
+	text-decoration-line: underline;
+	text-underline-offset: 2px;
+	&:hover {
+		text-decoration-color: transparent;
+	}
+}
+
+body {
+	@include rfs(128px, --wp--preset--font-size--128-128);
+	@include rfs(96px, --wp--preset--font-size--96-96);
+	@include rfs(72px, --wp--preset--font-size--72-72);
+	@include rfs(60px, --wp--preset--font-size--60-60);
+	@include rfs(56px, --wp--preset--font-size--56-67);
+	@include rfs(48px, --wp--preset--font-size--48-48);
+	@include rfs(44px, --wp--preset--font-size--44-56);
+	@include rfs(36px, --wp--preset--font-size--36-40);
+	@include rfs(30px, --wp--preset--font-size--30-36);
+	@include rfs(28px, --wp--preset--font-size--28-44);
+	@include rfs(24px, --wp--preset--font-size--24-32);
+	@include rfs(20px, --wp--preset--font-size--20-28);
+	@include rfs(18px, --wp--preset--font-size--18-28);
+	@include rfs(16px, --wp--preset--font-size--16-24);
+	@include rfs(14px, --wp--preset--font-size--14-20);
+	@include rfs(12px, --wp--preset--font-size--12-16);
+}
+
+.has-128-128-font-size,
+.has-96-96-font-size,
+.has-72-72-font-size {
+	line-height: 1.04;
+}
+
+//
+.has-44-56-font-size,
+.has-60-60-font-size,
+.has-56-67-font-size,
+.has-48-48-font-size {
+	line-height: 1.2;
+}
+
+.has-36-40-font-size,
+.has-30-36-font-size {
+	line-height: 1.32;
+}
+
+.has-16-24-font-size,
+.has-18-28-font-size,
+.has-20-28-font-size {
+	line-height: 1.8;
+}
+.has-28-44-font-size,
+.has-24-32-font-size,
+.has-14-20-font-size,
+.has-12-16-font-size {
+	line-height: 1.6;
+}
+
+.has-text-color {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	strong,
+	a:not(.wp-block-button__link) {
+		color: inherit;
+	}
+}
+
+// lighter bold text for headings
+h4 strong,
+h3 strong,
+h2 strong,
+h1 strong {
+	font-weight: bolder;
+}
+
+// fixes bug with these fontawesome utility classes
+.fa-1x,
+.fa-2x,
+.fa-3x,
+.fa-4x,
+.fa-5x,
+.fa-6x,
+.fa-7x,
+.fa-8x,
+.fa-9x,
+.fa-10x {
+	line-height: inherit;
+}

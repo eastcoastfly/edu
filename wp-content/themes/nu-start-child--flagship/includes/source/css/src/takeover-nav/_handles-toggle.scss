@@ -1,0 +1,49 @@
+//
+//	?		handle the toggle event
+//
+body.is-using-fullscreen-takeover {
+	//
+	--nu--mainel--offset: 0px;
+	main ~ #nu__alerts {
+		top: 80px;
+	}
+	//
+	//	? show/hide elements when toggled off
+	//
+	&:not(.has-revealed-takeover-nav) {
+		.takeover-nav-toggle .fa-xmark,
+		.takeover-menu-container {
+			display: none !important;
+		}
+	}
+
+	//
+	//	? show/hide elements when toggled on
+	//
+	&.has-revealed-takeover-nav {
+		//	?		hide overflow on body to prevent scrolling while nav is open
+		overflow: hidden;
+		//	?		hide wpadminbar to avoid pushing things around too much
+		#wpadminbar {
+			display: none;
+		}
+		//	?		toggle the toggle
+		.takeover-nav-toggle {
+			@extend %dry_transition;
+			.fa-xmark {
+				display: inline-block;
+			}
+			.fa-bars {
+				display: none;
+			}
+		}
+		.takeover-nav-search {
+			display: none;
+		}
+		@include media("<=small") {
+			.takeover-nav-logo {
+				background-color: var(--wp--preset--color--dark);
+			}
+		}
+	}
+}

@@ -1,0 +1,27 @@
+/* 
+	front-end scss index file begins here, loading a number of _index.scss directories
+*/
+@import "./elems";
+@import "./header";
+@import "./footer";
+@import "./wp-forms";
+@import "./partials";
+@import "./templates";
+/* 
+	! hotfixing !
+	this should all be hoisted and integrated asap
+*/
+//
+//
+// ? this hides the code blocks for the demo site that follow the "copy pattern" buttons
+.is-the-pattern-code-to-copy {
+	// @include displayedInvisible;
+	position: absolute;
+	left: -9999px;
+}
+
+.wp-block-nu-blocks-accordion-item {
+	summary::marker {
+		content: none;
+	}
+}

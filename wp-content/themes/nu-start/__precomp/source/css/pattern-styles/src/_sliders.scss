@@ -1,0 +1,171 @@
+//
+
+.blocks--wrapper {
+	//
+	//
+	// * CODE FOR GUTENSLIDER WITH RED BUTTONS
+	.patterns--sliders--red-buttons {
+		&.wp-block-eedee-block-gutenslider {
+			> .eedee-swiper-outer {
+				> .swiper {
+					> .swiper-wrapper {
+						> .swiper-slide {
+							> .slide-content {
+								// * To cascade and make the image 100% height
+								@include media(">=small") {
+									height: 100%;
+								}
+
+								> .wp-block-columns {
+									// * To cascade and make the image 100% height
+									@include media(">=small") {
+										height: 100%;
+									}
+									> .wp-block-column {
+										// * The image column of the slide
+										&.gutenslider--imageside {
+											// * Hide the image on smaller screens
+											@include media("<medium") {
+												display: none;
+											}
+											// * To cascade and make the image 100% height
+											@include media(">=small") {
+												height: 100%;
+											}
+
+											> figure {
+												// * To cascade and make the image 100% height
+												@include media(">=small") {
+													height: 100%;
+												}
+
+												> img {
+													// * To cascade and make the image 100% height
+													@include media(">=small") {
+														height: 100%;
+													}
+												}
+											}
+										}
+										// * The content column of the slide
+										&:not(.gutenslider--imageside) {
+											// * Change align to flex-start (top)
+											align-self: flex-start !important;
+
+											> .wp-block-group {
+												@include media(">=medium") {
+													padding: ($margin_4x + $base-margin);
+												}
+												// * Decrease padding on smaller screens
+												@include media("<medium") {
+													padding: $base-margin $margin_4x $margin_6x $margin_4x;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			//
+			//
+			.eedee-gutenslider-pagination {
+				// * Move the pagination to the lower right corner (per Figma)
+				justify-self: end !important;
+				padding-right: 0 !important;
+				.swiper-pagination-bullet {
+					// * Set height and width of number boxes to 64px (per Denise)
+					height: $margin_4x;
+					width: $margin_4x;
+					padding: 0;
+					line-height: 60px;
+					&:not(.swiper-pagination-bullet-active) {
+						// * Make non-active buttons white background
+						background-color: var(--wp--preset--color--white);
+						&:hover {
+							// * Make white buttons light gray upon hover
+							background-color: var(--wp--preset--color--neutral-1);
+						}
+					}
+
+					// * Make the bullets into the squares (per Figma)
+					margin: 0 !important;
+					border-radius: 0;
+					color: var(--wp--preset--color--black);
+					opacity: 1;
+
+					// * Make the active bullet the NU Red color
+					&.swiper-pagination-bullet-active {
+						background-color: var(--wp--preset--color--nu-red);
+						color: var(--wp--preset--color--white);
+					}
+				}
+			}
+		}
+	}
+
+	//
+	//
+	//
+	// * Slider of heroes needs some adjustments.
+	.wp-block-eedee-block-gutenslider.pattern--is-the-heroes-demo-slider {
+		padding: 0 !important;
+		.wp-block-eedee-block-gutenslide {
+			.slide-content {
+				padding: 0 !important;
+				flex-flow: column nowrap;
+				justify-content: initial;
+				align-items: initial;
+				width: 100%;
+
+				// ? top-level blocks get custom vertical spacing to reduce the need for the spacer block
+				> :not(p, .wp-block-paragraph, .wp-block-spacer) {
+					margin-top: var(--wp--preset--spacing--40);
+				}
+				> :not(.alignfull, .alignwide) {
+					max-width: var(--wp--style--global--content-size);
+					margin-left: auto;
+					margin-right: auto;
+				}
+				> .alignwide {
+					max-width: var(--wp--style--global--wide-size);
+					margin-left: auto;
+					margin-right: auto;
+					width: 100%;
+				}
+
+				> .alignfull {
+					width: 100%;
+					max-width: unset;
+				}
+
+				// ? alignfull first block assumed to be a hero
+				> .alignfull:first-child {
+					margin-top: 0;
+				}
+				// ? outer-spacing pads the edges of the screen
+				%add_outer_spacing {
+					padding-right: var(--wp--custom--spacing--outer);
+					padding-left: var(--wp--custom--spacing--outer);
+				}
+				%remove_outer_spacing {
+					margin-left: calc(-1 * var(--wp--custom--spacing--outer)) !important;
+					margin-right: calc(-1 * var(--wp--custom--spacing--outer)) !important;
+				}
+
+				// ? top-level block is a full-width group - unless it is the first block (assumed to be a hero pattern)
+				> .wp-block-group.alignfull {
+					&:not(:first-child) {
+						@extend %add_outer_spacing;
+					}
+				}
+				// ? nearly all blocks are assumed to need outer spacing - avoiding the fullwidth group (just-container)
+				> :not(.wp-block-group.alignfull) {
+					@extend %add_outer_spacing;
+				}
+			}
+		}
+	}
+}

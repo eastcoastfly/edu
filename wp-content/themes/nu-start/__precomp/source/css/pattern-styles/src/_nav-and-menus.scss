@@ -1,0 +1,207 @@
+// * Container for the sidebar menu items
+.is-the-sidebar-group {
+	//
+	//
+	@include media(">=medium") {
+		position: sticky;
+		top: 160px;
+	}
+
+	// * The descriptor text (e.g. "On this page" or "Section Menu")
+	p.is-style-eyebrow {
+		@include media("<=medium") {
+			border: solid 1px var(--wp--preset--color--neutral-1);
+			padding: 16px;
+			cursor: pointer;
+		}
+
+		&:after {
+			@include media("<=medium") {
+				font: var(--fa-font-light);
+				content: "\f107";
+				font-size: 18px;
+				position: absolute;
+				right: 8px;
+				top: 14px;
+			}
+		}
+
+		&[data-content="close"] {
+			&:after {
+				@include media("<=medium") {
+					font: var(--fa-font-light);
+					content: "\f00d";
+					font-size: 18px;
+					position: absolute;
+					right: 8px;
+					top: 14px;
+				}
+			}
+
+			+ .is-the-sidebar-menu {
+				@include media("<=medium") {
+					display: block;
+				}
+			}
+		}
+	}
+
+	// * The navigation block itself
+	.is-the-sidebar-menu {
+		position: -webkit-sticky;
+		position: sticky !important;
+		top: 220px;
+		margin: 0;
+		z-index: 1;
+		position: relative;
+
+		@include media("<=medium") {
+			display: none;
+			box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%),
+				0 4px 6px -2px rgb(0 0 0 / 5%);
+		}
+
+		@include media(">=medium") {
+			margin-top: $base-margin;
+		}
+
+		// * This is the toggle button that appears on <phone
+		.wp-block-navigation__responsive-container-open {
+			@include media("<=medium") {
+				display: none;
+			}
+		}
+
+		// * The mobile navigation menu itself
+		.wp-block-navigation__responsive-container {
+			@include media("<=medium") {
+				position: unset;
+				width: 100%;
+			}
+			//
+			// * This is all to get at the closing "X" that doesn't need to be here
+			.wp-block-navigation__responsive-close {
+				.wp-block-navigation__responsive-dialog {
+					.wp-block-navigation__responsive-container-close {
+						@include media("<=medium") {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+
+		// * "Section Menu" and dropdown arrow (p)
+		.is-the-sidebar-navicon {
+			// * Add nice padding for the item
+			padding: $half-margin 0;
+			i.icon {
+				display: none !important;
+			}
+
+			@include media("<large") {
+				// * Place border around item and flex text and chevron to the sides
+				border: 1px solid var(--wp--preset--color--neutral-1);
+				display: flex;
+				justify-content: space-between;
+				@include nu_fa_icon("\f107", after);
+				position: relative;
+				&:after {
+					position: absolute;
+					right: $half-margin;
+					top: $base-margin;
+					font-size: 16px;
+				}
+			}
+			// * Do not display on screens wider than medium
+			@include media(">=large") {
+				display: none;
+			}
+			// * The text content (e.g. 'Section Menu') of the navicon
+			.mobile-nav-text {
+				padding-left: $base-margin;
+			}
+			// * Chevron too close to right edge
+			.wp-block-navigation-submenu__toggle {
+				right: $half-margin !important;
+			}
+			// * If the section menu is opened on smaller than 1024px (additional class of .mobile-revealed)
+			&.mobile-revealed {
+				+ nav.wp-block-navigation {
+					@include media("<large") {
+						// * Then display the menu items
+						display: block;
+					}
+				}
+
+				// * Switch navicon to "close" X upon opening
+				&:after {
+					content: "\f00d";
+				}
+			}
+			//
+			// * Hide the section menu items if navicon not opened
+			+ nav.wp-block-navigation {
+				@include media("<large") {
+					display: none;
+				}
+			}
+		}
+
+		//
+		// * This is the flex container
+		.wp-block-navigation__container {
+			gap: 0;
+			// * to avoid the moving carat for dropdown submenu
+			width: 100%;
+			padding-left: unset;
+
+			// * The <li>
+			.wp-block-navigation-item {
+				margin-top: unset;
+				//
+				// * The <a>
+				> .wp-block-navigation-item__content {
+					padding-left: 24px;
+					padding-right: 24px;
+
+					//
+					&.is-active {
+						color: var(--wp--preset--color--black);
+					}
+				}
+
+				&:hover {
+					> .wp-block-navigation-item__content {
+						color: var(--wp--preset--color--black);
+					}
+				}
+
+				// * A navigation item with a dropdown submenu
+				&.has-child {
+					//
+					// * The dropdown arrow for a submenu
+					.wp-block-navigation-submenu__toggle {
+						top: 12px;
+						right: 8px;
+					}
+					//
+					// * The submenu container
+					.wp-block-navigation__submenu-container {
+						padding-left: unset;
+
+						> .wp-block-navigation-item {
+							> .wp-block-navigation-item__content {
+								padding-left: 48px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.wp-block-navigation.is-content-justification-right {
+		text-align: right;
+	}
+} // end .is-the-sidebar-group

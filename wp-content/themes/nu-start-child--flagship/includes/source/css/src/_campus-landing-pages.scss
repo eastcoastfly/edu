@@ -1,0 +1,278 @@
+//
+
+// * Page intro with gray borders on top and bottom
+.campus-landing-page-intro {
+	border-top: 1px solid var(--wp--preset--color--neutral-4);
+	border-bottom: 1px solid var(--wp--preset--color--neutral-4);
+
+	@include media(">=medium") {
+		padding: 100px !important;
+	}
+	@include media("<medium") {
+		padding: 60px 0 !important;
+	}
+}
+
+// * Container for three campus banners
+.boston-campus-banners {
+	.wp-block-cover {
+		padding: 120px;
+		margin-bottom: 48px !important;
+
+		.wp-block-cover__inner-container {
+			.wp-block-group {
+				.wp-block-heading {
+					max-width: 500px !important;
+
+					+ p {
+						max-width: 500px !important;
+					}
+				}
+
+				.wp-block-buttons {
+					margin-left: 0 !important;
+				}
+			}
+		}
+	}
+}
+
+// ! We are creating a new pattern to be used here
+// * Header + blurb split wide pattern
+.header-blurb-split-wide {
+	display: flex;
+
+	h2 {
+		flex-basis: 50%;
+		margin: unset;
+		padding-right: 5rem;
+	}
+
+	p {
+		flex-basis: 50%;
+		margin: unset;
+		padding-left: 11rem;
+	}
+}
+
+// * Colleges and Schools posts grid (with icons)
+.acf-block.posts-grid {
+	.nu__grid {
+		ul {
+			li.grid-item.nu_colleges.fa-icon-style {
+				
+				.grid-item-content {
+					padding: $margin_2x !important;
+					position: relative;
+
+					@include nu_fa_icon("\f061", after);
+
+					&:after {
+						position: absolute;
+						bottom: $base-margin;
+						right: $margin_2x;
+						font-size: var(--wp--preset--font-size--16-20);
+						@extend %dry_transition;
+					}
+
+					i {
+						margin: unset;
+						font-size: 2rem;
+					}
+
+					.post-title {
+						margin-top: $base-margin;
+					}
+
+                    .post-excerpt {
+                        margin-top:$base-margin !important;
+                        color: var(--wp--preset--color--neutral-6) !important;
+                        font-size: var(--wp--preset--font-size--18-28) !important;
+                    }
+                }
+
+				// * Hover on li
+				&:hover {
+					.grid-item-content {
+					
+						&:after {
+							color: var(--wp--preset--color--nu-red);
+							right: $base_margin;
+							@extend %dry_transition;
+						}
+	
+					}
+				}
+            }
+        }
+    }
+}
+
+//
+// * New accordion style (e.g. Admissions page)
+.accordion-edu-style {
+
+    .wp-block-nu-blocks-accordion-item {
+
+        details {
+
+            .wp-block-nublocks-accordion-item__title {
+                text-align:center;
+                padding:24px 0 32px 0;
+
+                &:after {
+                    content:"\f107" !important;
+                    top:50px;
+                    left:50% !important;
+                    transform: translateX(-50%);
+                }
+            }
+
+            &[open]{
+
+                .wp-block-nublocks-accordion-item__title {
+
+                    color:var(--wp--preset--color--nu-red);
+                    
+                    &:after {
+                        content:"\f106" !important;
+                        color:var(--wp--preset--color--nu-red);
+                    }
+                }
+
+            }
+        }
+    }
+
+}
+
+//
+// * Campuses posts grid (horizontal split style)
+//
+.horizontal-split-style-posts-grid {
+	.nu__grid {
+		ul {
+			li.grid-item {
+
+				@include media(">=medium"){
+					flex-flow: row nowrap !important;
+				}
+
+				&:hover {
+					box-shadow: none !important;
+
+					.grid-item-content{
+						.campus-blurb-and-link {
+							.campus-link {
+								color: var(--wp--preset--color--nu-red);
+								@extend %dry_transition;
+
+								a {
+									i {
+										// * to match Trent's mixin value
+										margin-left:18px;
+										color: var(--wp--preset--color--nu-red);
+										@extend %dry_transition;
+									}
+								}
+							}
+						}
+					}
+				}
+
+				&:not(:first-child) {
+					border-top:solid 1px var(--wp--preset--color--neutral-6);
+					padding-top:44px;
+				}
+
+				.grid-item-content {
+
+					@include media(">=medium"){
+						display:flex;
+					}
+
+					@include media("<medium"){
+						padding:32px 16px 0 16px !important;
+					}
+
+					background-color: transparent !important;
+
+					.campus-name-and-state {
+						flex-basis:50%;
+
+						.post-title{
+							font-size:var(--wp--preset--font-size--30-36) !important;
+						}
+
+						.campus-state {
+							color:#737373;
+							margin-top:0 !important;
+						}
+					}
+
+					.campus-blurb-and-link {
+						flex-basis:50%;
+
+						.post-excerpt {
+							margin-top:0 !important;
+							color:var(--wp--preset--color--dark);
+
+							@include media("<medium"){
+								max-width:100% !important;
+							}
+						}
+
+						.campus-link {
+							margin-top:32px;
+							font-size: var(--wp--preset--font-size--16-24);
+							color:var(--wp--preset--color--dark);
+							@extend %dry_transition;
+
+							a {
+								text-decoration:none;
+
+								i {
+									color:var(--wp--preset--color--dark);
+									@extend %dry_transition;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+.acf-block.posts-grid {
+	
+	// ! to account for any campuses posts grid that is not this class
+	&:not(.horizontal-split-style-posts-grid) {
+		.nu__grid {
+
+				ul {
+					li.grid-item {
+
+						.grid-item-content {
+
+							.campus-name-and-state {
+
+								.campus-state {
+									display: none;
+								}
+							}
+
+							.campus-blurb-and-link {
+							
+								.campus-link {
+									display:none;		
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+}
+

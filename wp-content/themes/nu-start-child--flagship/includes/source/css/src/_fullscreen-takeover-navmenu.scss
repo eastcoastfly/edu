@@ -1,0 +1,147 @@
+//
+//
+body.is-using-fullscreen-takeover {
+	//	?		disable the default header
+	header.header {
+		display: none !important;
+	}
+
+	&.is-using-minimal-header-view {
+		.takeover-nav {
+			@include media("<1600px"){
+				background-color: var(--wp--preset--color--dark);
+			}
+
+			.takeover-nav-logo{
+				@extend %dry_transition;
+
+				> .logo{
+					@extend %dry_transition;
+
+					@include media(">=1600px"){
+						padding: 12px 24px;
+					}
+					@include media("<1600px"){
+						padding: 12px;
+					}
+				}
+			}
+		}
+	}
+
+	//
+	--takeover-nav-button-height: 80px;
+	@include media("<=small") {
+		--takeover-nav-button-height: 56px;
+	}
+	//
+	//
+	.takeover-nav {
+		@extend %dry_transition;
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 100%;
+		z-index: 99;
+		display: flex;
+		justify-content: flex-end;
+		//
+		//
+		//
+		.takeover-nav-buttons {
+			@extend %dry_transition;
+			height: var(--takeover-nav-button-height);
+			display: flex;
+			flex-flow: row nowrap;
+		}
+
+		.takeover-nav-toggle, .takeover-nav-search {
+			@extend %dry_transition;
+			border:none;
+		}
+
+		// * This is the new button for the search toggle
+
+		.takeover-nav-search-button, .takeover-nav-toggle {
+				height: var(--takeover-nav-button-height);
+				border:none;
+				color: var(--wp--preset--color--white);
+				background-color: var(--wp--preset--color--dark);
+				cursor: pointer;
+				@extend %dry_transition;
+				z-index: 2;
+				position: relative;
+				line-height: 1.8;
+				font-size: var(--wp--preset--font-size--16-24);
+				font-weight: 300;
+				align-items: center;
+				padding: 12px 24px;
+				justify-content: center;
+				text-decoration: none;
+
+				span {
+					@extend %dry_transition;
+					width: 100%;
+					margin-left: $base-margin;
+				}
+				//
+				&:hover {
+					background-color: var(--wp--preset--color--nu-red);
+					@include nu__boxshadow(5);
+				}
+			}
+
+
+		//
+		//
+		//
+		.takeover-nav-logo {
+			@extend %dry_transition;
+			height: var(--takeover-nav-button-height);
+			position: relative;
+			z-index: 1;
+			flex: 1 0 auto;
+			.logo {
+				@extend %dry_transition;
+				width: auto;
+				max-width: unset;
+				display: inline-block;
+				height: 100%;
+				padding: 12px 24px;
+				svg {
+					@extend %dry_transition;
+					height: 100%;
+				}
+				path.st2 {
+					@extend %dry_transition;
+					width: 100%;
+				}
+			}
+		}
+
+		//
+		// 	? some elements are hidden for mobile view
+		//
+		@include media("<=small") {
+			.takeover-nav-logo svg path.st2,
+			.takeover-nav-buttons span {
+				display: none;
+			}
+
+			body.is-using-fullscreen-takeover .takeover-menu-container > .takeover-nav-container .navlinks ul.menu {
+				width:98% !important;
+			}
+		}
+	}
+	@import "./takeover-nav/takeover-overlay";
+	@import "./takeover-nav/takeover-nav-menus";
+	@import "./takeover-nav/takeover-banner-nav";
+	@import "./takeover-nav/takeover-searchform";
+}
+
+//
+//
+@import "./takeover-nav/handles-toggle";
+//
+//
+@import "./takeover-nav/misc-touchups";

@@ -1,0 +1,48 @@
+@include media(">medium") {
+	//
+	body.admin-bar.is-using-fullscreen-takeover:not(.has-revealed-takeover-nav) {
+		.takeover-nav {
+			top: 32px;
+		}
+		main ~ #nu__alerts {
+			top: 112px;
+		}
+	}
+}
+
+body.is-using-minimal-header-view {
+	--takeover-nav-button-height: 56px;
+
+	&:not(.has-revealed-takeover-nav){
+		.takeover-nav-buttons {
+			@extend %dry_transition;
+			span {
+				display: none;
+			}
+		}
+		.takeover-nav-logo {
+			svg {
+				@include media(">=1600px"){
+					height: 56px !important;
+				}
+				@include media("<1600px"){
+					height: 40px !important;
+					margin-top:-4px;
+				}
+			}
+			svg path.st2 {
+				display: none;
+			}
+		}
+	}
+}
+
+.takeover-nav {
+	&,
+	.takeover-nav-logo {
+		@extend %dry_transition;
+	}
+	button {
+		margin: 0;
+	}
+}

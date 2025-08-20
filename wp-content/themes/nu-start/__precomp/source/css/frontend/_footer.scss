@@ -1,0 +1,296 @@
+//
+//
+//
+footer.site-footer {
+	//
+	//
+	//
+
+	overflow: hidden;
+	> img.prefooter-banner {
+		display: block;
+		width: 100%;
+		max-height: 120px;
+		margin: 0;
+		padding: 0;
+		flex: none;
+	}
+
+	//
+	//
+	//
+	> .container {
+		padding: $margin_4x var(--wp--custom--spacing--outer);
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: flex-start;
+		> section {
+			flex: 1 1 auto;
+		}
+	}
+
+	.footer-content {
+		display: flex;
+		@include media(">=medium") {
+			flex-flow: row nowrap;
+		}
+		@include media("<medium") {
+			flex-flow: column;
+		}
+		> .navlinks {
+			> #menu-testing {
+				@include media(">=medium") {
+					flex-flow: row nowrap;
+				}
+				@include media("<medium") {
+					flex-flow: column;
+				}
+			}
+		}
+		// break the sidebar to below nav before final breakpoint
+		justify-content: flex-end;
+	}
+
+	//
+	//
+	//
+	.navlinks {
+		//
+		//
+		//
+		> .menu {
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: flex-end;
+		}
+		//
+		//
+		//
+		> .menu > .menu-item {
+			> a {
+				opacity: 0.8;
+				// ? elder menu item styled like a category label
+				.link-text {
+					font-weight: bold;
+					@include rfs(16px);
+					@include rfs(24px, line-height);
+				}
+			}
+			// ? push menu stack down from elder
+			> .sub-menu {
+				margin-top: $base-margin;
+			}
+		}
+		//
+		//
+		//
+		.menu-item {
+			> a {
+				opacity: 0.6;
+				.link-text {
+					font-weight: 400;
+					@include rfs(14px);
+					@include rfs(20px, line-height);
+					@include accentUnderline();
+				}
+				// currently highlighted item
+				&:hover,
+				&:focus {
+					opacity: 1;
+					> .link-text:before {
+						width: $base-margin;
+					}
+				}
+			}
+			// current page ancestry
+			&.current-menu-item,
+			&.current-page-ancestor {
+				> a {
+					opacity: 1;
+					span:before {
+						width: $base-margin;
+					}
+				}
+			}
+		}
+	}
+
+	//
+	//
+	//
+	&.is-style-light-background {
+		color: var(--wp--preset--color--black);
+		background-color: var(--wp--custom--elems--footer--background--light);
+		.navlinks {
+			color: var(--wp--preset--color--black);
+		}
+	}
+	&.is-style-dark-background {
+		color: var(--wp--preset--color--white);
+		background-color: var(--wp--custom--elems--footer--background--dark);
+		.wp-social-link {
+			background-color: var(--wp--custom--elems--footer--background--dark);
+		}
+		// ? switch svg fill to white, or invert img
+		a.logo {
+			svg path {
+				fill: var(--wp--preset--color--white);
+			}
+			img {
+				filter: invert(100%);
+			}
+		}
+	}
+	//
+	//
+	//
+	&.disabled {
+		display: none;
+	}
+
+	//
+	// ? mobile
+	@include media("<medium") {
+		> .container {
+			flex-flow: column nowrap;
+		}
+		.navlinks {
+			margin-top: $margin_4x;
+			> .menu {
+				gap: $margin_2x;
+			}
+		}
+	}
+	// ? desktop
+	@include media(">=medium") {
+		align-items: flex-start;
+		justify-content: space-between; // forces outer groupings to l/r edges
+		> section {
+			&:not(:first-child) {
+				margin: 0 0 0 $margin_8x;
+			}
+		}
+
+		.navlinks {
+			margin-left: $margin_4x;
+			> .menu {
+				gap: $margin_4x;
+			}
+		}
+	}
+
+	//
+	//
+	//
+	//
+	//
+	//
+	.nu__footer-sidebar.wpforms-widget {
+		@include media(">=medium") {
+			margin-left: $margin_4x;
+		}
+		div.wpforms-container-full {
+			form.wpforms-form {
+				margin: 0;
+				max-width: 280px;
+				display: flex;
+				flex-flow: column nowrap;
+				.wpforms-submit-container {
+					button {
+						margin: 0;
+					}
+				}
+				> .wpforms-field-container {
+					> .wpforms-field {
+						&:first-child {
+							padding-top: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+	//
+	//
+	//
+	.footer-siteinfo {
+		> .logo {
+			margin-bottom: $base-margin;
+		}
+
+		.wp-block-social-links {
+			margin-top: $base-margin !important;
+		}
+		.address,
+		.contact,
+		.social {
+			margin: $base-margin 0 0 0;
+			@include font-size(0.875rem);
+
+			a {
+				color: var(--wp--preset--color--white);
+				border-bottom: 1px solid transparent;
+				font-weight: 300;
+
+				&:hover,
+				&:focus {
+					color: var(--wp--preset--color--white);
+				}
+			}
+		}
+
+		.contact {
+			display: flex;
+			flex-flow: column nowrap;
+		}
+
+		.social {
+			display: flex;
+			flex-flow: row nowrap;
+
+			.nu__customsvg {
+				display: inline-block;
+				margin: 0 0 0 $base-margin;
+				svg {
+					width: 20px;
+					height: 20px;
+					path {
+						transition: all 0.1s ease-in-out;
+						fill: var(--wp--preset--color--white);
+					}
+				}
+				a {
+					display: block;
+					border: none 0;
+					&:hover,
+					&:focus,
+					&:active {
+						border: none 0;
+						svg path {
+							fill: var(--wp--preset--color--white);
+						}
+					}
+				}
+				&:first-child {
+					margin: 0;
+				}
+			}
+		}
+	}
+}
+
+//
+//
+//
+// * Hotfix for footer content
+// ! Careful with this though, comes from Oakland and might be bandaid-ish
+.footer-siteinfo {
+	> .nu__footer-sidebar {
+		> p {
+			// * Decrease font-size and add some margin-top
+			font-size: var(--wp--preset--font-size--16-24);
+			line-height: 24px;
+			margin-top: $margin_2x;
+		}
+	}
+}

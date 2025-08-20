@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+
+<h1 id="gutenberg">Gutenberg</h1>
+
+<p>This works with Gutenberg. Your CSS will be added as inline styles. All selectors will be prefixed with:
+.editor-styles-wrapper (except body, see below).</p>
+
+<p>All the info below is related to using this function with Gutenberg.</p>
+
+<h1 id="bodystyles">Body Styles</h1>
+
+<p>Styles targeting the body will be changed to target .editor-styles-wrapper instead. This lets you to customise the Gutenberg editor pane directly, e.g. to change its padding. You can also set defaults (like font family, color, etc) by adding styles to the body class.</p>
+
+<p>Example: body { color: red } becomes .editor-styles-wrapper { color: red }</p>
+
+<h1 id="notes">NOTES</h1>
+
+<ul>
+<li>mostly, use .wp-block-blockname</li>
+<li>sometimes use a mixin we have built to only style default (no style chosen)</li>
+<li>sometimes style .is-style-your-style</li>
+<li>soemtimes wrap with .blocks&#8211;wrapper to only hit on the front end</li>
+</ul>
+
+</body>
+</html>
+

@@ -1,0 +1,18 @@
+// ? utility level dependencies
+@use "sass:math";
+
+// ? vendor extensions
+$rfs-breakpoint : 1440;
+$rfs-factor : 100;
+$rfs-base-value : 1rem;
+@import "./extensions/rfs"; // @link https://github.com/twbs/rfs
+@import "./extensions/include-media"; // @link https://eduardoboucas.github.io/include-media/
+@import "./extensions/deep-get-set"; // @link https://gist.github.com/zellwk/b7f3317a56ad52b7700e
+
+// ? functions; variables; mixins; extends ( order matters )
+@import "./required/vars"; // variables
+@import "./required/mixins"; // mixins
+@import "./required/extends"; // extends
+@import './required/utility';
+@import "./required/keyframes"; // keyframes
+/* ... project styles will always load after this ... */

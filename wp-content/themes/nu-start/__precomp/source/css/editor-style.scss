@@ -1,0 +1,72 @@
+/* 
+	? custom editor stylesheet egistered via add theme support
+*/
+
+// ? seems stable
+@import "./library";
+
+@import "./blocks";
+
+img {
+	object-fit: cover;
+}
+
+body {
+	&.editor-styles-wrapper {
+		> .is-root-container:where(:not(.alignleft):not(.alignright)) {
+			@include add-top-level-vertical-spacing();
+			@include add-top-level-outer-spacing();
+		}
+	}
+}
+
+// * enable RFS for the existing theme.json font sizes
+// * RFS will auto-convert these to REM (16px === 1rem && 36px === 2rem)
+:root,
+body {
+	@include rfs(128px, --wp--preset--font-size--128-128);
+	@include rfs(96px, --wp--preset--font-size--96-96);
+	@include rfs(72px, --wp--preset--font-size--72-72);
+	@include rfs(60px, --wp--preset--font-size--60-60);
+	@include rfs(48px, --wp--preset--font-size--48-48);
+	@include rfs(36px, --wp--preset--font-size--36-40);
+	@include rfs(30px, --wp--preset--font-size--30-36);
+	@include rfs(24px, --wp--preset--font-size--24-32);
+	@include rfs(20px, --wp--preset--font-size--20-28);
+	@include rfs(18px, --wp--preset--font-size--18-28);
+	@include rfs(16px, --wp--preset--font-size--16-24);
+	@include rfs(14px, --wp--preset--font-size--14-20);
+	@include rfs(12px, --wp--preset--font-size--12-16);
+}
+
+.has-128-128-font-size {
+	@include rfs(128px, line-height);
+}
+.has-96-96-font-size {
+	@include rfs(96px, line-height);
+}
+.has-72-72-font-size {
+	@include rfs(72px, line-height);
+}
+.has-60-60-font-size {
+	@include rfs(60px, line-height);
+}
+// h1 have this fz value declared w/o the class
+// h1,
+.has-48-48-font-size {
+	@include rfs(48px, line-height);
+}
+.has-36-40-font-size {
+	@include rfs(36px, line-height);
+}
+// h2 have this fz value declared w/o the class
+// h2,
+.has-30-36-font-size {
+	@include rfs(36px, line-height);
+}
+.has-24-32-font-size {
+	@include rfs(32px, line-height);
+}
+.has-20-28-font-size {
+	@include rfs(28px, line-height);
+}

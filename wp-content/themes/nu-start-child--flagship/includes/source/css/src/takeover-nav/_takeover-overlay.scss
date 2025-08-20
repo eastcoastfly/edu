@@ -1,0 +1,74 @@
+//
+//
+//
+.takeover-nav {
+	.takeover-menu-container {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100%;
+		background-color: var(--wp--preset--color--white);
+		display: flex;
+		flex-flow: row nowrap;
+		gap: 0;
+		//
+		.takeover-nav-container {
+			margin: var(--takeover-nav-button-height) 0;
+			flex: 1 1 66%;
+		}
+		//
+		.takeover-featured-story-container {
+			// margin-bottom: var(--takeover-nav-button-height);
+			// margin-bottom:104px;
+			margin-bottom:80px;
+			@include media("<large") {
+				display: none;
+			}
+			flex: 1 0 33%;
+			@extend %dry_transition;
+			background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
+			display: flex;
+			flex-flow: column nowrap;
+			justify-content: flex-end;
+			background-color: var(--wp--preset--color--dark);
+
+			//
+			//
+			.adspace-story {
+				position: relative;
+				padding: 40px;
+				.adspace-story-description {
+					position: relative;
+					z-index: 1;
+					@include flush_inner_content_vertical;
+					display: flex;
+					flex-flow: column nowrap;
+					gap: var(--wp--style--block-gap);
+					p {
+						margin: 0;
+						color: var(--wp--preset--color--white);
+						font-size: var(--wp--preset--font-size--16-24);
+						line-height: 1.8;
+						font-weight: 375;
+						img {
+							max-width: 180px;
+						}
+					}
+				}
+				.adspace-bg {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					z-index: 0;
+					background-color: var(--wp--preset--color--dark);
+					opacity: 0.75;
+				}
+			}
+		}
+	}
+}

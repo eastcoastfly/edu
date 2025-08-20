@@ -1,0 +1,131 @@
+/* 
+	admin.scss
+*/
+//
+
+// ? seems stable
+@import "./library";
+
+
+// 
+// 
+// 
+// 
+.status-draft .check-column {
+	box-shadow: -12px 0 0 -3px rgba(237, 86, 68, 1.0) !important;
+}
+
+.status-pending .check-column {
+	box-shadow: -12px 0 0 -3px rgba(255, 133, 79, 1.0) !important;
+}
+
+.status-publish .check-column {
+	box-shadow: -12px 0 0 -3px rgba(96, 159, 128, 1) !important;
+}
+
+.status-future .check-column {
+	box-shadow: -12px 0 0 -3px #ffffff !important;
+}
+
+.status-private .check-column {
+	box-shadow: -12px 0 0 -3px #000000 !important;
+}
+
+.active .check-column {
+	border-left: 4px solid rgba(96, 159, 128, 1) !important;
+}
+
+.inactive .check-column {
+	border-left: 4px solid rgba(227, 227, 230, 1) !important;
+}
+// 
+// 
+// 
+
+.edit-post-visual-editor__post-title-wrapper {
+	margin-bottom: $margin_4x;
+	> h1.wp-block-post-title {
+		border-bottom: 1px solid rgba(124, 124, 124, 0.33);
+		font-size: var(--wp--preset--font-size--60-60);
+		text-align: center;
+		line-height: 1.2;
+	}
+}
+
+// * having some issues with loading the fonts into the block editor
+// * this resolves it... but it feels weird
+.is-root-container.block-editor-block-list__layout {
+	// font-family: "Lato", sans-serif;
+}
+
+.wp-block-widget-area.components-panel .components-panel__body-title {
+	z-index: 2 !important;
+}
+.edit-widgets-main-block-list > div {
+	margin-top: 48px;
+}
+
+.block-editor-inserter__panel-header.block-editor-inserter__panel-header-patterns {
+	width: 100%;
+}
+
+// 	increase the sidebar width in the block editor to make previews more meaningful
+//
+//
+.interface-complementary-area {
+	@media screen and (min-width: 782px) {
+		width: 320px !important;
+	}
+}
+
+@media screen and (min-width: 782px) {
+	.block-editor-inserter__menu .block-editor-inserter__main-area {
+		width: 420px;
+		max-width: 20vw;
+	}
+}
+.block-editor-block-patterns-list__item {
+	border: 1px solid var(--wp--preset--color--black);
+}
+
+.jvm-richtext-icons-popover {
+	> div {
+		max-height: 300px !important;
+	}
+}
+
+@media screen and (min-width: 782px) {
+	// * traverse to the color picker component
+	.block-editor-panel-color-gradient-settings {
+		// * traverse to the color picker control
+		.block-editor-color-gradient-control {
+			// * traverse to the color picker swatches
+			.components-circular-option-picker__swatches {
+				display: grid;
+				grid-template-columns: repeat(5, 1fr);
+				grid-row-gap: $half-margin;
+
+				//
+				.components-circular-option-picker__option-wrapper {
+					margin: 0 !important;
+				}
+			}
+		}
+	}
+}
+
+// ? this is the block editor equivalent of body.wp-admin
+// ? styles for just the editor go here for now; rather than in another set of files
+.is-root-container.block-editor-block-list__layout {
+	// disable posts grid items that are clickable areas from working in the CMS
+	.nu__grid {
+		.grid-item {
+			.contains-clickable-area {
+				pointer-events: none;
+			}
+			a {
+				pointer-events: none;
+			}
+		}
+	}
+}

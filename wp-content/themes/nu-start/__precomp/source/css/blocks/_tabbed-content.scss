@@ -1,0 +1,121 @@
+//
+//
+//
+// * The tabs + content container
+.wp-block-ub-tabbed-content {
+	// * The tabs container
+	.wp-block-ub-tabbed-content-tab-holder {
+		// * Make the tab title container the same color as the inactive tabs
+		background-color: var(--wp--preset--color--neutral-1);
+
+		.wp-block-ub-tabbed-content-tabs-title {
+			// * Space the tabs evenly
+			@include media(">=medium") {
+				justify-content: space-between !important;
+			}
+			// * Override Ultimate Blocks breakpoints
+			&.ub-tablet-hide {
+				@include media("<medium") {
+					display: none !important;
+				}
+			}
+
+			// * The individual tabs
+			.wp-block-ub-tabbed-content-tab-title-wrap {
+				// * Remove rounded borders and gap in between tabs
+				border-top-right-radius: 0;
+				border-top-left-radius: 0;
+				margin-right: 0 !important;
+				flex-basis: auto;
+				// * Flex the items to spread evenly across (and center the title)
+				flex: 1 0 auto;
+				justify-content: center;
+
+				&:not(.active) {
+					// * Make inactive tabs closer to background color in Figma and remove border
+					background-color: var(--wp--preset--color--neutral-1);
+					border: none;
+					&:hover {
+						background-color: var(
+							--wp--preset--color--neutral-2
+						) !important;
+					}
+				}
+			}
+		}
+	}
+
+	// * The content area
+	.wp-block-ub-tabbed-content-tabs-content {
+		border: none !important;
+		// * Remove top border, set background to white
+		border: 1px solid var(--wp--preset--color--neutral-1) !important;
+		border-top: 0 !important;
+		background-color: var(--wp--preset--color--white);
+
+		&.ub-tabbed-content-mobile-accordion,
+		&.ub-tabbed-content-tablet-accordion {
+			@include media("<medium") {
+				padding: 0 !important;
+			}
+			> .wp-block-ub-tabbed-content-tab-content-wrap {
+				@include media("<medium") {
+					padding: $margin_2x;
+				}
+			}
+		}
+
+		//
+		// * The stacked menu that appears on smaller screens
+		.wp-block-ub-tabbed-content-accordion-toggle {
+			&.ub-tablet-display,
+			&.ub-mobile-display {
+				// * Override the breakpoints of the Ultimate Blocks plugin
+				@include media(">=medium") {
+					display: none !important;
+				}
+				@include media("<medium") {
+					display: block !important;
+					cursor: pointer;
+				}
+			}
+		}
+	} // end .wp-block-ub-tabbed-content-tabs-content
+} // end .wp-block-ub-tabbed-content
+
+//
+//
+//
+// * If there is a group outside of the tabs block (e.g. dark background)
+.patterns--features--tabs-with-container {
+	@include media("<medium") {
+		// * Add some padding to "center" the tabs block inside the dark canvas
+		padding-top: $margin_3x;
+		padding-bottom: $margin_3x;
+	}
+
+	// * Move the entire tabs block up to match Figma design of lining up on the black/white border
+	.wp-block-ub-tabbed-content {
+		@include media(">=medium") {
+			margin-top: -$margin_4x !important;
+		}
+	}
+}
+
+.wp-block-ub-tabbed-content-tabs-content {
+	.wp-block-ub-tabbed-content-accordion-toggle {
+		@include media("<small") {
+			&:not(.active) {
+				@include nu_fa_icon("\2b", before);
+			}
+			&.active {
+				@include nu_fa_icon("\f068", before);
+			}
+
+			&:before {
+				margin-right: $half-margin;
+				font-size: 12px !important;
+			}
+		}
+	}
+}

@@ -1,0 +1,20 @@
+/*
+
+*/
+//
+//
+//
+
+//
+//
+:is(.posts-grid .nu__grid .grid-item.nu_profiles) {
+	// if vertical,
+	&.has-layout-vertical {
+		// if vertical layout; still use large post title font size
+		.post-title {
+			font-size: var(--wp--preset--font-size--30-36);
+			line-height: 1.8;
+			font-weight: 300;
+		}
+	}
+}

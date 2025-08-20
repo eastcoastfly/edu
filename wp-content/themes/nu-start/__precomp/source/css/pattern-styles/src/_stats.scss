@@ -1,0 +1,93 @@
+//
+//
+// * Styling for VERTICAL STATS pattern
+.pattern--stats--vertical {
+	> .wp-block-columns {
+		&:not(:last-child) {
+			padding-bottom: $margin_4x !important;
+		}
+		//
+		//
+		//
+		@include media("<medium") {
+			flex-direction: column;
+			gap: $base-margin !important;
+		}
+
+		@include media(">=medium") {
+			// * Add some space between data stat and red chevron
+			gap: $margin_4x !important;
+		}
+		//
+		//
+		// * Any row of data after the first one
+		&:not(:first-child) {
+			margin-top: $margin_4x;
+		}
+		//
+		//
+		// * Any row of data but the very last one
+		&:not(:last-child) {
+			// * Add thin gray separating line between stat rows
+			border-bottom: solid 1px var(--wp--preset--color--neutral-3);
+			padding-bottom: $margin_2x;
+		}
+
+		&:only-child {
+			border-bottom: solid 1px var(--wp--preset--color--neutral-3);
+			border-top: solid 1px var(--wp--preset--color--neutral-3);
+			padding-top: $margin_2x;
+			padding-bottom: $margin_2x;
+		}
+
+		//
+		//
+		> .wp-block-column {
+			// * The data stat column
+			&:first-child {
+				p {
+					@include media("<medium") {
+						// * Move the data stat back left on mobile
+						text-align: left;
+					}
+				}
+			}
+			//
+			//
+			//
+			// * The description column
+			&:not(:first-child) {
+				// * Push the description down to line up with top of data figure
+				margin-top: $half_margin;
+
+				@include media(">=medium") {
+					position: relative;
+					padding-left: $margin_3x;
+					// * Decrease width
+					flex-grow: 1;
+					//
+					//
+					// * Add the double chevron as a pseudo-element through FontAwesome
+					&:before {
+						font: var(--fa-font-light);
+						content: "\f324";
+						font-size: var(--wp--preset--font-size--24-32);
+						position: absolute;
+						left: 0;
+						top: 5px;
+						color: var(--wp--preset--color--nu-red);
+					}
+				}
+				@include media("<medium") {
+					margin-left: 0;
+				}
+
+				p {
+					@include media("<small") {
+						font-size: var(--wp--preset--font-size--18-28) !important;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,229 @@
+@import "./dependencies/links.scss";
+@import "./dependencies/color-scheme-placeholders.scss";
+@import "./dependencies/ui-templates-button.scss";
+
+.cookie-disclaimer {
+	--wp--custom--layout--content-size: var(--wp--style--global--content-size);
+	--wp--custom--font-size--medium: var(--wp--preset--font-size--16-24);
+	--wp--custom--font-size--small: var(--wp--preset--font-size--14-20);
+	--wp--custom--font-size--x-small: var(--wp--preset--font-size--12-16);
+	--wp--custom--color--link-text: var(--wp--preset--color--light);
+	--wp--custom--ui--handle: var(--wp--preset--color--light);
+	--wp--custom--ui--on-handle: var(--wp--preset--color--light);
+	//
+	//
+	//
+	--wp--custom--alert-scheme--low-priority--border: var(--wp--preset--color--nu-red);
+	--wp--custom--ui-scheme--on-light--track-base: var(--wp--preset--color--nu-red);
+	--wp--custom--color--lessen: var(--wp--preset--color--neutral-6);
+}
+.cookie-disclaimer {
+	//max-width: var(--wp--custom--layout--content-size);
+	// * New width to be consistent on all pages (per Trent)
+	width:80vw;
+}
+
+.cookie-disclaimer::backdrop {
+	display: none;
+	pointer-events: none;
+}
+
+.cookie-disclaimer__text {
+	font-size: var(--wp--custom--font-size--medium);
+	font-weight: 200;
+	margin: 0;
+	// padding-inline: 16px;
+
+	> a {
+		cursor: pointer;
+
+		&:hover,
+		&:focus {
+			color: var(--wp--preset--color--nu-red);
+		}
+	}
+}
+
+.cookie-disclaimer__settings-intro {
+	font-size: var(--wp--custom--font-size--small);
+	font-weight: 200;
+	margin: 0;
+	padding: var(--wp--preset--spacing--40);
+}
+
+.cookie-disclaimer__options {
+	column-gap: 8px;
+	display: flex;
+	flex-direction: column;
+}
+
+.cookie-disclaimer__option {
+	border-top: 1px solid #e3e3e3;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding: var(--wp--preset--spacing--40);
+}
+
+.cookie-disclaimer__option label {
+	align-items: center;
+	display: flex;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--custom--font-size--small);
+	font-weight: 400;
+	justify-content: space-between;
+	margin-bottom: var(--wp--preset--spacing--40);
+}
+
+.cookie-disclaimer__option span:not(.cookie-disclaimer__toggle) {
+	font-size: var(--wp--custom--font-size--x-small);
+	font-weight: 200;
+	position: absolute;
+	right: 80px;
+}
+
+.cookie-disclaimer__option input[type="checkbox"] {
+	// display: none;
+	visibility: hidden;
+	position: absolute;
+	left: -9999px;
+	height: 0;
+	overflow: hidden;
+	min-height: 0px;
+}
+
+.cookie-disclaimer__toggle {
+	background-color: #000;
+	border-radius: 20px;
+	display: inline-block;
+	height: 21px;
+	position: relative;
+	// transition: background-color 0.3s;
+	transition: all 0.7s cubic-bezier(0.31, 0.11, 0.12, 0.99);
+	width: 40px;
+	cursor: pointer;
+	border:1px solid #fff;
+}
+
+.cookie-disclaimer__toggle::before {
+	background-color: #fff;
+	border-radius: 50%;
+	content: "";
+	height: 16px;
+	left: 2px;
+	position: absolute;
+	top: 2px;
+	// transition: transform 0.3s;
+	transition: all 0.7s cubic-bezier(0.31, 0.11, 0.12, 0.99);
+	width: 16px;
+}
+
+.cookie-disclaimer__option input[type="checkbox"]:not(:disabled):checked {
+	// nested to avoid long line length
+	+ .cookie-disclaimer__toggle {
+		background-color: #fff;
+		&:before {
+			background-color:#000;
+		}
+
+	}
+}
+
+.cookie-disclaimer__option
+	input[type="checkbox"]:disabled:checked
+	+ .cookie-disclaimer__toggle {
+	background-color: #fff;
+	&:before {
+		background-color:#000;
+	}
+}
+
+.cookie-disclaimer__option
+	input[type="checkbox"]:checked
+	+ .cookie-disclaimer__toggle::before {
+	transform: translateX(20px);
+}
+
+.cookie-disclaimer .bottom-dialog__controls {
+	border-bottom: 1px solid var(--wp--custom--color--border);
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+.cookie-disclaimer__controls {
+	border-bottom: 1px solid;
+	display: flex;
+	flex-direction: row;
+	gap: var(--wp--preset--spacing--40);
+	justify-content: flex-end;
+	padding: 0 var(--wp--preset--spacing--40) var(--wp--preset--spacing--40);
+}
+
+.cookie-disclaimer__controls button {
+	background-color: transparent;
+	height: fit-content;
+	white-space: nowrap;
+	//
+	background: unset;
+	border: 1px solid var(--wp--custom--ui--handle);
+	border-radius: 28px;
+	color: var(--wp--custom--ui--on-handle);
+	outline-color: transparent;
+	padding: 8px 16px;
+	font-weight: 300;
+	cursor: pointer;
+	transition: all 0.7s cubic-bezier(0.31, 0.11, 0.12, 0.99);
+	&:hover,
+	&:focus {
+		background-color: var(--wp--preset--color--nu-red);
+		border-color: var(--wp--preset--color--nu-red);
+	}
+}
+
+.cookie-disclaimer .bottom-dialog__handle {
+	@extend %has-style-text-button;
+}
+
+.cookie-disclaimer .bottom-dialog__handle:hover {
+	background-color: transparent;
+}
+
+.cookie-disclaimer .bottom-dialog__handle::after {
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 4px solid;
+	border-top-color: var(--wp--custom--ui--handle);
+	content: "";
+	display: inline-block;
+	position: absolute;
+	right: 16px;
+	top: calc(50% - 1px);
+}
+
+.cookie-disclaimer .bottom-dialog__handle:active::before,
+.cookie-disclaimer .bottom-dialog__handle:focus::before,
+.cookie-disclaimer .bottom-dialog__handle:hover::before,
+.cookie-disclaimer .bottom-dialog__handle:focus-visible::before,
+.cookie-disclaimer .bottom-dialog__handle:focus-within::before {
+	--button--background-opacity: 0;
+}
+
+.cookie-disclaimer.bottom-dialog.expanded .bottom-dialog__handle::after {
+	transform: rotate(-180deg);
+}
+
+.cookie-disclaimer .bottom-dialog__handle.wp-button {
+	font-size: var(--wp--custom--font-size--x-small) !important;
+	font-weight: 200;
+	cursor: pointer;
+}
+
+.wp-button.is-style-filled {
+	background: unset;
+	border: 1px solid var(--wp--custom--ui--handle);
+	border-radius: 28px;
+	color: var(--wp--custom--ui--on-handle);
+	outline-color: transparent;
+	padding: 8px 16px;
+	font-weight: 300;
+}

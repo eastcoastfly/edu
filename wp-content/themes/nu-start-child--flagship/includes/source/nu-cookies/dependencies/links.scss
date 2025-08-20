@@ -1,0 +1,49 @@
+/**
+ * Link styles.
+ *
+ * @param $style string Style of link. Options are ui or text.
+ *
+ * @since 1.5.0
+ */
+@mixin set-link-style($style) {
+
+	@if "ui" == $style {
+
+		&:is(:link, :visited) {
+			color: var(--wp--custom--ui--handle);
+		}
+
+		&:is(:hover, :focus) {
+			color: var(--wp--custom--ui--handle-emphasis);
+		}
+
+		&:is(:active) {
+			color: var(--wp--custom--ui--handle-lessen);
+		}
+	}
+
+	@if "text" == $style {
+
+		&:is(:link, :visited) {
+			color: var(--wp--custom--color--link-text);
+		}
+
+		&:is(:hover, :focus) {
+			color: var(--wp--custom--color--link-text-emphasize);
+		}
+
+		&:is(:active) {
+			color: var(--wp--custom--color--lessen);
+		}
+	}
+}
+
+%is-ui-link {
+
+	@include set-link-style("ui");
+}
+
+%is-text-link {
+
+	@include set-link-style("text");
+}

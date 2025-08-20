@@ -1,0 +1,198 @@
+//Google Search Page
+body.page-template-template-search {
+	footer a.logo.logo--image img, footer a.logo.logo--image svg, header a.logo.logo--image img, header a.logo.logo--image svg {
+		> g {
+			&:first-of-type {
+				> path {
+					fill: var(--wp--preset--color--dark);
+				}
+
+			}
+		}
+	}
+}
+
+body.page-template-template-search .nu__searchbar-container > #nu__searchbar-form > div {
+	border:none;
+	border-bottom:1px solid var(--wp--preset--color--dark);
+	border-radius:unset;
+	padding:0;
+	background-color: transparent;
+}
+
+div.main > section > div.nu__searchbar-container > form#nu__searchbar-form > div > button {
+	font-family: "FF Real Head",sans-serif;
+}
+
+.gsc-wrapper {
+	max-width: var(--wp--style--global--content-size);
+	margin: 65px auto 0 auto;
+	font-family: "FF Real Head",sans-serif;
+
+}
+
+.gcsc-more-maybe-branding-root {
+	display: none;
+}
+
+body.page-template-template-search
+	div.main
+	> section
+	> div#___gcse_0
+	div.gsc-results
+	> div.gsc-expansionArea
+	> div.gsc-result {
+	border-bottom: none;
+	padding: 9px 0;
+
+
+}
+
+div.main > section > div#___gcse_0 div.gsc-webResult div.gs-title a {
+	font-weight: 400 !important;
+	font-size: 28px !important;
+	color: var(--wp--preset--color--dark) !important;
+	line-height: 1.6;
+	&:hover,
+	&:focus {
+		text-decoration-color: var(--wp--preset--color--nu-red) !important;
+		color: var(--wp--preset--color--nu-red) !important;
+		> b {
+			color: var(--wp--preset--color--nu-red) !important;
+		}
+
+	}
+}
+
+body.page-template-template-search div.main > section > div#___gcse_0 div.gs-title b, body.page-template-template-search div.main > section > div#___gcse_0 div.gsc-webResult b {
+	font-weight: 400 !important;
+}
+
+div.main > section > div#___gcse_0 div.gsc-webResult div.gs-title a b {
+	font-weight: 400 !important;
+	font-size: 28px !important;
+	color: var(--wp--preset--color--dark) !important;
+}
+
+
+
+.gs-webResult div.gs-visibleUrl {
+	> span {
+		font-weight: 300 !important;
+		font-size: var(--wp--preset--font-size--18-28) !important;
+		color: var(--wp--preset--color--dark) !important;
+		// line-height: 180%;
+	}
+}
+
+body.page-template-template-search
+	div.main
+	> section
+	> div#___gcse_0
+	div.gsc-results
+	> div.gsc-expansionArea
+	> div.gsc-result
+	> div.gs-result
+	> .gsc-table-result {
+	margin-top: 3px;
+}
+
+div.main > section > div#___gcse_0 div.gsc-webResult div.gs-snippet {
+	font-weight: 300 !important;
+	font-size: var(--wp--preset--font-size--18-28) !important;
+	color: var(--wp--preset--color--dark) !important;
+}
+
+.gs-webResult div.gs-visibleUrl  {
+	font-weight: 300 !important;
+	font-size: var(--wp--preset--font-size--18-28) !important;
+	color: var(--wp--preset--color--dark) !important;
+	line-height: 1.8;
+}
+
+
+
+
+/* search pagination */
+
+div.main > section > div#___gcse_0 div.gsc-cursor-box {
+	margin:98px 0 !important;
+}
+
+.gsc-results .gsc-cursor, body.page-template-template-search div.main > section > div#___gcse_0 .gsc-cursor-box .gsc-cursor .gsc-cursor-page {
+	color: var(--wp--preset--color--dark);
+	font-weight: 300;
+	font-size: var(--wp--preset--font-size--18-28);
+}
+
+body.page-template-template-search div.main > section > div#___gcse_0 .gsc-cursor-box .gsc-cursor .gsc-cursor-page.gsc-cursor-current-page, body.page-template-template-search div.main > section > div#___gcse_0 .gsc-cursor-box .gsc-cursor .gsc-cursor-page:hover {
+	border-bottom: 2px solid var(--wp--preset--color--nu-red) !important;
+}
+
+body.page-template-template-search div.main > section > div#___gcse_0 .gsc-above-wrapper-area .gsc-result-info-container .gsc-result-info, body.page-template-template-search div.main > section > div#___gcse_0 .gsc-above-wrapper-area .gsc-orderby-container .gsc-orderby-label.gsc-inline-block{
+	font-weight: 300 !important;
+	font-size: var(--wp--preset--font-size--18-28);
+	color:var(--wp--preset--color--dark);
+}
+
+div.main > section > div#___gcse_0 div.gsc-orderby div.gsc-option-menu-container div.gsc-selected-option-container {
+	font-weight: 300 !important;
+	font-size: var(--wp--preset--font-size--18-28);
+	color:var(--wp--preset--color--white);
+}
+
+
+
+/*Search form button*/
+
+.gsc-selected-option-container {
+	background-color: transparent !important;
+	cursor:pointer;
+}
+
+body.page-template-template-search div.main > section > div#___gcse_0 .gsc-above-wrapper-area .gsc-orderby-container .gsc-option-menu-container.gsc-inline-block .gsc-selected-option-container.gsc-inline-block .gsc-selected-option {
+	background-color: transparent ;
+}
+
+body.page-template-template-search div.main > section > div#___gcse_0 .gsc-above-wrapper-area .gsc-orderby-container .gsc-option-menu-container.gsc-inline-block .gsc-selected-option-container.gsc-inline-block .gsc-option-selector {
+	background-color: transparent !important;
+	&:before {
+		background-color: transparent !important;
+	}
+}
+
+body.page-template-template-search div.main > section > div#___gcse_0 .gsc-above-wrapper-area .gsc-orderby-container .gsc-option-menu-container.gsc-inline-block{
+	transition: all .3s cubic-bezier(.31,.11,.12,.99);
+	border-radius: 28px;
+	font-size: var(--wp--preset--font-size--16-24);
+	font-weight: 400;
+	line-height: 1.8;
+	padding: 14px 32px !important;
+	display: inline-block;
+  text-align: center;
+	background-color:var(--wp--preset--color--dark);
+	&:hover,
+	&:focus {
+		background: var(--wp--preset--color--nu-red);
+		cursor:pointer;
+	}
+}
+
+body.page-template-template-search div.main > section > div#___gcse_0 .gsc-above-wrapper-area .gsc-orderby-container .gsc-option-menu-container.gsc-inline-block .gsc-selected-option-container.gsc-inline-block{
+	padding:0 22px 0 0;
+}
+
+body.page-template-template-search .nu__searchbar-container > #nu__searchbar-form > div #query {
+	font-weight: 400;
+	font-size: var(--wp--preset--font-size--30-36);
+}
+
+div.main > section > div#___gcse_0 div.gsc-orderby div.gsc-option-menu-container div.gsc-selected-option-container div.gsc-option-selector::before {
+	font-family: "Font Awesome 6 Pro" !important;
+	content:'\f078' !important;
+	font-weight:300;
+	font-size:var(--wp--preset--font-size--16-24) !important;
+	line-height:28px !important;
+	transition: transform 0.3s ease-out;
+}
+

@@ -1,0 +1,73 @@
+/* 
+
+*/
+//
+//
+:is(.posts-grid .nu__grid .grid-item.nu_programs) {
+	.grid-item-content {
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: space-between;
+	}
+
+	.program-category {
+		> span {
+			padding: 4px $half-margin;
+			background-color: var(--wp--preset--color--black);
+			color: var(--wp--preset--color--light);
+			@extend %has-is-style-eyebrow;
+			transition: all 0.1s ease-in-out;
+			font-weight: 300;
+			text-transform: none;
+			letter-spacing: 0.33px;
+		}
+		+ * {
+			margin-top: $base-margin;
+		}
+	}
+
+	.basic-program-info {
+		margin-top: $base-margin;
+		// * Stack the little program details on smaller screens to avoid awkward line wraps
+		@include media("<medium") {
+			display: flex;
+			flex-direction: column;
+		}
+		// * Each of the program info items
+		> div {
+			display: inline-block;
+			font-size: var(--wp--preset--font-size--12-16);
+			line-height: 20px;
+			margin-right: $base-margin;
+			// * Style all of the icons
+			&:before {
+				display: inline-block;
+				vertical-align: middle;
+				font-size: 16px;
+				line-height: 16px;
+				margin-right: 4px;
+			}
+		}
+		.location {
+			@include nu_fa_icon("\f3c5", before);
+		}
+		.duration {
+			@include nu_fa_icon("\f017", before);
+		}
+
+		//
+		.studyoptions {
+			@include nu_fa_icon("\f518", before);
+			> div {
+				display: inline-block;
+			}
+			span {
+				&:not(:first-child) {
+					&:before {
+						content: "/";
+					}
+				}
+			}
+		}
+	}
+}

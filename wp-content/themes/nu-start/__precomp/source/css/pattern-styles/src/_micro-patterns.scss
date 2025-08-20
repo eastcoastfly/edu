@@ -1,0 +1,41 @@
+//
+//
+//
+//
+// ? accent underline is applied
+.wp-block-group.patterns--blurbs--basic-section-headline {
+	p:only-child,
+	h1,
+	h2 {
+		@extend %has-thin-accent-underline;
+	}
+}
+
+
+// ? fontawesome icon, bold title, and description paragraph
+.patterns--blurbs--title-and-blurb-with-fa-icon {
+	// 
+	p:not(.has-text-color) {
+		i[class*="fa-"] {
+			color: var(--wp--preset--color--neutral-4);
+		}
+	}
+
+	// 
+	@include media(">medium") {
+		p {
+			position: relative;
+			padding-left: $margin_3x;
+			//
+			i[class*="fa-"]:first-child {
+				position: absolute;
+				left: 0;
+				top: 1rem;
+			}
+		}
+		> ul,
+		> li {
+			margin-left: $margin_3x;
+		}
+	}
+}

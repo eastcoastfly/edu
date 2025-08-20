@@ -1,0 +1,64 @@
+/**
+ * Provides mixins for styles.
+ *
+ * @since 1.5.0
+ */
+
+/**
+ * Assigns values to --wp--custom--color--[key] from the scheme name.
+ *
+ * @param $scheme string Name of the color scheme.
+ *
+ * @since 1.5.0
+ */
+
+@mixin set-color-scheme($scheme) {
+	$scheme-uid: "--wp--custom--color-scheme--" + $scheme;
+
+	--wp--custom--color--background: var(--wp--preset--color--dark);
+	--wp--custom--color--foreground: var(--wp--preset--color--light);
+	--wp--custom--color--border: var(--wp--preset--color--dark);
+	--wp--custom--color--emphasize: var(#{$scheme-uid}--emphasize);
+	--wp--custom--color--lessen: var(#{$scheme-uid}--lessen);
+	--wp--custom--color--accent: var(#{$scheme-uid}--accent);
+	--wp--custom--color--link: var(#{$scheme-uid}--link);
+	--wp--custom--color--link-text: var(#{$scheme-uid}--link-text);
+	--wp--custom--color--link-text-emphasize: var(#{$scheme-uid}--link-text-emphasize);
+}
+
+@mixin set-alert-scheme($scheme) {
+	$scheme-uid: "--wp--custom--alert-scheme--" + $scheme;
+
+	--wp--custom--color--background: var(--wp--preset--color--dark);
+	--wp--custom--color--foreground: var(--wp--preset--color--light);
+	--wp--custom--color--border: var(--wp--preset--color--dark);
+	--wp--custom--color--emphasize: var(#{$scheme-uid}--emphasize);
+	--wp--custom--color--lessen: var(#{$scheme-uid}--lessen);
+	--wp--custom--color--accent: var(#{$scheme-uid}--accent);
+	--wp--custom--color--link: var(#{$scheme-uid}--link);
+	--wp--custom--color--link-text: var(#{$scheme-uid}--link-text);
+	--wp--custom--color--link-text-emphasize: var(#{$scheme-uid}--link-text-emphasize);
+}
+
+/**
+ * Assigns values to --wp--custom--color--[key] from the scheme name.
+ *
+ * @param $scheme string Name of the color scheme.
+ *
+ * @since 1.5.0
+ */
+
+@mixin set-ui-scheme($scheme) {
+	$scheme-uid: "--wp--custom--ui-scheme--" + $scheme;
+
+	--wp--custom--ui--background: var(--wp--preset--color--dark);
+	--wp--custom--ui--foreground: var(--wp--preset--color--light);
+	--wp--custom--ui--lessen: var(#{$scheme-uid}--lessen);
+	--wp--custom--ui--handle: var(#{$scheme-uid}--handle);
+	--wp--custom--ui--handle-emphasize: var(#{$scheme-uid}--handle-emphasize);
+	--wp--custom--ui--handle-lessen: var(#{$scheme-uid}--handle-lessen);
+	--wp--custom--ui--on-handle: var(#{$scheme-uid}--on-handle);
+	--wp--custom--ui--track-base: var(#{$scheme-uid}--track-base);
+	--wp--custom--ui--track-accent: var(#{$scheme-uid}--track-accent);
+	--wp--custom--ui--border: var(--wp--preset--color--dark);
+}

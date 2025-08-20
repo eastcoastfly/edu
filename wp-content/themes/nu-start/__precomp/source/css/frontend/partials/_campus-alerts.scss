@@ -1,0 +1,95 @@
+
+// just showing the markup structure here
+main ~ #nu__alerts {
+	display: none;
+	position: fixed;
+	transition: all 0.3s $bezier;
+	z-index: 9;
+	top: calc(var(--nu--mainel--offset) + $margin_2x);
+	left: calc(100% - $margin_2x);
+	max-width: 100%;
+	width: clamp(400px, 50%, 720px);
+	//
+	background-color: var(--wp--preset--color--white);
+	color: var(--wp--preset--color--neutral-5);
+
+	.toggle-alert {
+		color: var(--wp--preset--color--white);
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		width: $margin_2x;
+		height: 100%;
+		background-color: var(--wp--preset--color--nu-red);
+		appearance: none;
+		border: 0px solid transparent;
+	}
+	@include nu__boxshadow(0);
+	&.is-open {
+		@include nu__boxshadow(5);
+		transform: translateX(-100%);
+		left: 100%;
+		.toggle-alert {
+			transform: scaleX(-1);
+		}
+	}
+
+	> div {
+		@include flush_inner_content_vertical;
+		padding: $base-margin;
+		padding-left: $margin_4x;
+	}
+}
+
+// TYPOGRAPHICAL RESTYLING
+#nu__alerts {
+	// downsize from default h2
+	h2 {
+		color: var(--wp--preset--color--nu-red);
+		font-size: var(--wp--preset--font-size--20-28);
+		line-height: 1.8;
+		text-transform: uppercase;
+	}
+
+	// downsize from default paragraph usually set at 18px
+	p {
+		font-size: var(--wp--preset--font-size--16-24);
+		line-height: 1.8;
+	}
+
+	// style list elem
+	> ul {
+		margin: 0;
+		padding: 0;
+		list-style-position: inside;
+
+		// style list item elems
+		> li {
+			font-size: 14px;
+			margin: 0;
+		}
+
+		// style the alert links
+		li a {
+			font-weight: 700;
+			border-bottom: none;
+			font-size: 16px;
+			font-weight: 700;
+			line-height: 2.8rem;
+			text-align: left;
+			line-height: 1;
+			color: rgba(0, 0, 0, 1);
+			text-decoration: underline;
+			&:hover,
+			&:focus {
+				text-decoration: none;
+			}
+		}
+	}
+}
+body.has-global-alerts {
+	main ~ #nu__alerts {
+		display: block;
+	}
+}

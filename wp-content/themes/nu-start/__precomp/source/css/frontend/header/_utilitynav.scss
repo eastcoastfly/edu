@@ -1,0 +1,103 @@
+//
+//
+//
+header.header {
+	//
+	//
+	//
+	> .utilitynav {
+		transition: all 0.1s ease-in-out;
+		position: relative;
+		margin: 0;
+		height: var(--nu--utilitynav--height);
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		text-align: right;
+		padding: 0 var(--wp--custom--spacing--outer);
+
+		.menu > .menu-item {
+			&:not(:first-child) {
+				margin-left: $base-margin;
+			}
+
+			.link-text {
+				font-size: var(--wp--preset--font-size--12-16);
+				line-height: 16px;
+			}
+		}
+
+		// hard disable showing sub-menus
+		.sub-menu {
+			display: none;
+		}
+	}
+
+	//
+	//
+	//
+}
+//
+//
+//
+@include media("<medium") {
+	header.header {
+		display: flex;
+		> .utilitynav {
+			display: none;
+		}
+	}
+
+	body {
+		&.has-revealed-mobile-navmenu {
+			header.header {
+				> .utilitynav {
+					display: flex;
+					flex-flow: row nowrap;
+					justify-content: center;
+					align-items: center;
+					min-height: 54px;
+					position: fixed;
+					bottom: 0;
+					left: 0;
+					width: 100%;
+					z-index: 99;
+					text-align: left;
+					justify-content: flex-start;
+					overflow: hidden;
+					overflow-x: auto;
+					background-color: var(--wp--preset--color--white);
+					padding: 0 var(--wp--custom--spacing--outer);
+					@include nu__boxshadow(4);
+				}
+				.utilitynav {
+					.navlinks {
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
+}
+//
+//
+//
+// * Increase font size of Utility nav links on mobile
+.utilitynav {
+	> .navlinks {
+		> #menu-utility-cta {
+			@include media("<medium") {
+				// * Provide some space between links for fat fingers
+				gap: $margin_2x;
+			}
+			> .menu-item {
+				.link-text {
+					@include media("<medium") {
+						// * Make utility nav items bigger for fat fingers
+						font-size: var(--wp--preset--font-size--20-28);
+					}
+				}
+			}
+		}
+	}
+}

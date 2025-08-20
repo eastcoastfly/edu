@@ -1,0 +1,217 @@
+/*
+
+*/
+//
+
+// * default styling for the cards block
+@include block-is-style-default("acf-block.cards") {
+	position: relative;
+	overflow: hidden;
+}
+
+// ? This original line has a specificity of 0
+//:where(.acf-block.cards) {
+// ? This has a specificity of 2
+.acf-block.cards {
+	// use variable for padding to keep everything consistent and modifiable
+	--acf--cards--padding: #{$margin_2x};
+	//
+	position: relative;
+	overflow: hidden;
+	margin: 0 auto;
+	//
+	&:not(.alignwide, .alignfull) {
+		max-width: var(--wp--style--global--content-size);
+	}
+	&.alignwide {
+		max-width: var(--wp--style--global--wide-size);
+	}
+	&:not(.has-background) {
+		> div {
+			border: 1px solid var(--wp--preset--color--neutral-3);
+			background-color: var(--wp--preset--color--white);
+		}
+	}
+	> div {
+		padding: var(--acf--cards--padding);
+		position: relative;
+		z-index: 1;
+		overflow: hidden;
+		// removes first/last child margin top/bot (flush content with vertical edges)
+		@include flush_inner_content_vertical();
+		> p:not([class]) {
+			font-size: 16px;
+			line-height: 28px;
+		}
+
+		// ? flush the edges of "full-size" images that are the first child
+		> :is(
+				.wp-block-image.size-large:first-child,
+				.wp-block-image.size-full:first-child
+			) {
+			position: relative;
+			margin: 0;
+			margin-top: calc(var(--acf--cards--padding) * -1);
+			margin-left: calc(var(--acf--cards--padding) * -1);
+			width: calc(100% + calc(var(--acf--cards--padding) * 2));
+			max-width: calc(100% + calc(var(--acf--cards--padding) * 2));
+			margin-bottom: var(--acf--cards--padding);
+			img {
+				width: 100%;
+				margin: 0;
+			}
+		}
+	}
+
+	//
+	// ? full height causes problems when this is not the only child...
+	//
+	&.is-full-height {
+		> div,
+		& {
+			height: 100%;
+		}
+	}
+	//
+	&.has-text-color {
+		* {
+			color: inherit;
+		}
+	}
+
+	&.has-text-align-right {
+		.is-the-view-more-link {
+			right: var(--acf--cards--padding);
+			left: auto !important;
+		}
+	}
+	&.has-text-color {
+		.is-the-view-more-link {
+			i {
+				color: inherit !important;
+			}
+		}
+	}
+	&.is-vertically-aligned-center {
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: center;
+		> div {
+			height: auto;
+		}
+	}
+	&.is-vertically-aligned-bottom {
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: flex-end;
+		> div {
+			height: auto;
+		}
+	}
+
+	//
+	//
+	// * For cards with clickable areas
+	&[data-clickable-area="true"] {
+		position: relative;
+		> .is-card-clickable-area-anchor {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 2;
+		}
+		//
+		//
+		.is-the-view-more-link {
+			position: absolute;
+			padding: 0;
+			margin: 0;
+			bottom: var(--acf--cards--padding);
+			left: var(--acf--cards--padding);
+			transform: translateY(50%);
+			max-width: calc(100% - var(--acf--cards--padding));
+			//
+			span {
+				text-decoration: underline;
+				text-underline-offset: 2px;
+				text-decoration-color: var(--wp--preset--color--nu-red);
+				font-size: var(--wp--preset--font--size--16-24);
+			}
+			i[class*="fa-"],
+			.svg-inline--fa {
+				color: var(--wp--preset--color--black);
+				// vertical-align: top;
+				font-size: small;
+				transition: all 0.1s ease-in-out;
+			}
+		}
+		> div {
+			a {
+				text-decoration: none;
+			}
+		}
+		&:hover {
+			.is-the-view-more-link {
+				span {
+					text-decoration: none;
+				}
+			}
+		}
+		&.has-clickable-link-title {
+			> div {
+				padding-bottom: calc(var(--acf--cards--padding) * 2);
+			}
+		}
+	}
+
+	&.has-transparent-background-color {
+		border: 1px solid var(--wp--preset--color--black);
+	}
+
+	&.has-black-background-color {
+		border: 1px solid transparent;
+	}
+} // end .acf-block.cards
+
+//
+//
+//
+:is(.blocks--wrapper .acf-block.cards[data-clickable-area="true"]) {
+	@include nu__boxshadow(0);
+	transition: all 0.1s ease-in-out;
+	cursor: pointer;
+	.wp-block-image {
+		overflow: hidden;
+		img {
+			transition: all 0.1s ease-in-out;
+			transform: scale(1);
+		}
+	}
+
+	&:hover {
+		@include nu__boxshadow(5);
+		.wp-block-image.size-full:first-of-type {
+			overflow: hidden;
+			img {
+				transform: scale(1.2);
+			}
+		}
+		> div {
+			a {
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+//
+// any card that is the only child of a column block will fill that column space vertically.
+// this may clash with the vertical align but it seems fine
+:where(.wp-block-column > .acf-block.cards:only-child) {
+	height: 100%;
+	> div {
+		height: 100%;
+	}
+}

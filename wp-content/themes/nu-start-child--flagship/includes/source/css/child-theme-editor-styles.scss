@@ -1,0 +1,38 @@
+//
+
+.posts-grid.is-style-as-draggable-slider {
+	.nu__grid {
+		.grid-item {
+			&:not(:first-child){
+				display: none;
+			}
+			&:first-child {
+				position: relative;
+				&::before {
+					position: absolute;
+					content: 'SLIDER PREVIEW DISABLED';
+					display: inline-block;
+					font-weight: bold;
+					text-transform: uppercase;
+					top: 50%;
+					left: 50%;
+					z-index: 2;
+					color: white;
+					background-color: transparent;
+					transform: translate(-50%, -50%);
+				}
+				&::after {
+					position: absolute;
+					background-color: transparentize(black, 0.5);
+					content: '';
+					display: block;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					z-index: 1;
+				}
+			}
+		}
+	}
+}

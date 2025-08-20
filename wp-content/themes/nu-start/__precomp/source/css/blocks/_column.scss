@@ -1,0 +1,97 @@
+//
+//
+//
+.wp-block-column {
+	//  first/last child flush against top/bottom edges
+	@include flush_inner_content_vertical;
+}
+
+.wp-block-column.is-style-main-content-column {
+	@include media("<=medium") {
+		max-width: 100%;
+		width: 100%;
+	}
+
+	// space between sections matches "top level"
+	@include add-top-level-vertical-spacing();
+
+	// space between content and sidebar matches "outer gutter"
+	&:not(:first-child) {
+		@include media(">medium") {
+			margin-left: var(--wp--custom--spacing--outer);
+		}
+	}
+	&:not(:last-child) {
+		@include media(">medium") {
+			margin-right: var(--wp--custom--spacing--outer);
+		}
+	}
+
+	// grid max-column default reduced
+	.nu__grid {
+		@include media("<=large") {
+			// ? restrict max-cols in the layout to 4
+			@for $n from 4 through 6 {
+				$gX: 30px;
+				$gY: 30px;
+				$w: 100%;
+				&.cols-#{$n} {
+					@include nuGrid($w, 3, $gX, $gY);
+				}
+			}
+		}
+		@include media("<=medium") {
+			// ? restrict max-cols in the layout to 4
+			@for $n from 3 through 6 {
+				$gX: 30px;
+				$gY: 30px;
+				$w: 100%;
+				&.cols-#{$n} {
+					@include nuGrid($w, 2, $gX, $gY);
+				}
+			}
+		}
+		@include media("<=small") {
+			// ? restrict max-cols in the layout to 4
+			@for $n from 2 through 6 {
+				$gX: 30px;
+				$gY: 30px;
+				$w: 100%;
+				&.cols-#{$n} {
+					@include nuGrid($w, 1, $gX, $gY);
+				}
+			}
+		}
+	}
+
+	@include media("<=medium") {
+		max-width: 100%;
+		width: 100%;
+	}
+}
+
+.wp-block-column.is-style-sidebar-column {
+	&:nth-child(3) {
+		@include media("<xlarge") {
+			display: none;
+		}
+	}
+}
+
+.wp-block-columns {
+	&.is-style-sidebar-layout {
+		// * Stack sidebar menu on top for < 1024px (medium)
+		@include media("<=medium") {
+			flex-direction: column;
+			> .wp-block-column {
+				flex-basis: 100% !important;
+			}
+		}
+	}
+}
+.blocks--wrapper {
+	> .wp-block-columns.is-style-sidebar-layout.alignfull {
+		padding-left: calc(var(--wp--custom--spacing--outer) * 0.5) !important;
+		padding-right: calc(var(--wp--custom--spacing--outer) * 0.5) !important;
+	}
+}

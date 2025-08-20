@@ -1,0 +1,205 @@
+//
+//
+//
+.wp-block-navigation {
+	//
+
+	// top-level <ul> container of <li> items
+	> .wp-block-navigation__container {
+	}
+
+	// navigation item (always represents <li>)
+	.wp-block-navigation-item {
+		&.current-menu-item {
+		}
+	}
+
+	// navigation link
+	.wp-block-navigation-link {
+	}
+	.wp-block-navigation-item__content {
+		opacity: 0.75;
+		&:hover,
+		&:focus-within {
+			opacity: 1;
+		}
+	}
+	// navigation item is a link (not always on each <li> - maybe not on submenu parents,etc...)
+	.wp-block-navigation-item.wp-block-navigation-link {
+	}
+
+	// submenu icon (chevron)
+	.wp-block-navigation__submenu-icon {
+		transition: all 0.2s $bezier;
+		width: 14px;
+		height: 14px;
+		margin-left: $half-margin;
+		svg path {
+			stroke-width: 1;
+		}
+	}
+
+	//
+	.wp-block-navigation-submenu__toggle {
+		&[aria-expanded="true"] {
+			+ .wp-block-navigation__submenu-icon {
+				transform: rotate(90deg);
+			}
+		}
+	}
+
+	// navigation submenu parent container
+	.wp-block-navigation-submenu {
+		//
+		&.open-on-click {
+			.wp-block-navigation-item__label {
+				letter-spacing: 0.33px;
+			}
+			.wp-block-navigation-submenu__toggle {
+				padding: 0;
+			}
+			.wp-block-navigation__submenu-icon {
+				margin-left: $half-margin;
+			}
+		}
+		&.open-on-hover-click {
+			&:focus-within,
+			&:hover {
+				.wp-block-navigation__submenu-icon {
+					transform: rotate(90deg);
+				}
+			}
+		}
+
+		// open on click is disabled - arrows are disabled
+		&:not(.open-on-hover-click) {
+			> a.wp-block-navigation-item__content:first-child {
+				@include nu_fa_icon("\f078", after);
+				&:after {
+					display: inline-block;
+					font-weight: 400;
+					font-size: 14px;
+					margin-left: $half-margin;
+					transition: all 0.2s $bezier;
+				}
+				&:hover,
+				&:focus-within {
+					&::after {
+						transform: rotate(90deg);
+					}
+				}
+			}
+		}
+	}
+}
+
+//
+//
+//
+//
+//
+//
+.wp-block-navigation.is-vertical {
+	--navigation-layout-direction: column;
+	--navigation-layout-justify: initial;
+	--navigation-layout-align: stretch;
+	--wp--style--block-gap: 0px;
+	gap: var(--wp--style--block-gap);
+
+	//
+	//
+	//
+	// navigation item (always represents <li>)
+	.wp-block-navigation-item {
+		background-color: var(--wp--preset--color--light);
+
+		.wp-block-navigation__submenu-icon {
+			position: absolute;
+			right: 0;
+			top: 0.5rem;
+		}
+
+		&.wp-block-navigation-submenu {
+			flex-flow: row wrap;
+		}
+
+		&.current-menu-item {
+			.wp-block-navigation-item__content {
+				border-left: 2px solid var(--wp--preset--color--nu-red);
+				background-color: var(--wp--preset--color--neutral-1);
+			}
+		}
+		.wp-block-navigation-item__content {
+			width: 100%;
+			padding: $base-margin;
+			border-left: 2px solid transparent;
+			&:hover,
+			&:focus-within {
+				background-color: var(--wp--preset--color--neutral-1);
+				border-left: 2px solid var(--wp--preset--color--nu-red);
+			}
+		}
+	}
+
+	//
+	//
+	//
+	.wp-block-navigation-submenu.has-child {
+		.wp-block-navigation__submenu-container {
+			position: relative;
+			width: 100%;
+			min-width: unset;
+			border: unset;
+			background-color: unset;
+			color: inherit;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+	}
+}
+
+//
+//
+//
+//
+//
+//
+.wp-block-navigation:not(.is-vertical) {
+	--wp--style--block-gap: 0px;
+	gap: var(--wp--style--block-gap);
+	.wp-block-navigation-item {
+		.wp-block-navigation-item__content {
+			padding: $base-margin;
+			border-bottom: 2px solid transparent;
+			&:hover,
+			&:focus-within {
+				border-bottom: 2px solid var(--wp--preset--color--black);
+			}
+		}
+		&.current-menu-item {
+			.wp-block-navigation-item__content {
+				border-bottom: 2px solid var(--wp--preset--color--black);
+			}
+		}
+
+		.wp-block-navigation__submenu-container {
+			.wp-block-navigation-item__content {
+				border-bottom: unset;
+				padding: $base-margin;
+				border-left: 2px solid transparent;
+				&:hover,
+				&:focus-within {
+					border-left: 2px solid var(--wp--preset--color--nu-red);
+					border-bottom: unset;
+				}
+			}
+		}
+	}
+	@include media("<medium") {
+		.wp-block-navigation__container {
+			flex-flow: row wrap !important;
+		}
+	}
+}

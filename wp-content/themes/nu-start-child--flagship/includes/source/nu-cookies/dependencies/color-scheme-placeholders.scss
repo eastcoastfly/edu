@@ -1,0 +1,86 @@
+@import "./mixins";
+
+/**
+ * Color Schemes
+ * Provides placeholder classes to allow for universal styling across the
+ * differing elements.
+ *
+ * @since 1.5
+ */
+
+%has-base-scheme {
+
+	@include set-color-scheme(base);
+	@include set-ui-scheme(on-light);
+}
+
+%has-contrast-scheme {
+
+	@include set-color-scheme(contrast);
+	@include set-ui-scheme(on-dark);
+}
+
+%has-accent-scheme {
+
+	@include set-color-scheme(accent);
+}
+
+%has-subtle-scheme {
+
+	@include set-color-scheme(subtle);
+}
+
+%has-dramatic-scheme {
+
+	@include set-color-scheme(dramatic);
+}
+
+%has-deep-scheme {
+
+	@include set-color-scheme(deep);
+}
+
+%is-neutral-alert {
+
+	@include set-alert-scheme("neutral");
+}
+
+%is-low-alert {
+
+	@include set-alert-scheme("low-priority");
+}
+
+%is-medium-alert {
+
+	@include set-alert-scheme("medium-priority");
+}
+
+%is-high-alert {
+
+	@include set-alert-scheme("high-priority");
+}
+
+%is-success-alert {
+
+	@include set-alert-scheme("success");
+}
+
+%has-disabled-ui {
+
+	@include set-ui-scheme(disabled);
+}
+
+%has-on-light-ui {
+
+	@include set-ui-scheme(on-light);
+}
+
+%has-on-dark-ui {
+
+	@include set-ui-scheme(on-dark);
+}
+
+%has-accent-ui {
+
+	@include set-ui-scheme(accent);
+}

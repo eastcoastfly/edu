@@ -1,0 +1,115 @@
+@import "./dependencies/breakpoints";
+@import "./dependencies/links.scss";
+@import "./dependencies/color-scheme-placeholders.scss";
+@import "./dependencies/ui-templates-button.scss";
+
+.bottom-dialog {
+	--wp--custom--color--border : var(--wp--preset--color--neutral-5);
+}
+.bottom-dialog {
+
+	@extend %is-neutral-alert;
+
+	background-color: var(--wp--custom--color--background);
+	border: 1px solid var(--wp--custom--color--border);
+	border-bottom: 0;
+	bottom: 0;
+	color: var(--wp--custom--color--foreground);
+	display: block;
+	// font-family: var(--wp--preset--font-family--small);
+	// font-size: var(--wp--custom--font-size--small, small);
+	// font-weight: 400;
+	height: fit-content;
+	inset-block-start: unset;
+	max-height: 100%;
+	// max-width: var(--wp--custom--layout--wide-size);
+	max-width: var(--wp--style--global--content-size);
+	overflow-y: auto;
+	padding: 0;
+	position: fixed;
+	z-index: 100;
+
+	@media ($less-than-narrow) {
+		border-left: 0;
+		border-right: 0;
+	}
+}
+
+.bottom-dialog.expanded {
+	animation: slide-up-reveal 1s;
+}
+
+.bottom-dialog.is-not-populated {
+	display: none;
+}
+
+.bottom-dialog.is-hidden {
+	animation: slide-down-hide 0.5s;
+	animation-fill-mode: forwards;
+}
+
+.bottom-dialog__body {
+	display: none;
+}
+
+.bottom-dialog.expanded .bottom-dialog__body {
+	display: block;
+}
+
+.bottom-dialog a:where(:link, :visited) {
+
+	@include set-link-style("text");
+
+	text-decoration: underline;
+}
+
+.bottom-dialog__header {
+	padding: var(--wp--preset--spacing--40);
+}
+
+.bottom-dialog__controls {
+	align-items: flex-end;
+	align-items: center;
+	border-bottom: 1px solid;
+	display: flex;
+	flex-direction: row-reverse;
+	gap: var(--wp--preset--spacing--40);
+	padding: 0 var(--wp--preset--spacing--40) var(--wp--preset--spacing--40);
+
+	.wp-button.is-style-filled {
+		cursor:pointer;
+		transition: all 0.7s cubic-bezier(0.31, 0.11, 0.12, 0.99);
+		&:hover,&:focus {
+			background-color: var(--wp--preset--color--nu-red);
+			border-color: var(--wp--preset--color--nu-red);
+		}
+	}
+}
+
+.bottom-dialog__handle {
+	padding-right: 32px;
+	position: relative;
+}
+
+@keyframes slide-up-reveal {
+
+	0% {
+		transform: translateY(50%);
+	}
+
+	100% {
+		transform: translateY(0%);
+	}
+}
+
+
+@keyframes slide-down-hide {
+
+	0% {
+		transform: translateY(0%);
+	}
+
+	100% {
+		transform: translateY(100%);
+	}
+}

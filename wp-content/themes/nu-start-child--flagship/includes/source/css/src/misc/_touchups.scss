@@ -1,0 +1,504 @@
+//
+//
+body * {
+	text-rendering: optimizeLegibility !important;
+}
+
+.breadcrumbs[typeof="BreadcrumbList"] {
+	padding-bottom: 32px;
+}
+
+.breadcrumbs[typeof="BreadcrumbList"] .fa-chevron-right {
+	vertical-align: unset;
+	font-weight: 400;
+	font-size: 12px;
+}
+
+body.is-using-black-logo-text {
+	.takeover-nav-logo .logo path.st2 {
+		fill: black !important;
+	}
+}
+//
+.blocks--wrapper {
+	> .wp-block-cover.alignfull {
+		overflow: hidden;
+	}
+	> .alignfull.has-background + .wp-block-cover {
+		margin-top: 0 !important;
+	}
+	> .wp-block-cover.alignfull + .wp-block-group.alignfull.has-background {
+		margin-top: 0 !important;
+	}
+
+	.wp-block-media-text {
+		overflow: hidden;
+	}
+
+	> .wp-block-group:not(:first-child) {
+		// * Mainly to deal with the draggable slider sections on the homepage
+		&.alignfull {
+			// * Kicking this up from "small" to deal with the padding issue
+			@include media("<large") {
+				&[style*="padding-right:0"] {
+					padding-right: var(--wp--custom--spacing--outer) !important;
+				}
+				&[style*="padding-left:0"] {
+					padding-left: var(--wp--custom--spacing--outer) !important;
+				}
+			}
+		}
+	}
+
+	.wp-block-cover
+		+ .wp-block-group[style*="padding-left:var(--wp--preset--spacing--80)"] {
+		padding-left: var(--wp--custom--spacing--outer) !important;
+	}
+	.wp-block-cover
+		+ .wp-block-group[style*="padding-right:var(--wp--preset--spacing--80)"] {
+		padding-right: var(--wp--custom--spacing--outer) !important;
+	}
+
+	> .wp-block-group:first-child {
+		> .breadcrumbs[typeof="BreadcrumbList"] {
+			padding-left: var(--wp--custom--spacing--outer);
+			position: relative;
+			z-index: 9;
+			background-color: var(--wp--preset--color--light);
+		}
+	}
+}
+
+.wp-block-cover.is-style-as-hero {
+	padding-bottom: calc(var(--wp--custom--spacing--large) * 1);
+	// padding-top: calc(var(--wp--custom--spacing--large) * 1);
+	padding-top: calc(
+		var(--wp--custom--spacing--large) + var(--takeover-nav-button-height)
+	);
+	background-color: var(--wp--preset--color--dark);
+	overflow: hidden;
+	.wp-block-cover__image-background {
+		animation: hero-image-zoom-out 4s both;
+		animation-delay: 300ms;
+	}
+	.wp-block-group {
+		animation: text-in 2s both;
+		animation-delay: 200ms;
+	}
+
+	@include media("<=medium") {
+		&[style*="padding-left:var(--wp--preset--spacing--80)"] {
+			padding-left: var(--wp--custom--spacing--outer) !important;
+		}
+		&[style*="padding-right:var(--wp--preset--spacing--80)"] {
+			padding-right: var(--wp--custom--spacing--outer) !important;
+		}
+	}
+}
+
+.wp-block-eedee-block-gutenslider[style*="--gutenslider-min-height: 100vh;"] {
+	min-height: calc(100vh - var(--takeover-nav-button-height)) !important;
+	@include media("<=small") {
+		.swiper-wrapper {
+			min-height: 100vh !important;
+		}
+	}
+}
+.wp-block-cover {
+	&[style*="min-height:100vh"] {
+		min-height: calc(100vh - var(--takeover-nav-button-height)) !important;
+	}
+}
+
+.is-the-draggable-slider-container {
+	//
+
+	@include media(">medium") {
+		.wp-block-columns {
+			.wp-block-column:first-child {
+				padding-right: var(--wp--preset--spacing--50) !important;
+			}
+			.wp-block-column:last-child {
+				margin-left: calc(var(--wp--preset--spacing--70) * -1) !important;
+			}
+		}
+	}
+
+	//
+}
+
+.breadcrumbs[typeof="BreadcrumbList"] {
+	span[typeof="ListItem"] {
+		font-size: var(--wp--preset--font-size--16-24);
+		font-weight: 300;
+		margin: 0 $half-margin;
+		&:last-child {
+			margin-right: 0;
+		}
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+}
+
+
+.is-the-quick-links-bar {
+	// * To deal with new structure in CMS (per Trent)
+	padding-top: unset !important;
+	padding-bottom: unset !important;
+	// padding-left: var(--wp--custom--spacing--outer);
+	// padding-right: var(--wp--custom--spacing--outer);
+	position: relative;
+	z-index: 9;
+
+	@include media("<=small") {
+		// ! Commenting this out for now
+		//		padding: var(--wp--custom--spacing--outer) !important;
+
+		> .is-nowrap {
+			flex-flow: column nowrap;
+			gap: $base-margin;
+		}
+		.is-style-eyebrow {
+			&:after {
+				// ! We might want to remove this at some point
+				//display: none;
+			}
+		}
+		li a {
+			padding: $half-margin $base-margin;
+		}
+	}
+
+	//
+	// * This is styling for the Quick links on mobile collapse
+	//
+	> .wp-block-group.alignfull:first-child {
+
+		@include media ("<medium") {
+			flex-direction: column !important;
+			gap:0;
+		}
+
+		> p {
+			@include media (">=medium"){
+				display:none;
+			}
+
+			@include media ("<medium"){
+
+				@include nu_fa_icon("\f078",after);
+				cursor:pointer;
+				padding:16px 0;
+
+				&:after {
+					margin-left:16px;
+					position:relative !important;
+					right:0 !important;
+				}
+
+				&.open{
+
+					&:after {
+						content:"\f077";
+					}
+
+					+ nav.wp-block-navigation {
+						display: block;
+					}
+				}
+
+				&:not(.open){
+
+					+ nav.wp-block-navigation {
+						display: none;
+					}
+				}
+			}
+		}
+
+		> nav.wp-block-navigation {
+
+			@include media ("<medium") {
+				padding-bottom:16px;
+			}
+
+			ul.wp-block-navigation__container  {
+
+				@include media ("<medium") {
+					flex-direction: column !important;
+				}
+
+				> li {
+					text-align: center;
+
+					&.current-menu-item {
+						color: var(--wp--preset--color--neutral-4);
+					}
+				}
+			}
+
+		}
+
+	}
+}
+
+//
+// * Taken from child-theme-styles.scss
+.blocks--wrapper {
+	// ? this vertical adjustment could be hoisted
+	//
+	//
+	.wp-block-eedee-block-gutenslider.is-style-vertical {
+		.swiper-vertical {
+			overflow: hidden;
+			height: var(--gutenslider-min-height) !important;
+		}
+	}
+
+	//
+	//
+	//
+
+	//
+	//
+	.is-the-husky-timeline-container {
+		min-height: 100vh;
+		position: relative;
+		z-index: 1;
+		border-top: 1px solid transparent;
+		border-bottom: 1px solid transparent;
+
+		.wp-block-eedee-block-gutenslider {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			height: auto;
+		}
+
+		~ .prefooter {
+			margin-top: 0;
+		}
+		//
+		&.handle-has-entered-view {
+			h2 mark {
+				color: red !important;
+			}
+		}
+		h2 {
+			mark {
+				position: relative;
+				z-index: 1;
+				&:first-child {
+				}
+				&:last-child {
+					margin-left: -0.33ch;
+				}
+			}
+		}
+	}
+
+	//
+	//
+	//
+}
+
+// * Taken from child-theme-styles.scss
+.wp-block-cover {
+	&.handle-has-entered-view {
+		background-color: black;
+		.wp-block-cover__image-background {
+			opacity: 1;
+			animation: hero-image-zoom-out 4s both;
+			animation-delay: 0ms;
+		}
+	}
+}
+
+//
+// * Adding this code back in to make the .hide-scroll-line work again
+//
+.hide-scroll-line {
+	height: 94%;
+    z-index: 1;
+    position: absolute;
+    width: 30px;
+    background-color:var(--wp--preset--color--dark);
+    left: 49%;
+    top: 5%;
+}
+
+//
+// * To add some space in the media + text blocks on mobile
+body.experiential-learning {
+
+	.wp-block-group.alignwide {
+
+		.wp-block-group.alignwide {
+
+			> .wp-block-media-text.is-stacked-on-mobile {
+
+				&:not(:first-child){
+
+					@include media("<small") {
+						margin-top:80px;
+					}
+
+				}
+
+			}
+
+		}
+	
+	}
+
+}
+
+//
+// * Fixes for the Our Global University System page
+body.our-global-university-system {
+	
+	// * Resources section
+	.wp-block-group {
+
+		.wp-block-group {
+
+			.wp-block-columns {
+
+				.wp-block-column {
+
+					@include media("<phone"){
+						margin-top: $margin_2x;
+					}
+
+					.wp-block-cover {
+
+						@include media("<phone"){
+							padding:0 !important;
+						}
+
+						.wp-block-cover__inner-container {
+
+							// * Match padding of the first cover that's not in the columns
+							@include media("<phone"){
+								padding: var(--wp--preset--spacing--50) var(--wp--preset--spacing--40);							
+							}
+
+							.wp-block-heading {
+								@include media("<phone"){								
+									font-size: var(--wp--preset--font-size--56-67) !important;
+									font-weight: 400;
+									line-height: 1.2;
+								}
+							}
+						}
+					}
+				
+				}
+			}
+		}
+	
+	}
+
+}
+
+//
+// * Fixes for the 4-column stats on About
+body.about-northeastern {
+
+	.wp-block-group {
+
+		.wp-block-group {
+
+			.wp-block-columns {
+
+				@include media("<medium"){
+					flex-wrap: wrap !important;
+				}
+
+				.wp-block-column {
+
+					@include media("<medium"){
+						flex-basis: 25vw;
+					}
+	
+				}
+
+			}
+		
+		}
+
+	}
+
+}
+
+
+//
+// * Mobile fix for bot-prefooter pattern
+.acf-block.posts-grid.bot-prefooter-grid {
+	.nu__grid {
+		
+		// * For posts grids with 3 items
+		&.cols-3 {
+
+			ul {
+
+				@include media("<medium"){
+					grid-template-columns: auto auto !important;
+				}
+
+				@include media("<small"){
+					grid-template-columns: auto !important;
+				}
+
+			}
+
+		}
+
+	}
+}
+
+//
+// * Mobile fix for "Degrees and Programs" on Academics
+// * Also pertains to Colleges and Schools icon-style posts grid (Academics page)
+//
+body.academics {
+
+	.acf-block.posts-grid {
+
+		// * Do not touch the Colleges posts grid on this page
+		.nu__grid.cols-3 {
+
+			ul {
+
+				@include media("<medium"){
+					grid-template-columns: auto auto;
+				}
+	
+				@include media("<small"){
+					grid-template-columns: auto;
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+
+//
+// * Dan's fix for removing background dim on mobile stack
+//
+.wp-block-cover.is-style-linear-gradient {
+
+	> .wp-block-cover__background.has-background-dim {
+
+		@include media("<medium"){
+			opacity:0 !important;
+		}
+	}
+
+}

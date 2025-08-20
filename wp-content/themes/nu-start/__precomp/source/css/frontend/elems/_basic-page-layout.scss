@@ -1,0 +1,92 @@
+//
+//
+
+// ?		blocks--wrapper === entry-content
+//
+//
+.wp-block-eedee-block-gutenslider
+	.wp-block-eedee-block-gutenslide
+	.slide-content,
+.wp-block-column.is-style-main-content-column,
+.entry-content,
+.blocks--wrapper {
+	//
+	> :not(.alignfull):not(.alignwide):not(.alignleft):not(.alignright) {
+		max-width: var(--wp--style--global--content-size);
+		margin-left: auto;
+		margin-right: auto;
+	}
+	> .alignwide {
+		max-width: var(--wp--style--global--wide-size);
+		margin-left: auto;
+		margin-right: auto;
+	}
+	> .alignfull {
+		max-width: 100%;
+	}
+}
+
+//
+//
+//
+//
+//
+.blocks--wrapper {
+	// blocks--wrapper is considered the base top-level container;
+	// we will pass this down to certain children like the content area of templates with a sidebar, or other containers that provide behavior.
+	@include add-top-level-vertical-spacing();
+	@include add-top-level-outer-spacing();
+
+	// ! it is possibly bad code - do we want "grouped blocks" to inherit the normal margin-top; or be more tightly grouped?
+	// ! does this create a need to "double group" things to get layout?
+	> .wp-block-group {
+		// ? we need to qualify this more, because it doesn't make sense in the CMS
+		&.alignfull {
+			@include add-top-level-vertical-spacing();
+			&:not(.patterns--layouts--content-with-sidebar) {
+				overflow: hidden;
+			}
+		}
+	}
+
+	// ? the group block doesn't get any max-width from gutenberg so we add it ourselves,
+	// ? if you enable default layout then you do not require this code; but it is a lot of effort to always toggle it on
+	> .wp-block-group:not(.alignwide, .alignfull) {
+		max-width: var(--wp--style--global--content-size);
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+	> .wp-block-group.alignwide {
+		max-width: var(--wp--style--global--wide-size);
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	// ? last block pushes the footer down unless it is a full-bleed background
+	> :last-child:not(.has-background.alignfull) {
+		margin-bottom: var(--wp--custom--spacing--large);
+	}
+	// ? last block that is a full-bleed background must have consistent padding-bottom
+	> :last-child(.has-background.alignfull) {
+		padding-bottom: var(--wp--custom--spacing--large);
+	}
+
+	// ? fullwidth sections with a background should have equal padding instead of margin
+	> .alignfull.has-background {
+		padding-bottom: var(--wp--custom--spacing--large);
+		padding-top: var(--wp--custom--spacing--large);
+		padding-right: var(--wp--custom--spacing--outer);
+		padding-left: var(--wp--custom--spacing--outer);
+		+ .alignfull.has-background {
+			margin-top: 0;
+			// padding-top: 0;  // ? this causes issues its hard to determine exactly how to do this
+		}
+	}
+
+	// ! this messes up sometimes you want this, like in our "hero" group patterns
+	// ! i think thats fine, and we should have those overrides in that pattern anyway!
+	> .alignfull:not(.has-background):not(:first-child) {
+		padding-right: var(--wp--custom--spacing--outer);
+		padding-left: var(--wp--custom--spacing--outer);
+	}
+}

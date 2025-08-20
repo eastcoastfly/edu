@@ -1,0 +1,66 @@
+/* 
+	?			News Item
+*/
+
+//
+
+// * Wrap everything in this so that search result items aren't pulling in this styling
+body {
+	&:not(.search) {
+		//
+		.posts-grid .nu__grid .grid-item.nu_news {
+			position: relative;
+
+			&.has-layout-vertical {
+				.image-404 + .grid-item-content {
+					display: flex;
+					flex-flow: column nowrap;
+					justify-content: center;
+				}
+			}
+			&.has-layout-horizontal {
+				.image-404 + .grid-item-content {
+					display: flex;
+					flex-flow: column nowrap;
+					justify-content: center;
+					align-items: center;
+				}
+			}
+
+			.grid-item-content {
+				flex: 1 1 auto;
+
+				padding-bottom: $margin_2x;
+
+				@include flush_inner_content_vertical();
+
+				// ? if there is no featured image this will be the only child
+				// ? it will be centered and the title is a bit larger
+				&:only-child {
+					height: 100%;
+					display: flex;
+					flex-flow: column nowrap;
+					justify-content: center;
+					.post-title {
+						font-size: var(--wp--preset--font-size--30-36);
+						@include rfs(36px, line-height);
+					}
+				}
+			}
+
+			.publication-info {
+				font-size: var(--wp--preset--font-size--12-16);
+				line-height: 20px;
+			}
+
+			.post-title {
+				font-size: var(--wp--preset--font-size--20-28);
+				line-height: 28px;
+				font-weight: 400;
+				margin: 0 0 $margin_2x 0;
+			}
+		}
+
+		//
+	} // end &:not(.search)
+} // end body

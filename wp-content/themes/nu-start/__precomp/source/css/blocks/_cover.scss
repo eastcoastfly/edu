@@ -1,0 +1,42 @@
+//
+// inner content flushes to edge of cover
+//
+.wp-block-cover {
+	&.has-custom-content-position {
+		padding: 0;
+		&.is-position-center-left,
+		&.is-position-top-left,
+		&.is-position-bottom-left {
+			.wp-block-cover__inner-container {
+				margin-left: 0;
+			}
+		}
+		&.is-position-center-right,
+		&.is-position-top-right,
+		&.is-position-bottom-right {
+			.wp-block-cover__inner-container {
+				margin-right: 0;
+			}
+		}
+	}
+}
+
+/*
+	*  the block style class "is-style-as-hero" to separates hero-ish code from the normal cover block
+*/
+.wp-block-cover.is-style-as-hero {
+	padding-bottom: calc(var(--wp--custom--spacing--large) * 0.5);
+	padding-top: calc(var(--wp--custom--spacing--large) * 0.5);
+	.wp-block-cover__background {
+		&.has-background-dim-0.has-background-dim {
+			background: linear-gradient(270deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.80) 100%);
+			opacity: 1 !important;
+		}
+	}
+}
+
+.wp-block-cover {
+	&[style*="min-height:100vh"] {
+		min-height: calc(100vh - var(--nu--mainel--offset)) !important;
+	}
+}

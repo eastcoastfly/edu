@@ -1,0 +1,10 @@
+/** 
+*	? hooked to enqueue_block_editor_assets
+*	? this means only loaded in block editor
+*/
+
+
+// push some space down, so the last block isn't at the very bottom of the page in the editor
+.is-root-container.block-editor-block-list__layout {
+	margin-bottom: 20vh;
+}

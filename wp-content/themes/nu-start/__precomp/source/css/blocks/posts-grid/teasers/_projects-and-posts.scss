@@ -1,0 +1,78 @@
+/* 
+
+*/
+//
+//
+//
+.posts-grid .nu__grid .grid-item.nu_projects,
+.posts-grid .nu__grid .grid-item.post {
+	figure {
+		min-height: 100%;
+	}
+
+	&.has-auto-cover-image {
+		// ? image height must support content
+		figure {
+			height: 400px;
+			img {
+				min-height: 100%;
+			}
+		}
+	}
+
+	&.has-layout-vertical {
+		.grid-item-content {
+			position: absolute;
+			bottom: $base-margin;
+			left: $base-margin;
+			padding: $base-margin;
+			max-width: 80%;
+			max-height: 80%;
+		}
+	}
+
+	//
+	&.has-layout-horizontal {
+		figure {
+			max-width: 100%;
+		}
+		.grid-item-content {
+			position: absolute;
+			top: $base-margin;
+			right: $base-margin;
+			left: auto;
+			width: 50%;
+			display: flex;
+			flex-flow: column nowrap;
+			justify-content: center;
+		}
+
+		//
+		&.has-image-align-right {
+			@include media(">medium") {
+				.grid-item-content {
+					left: $base-margin;
+					right: auto;
+				}
+			}
+		}
+		//
+		&.has-image-align-alternate {
+			&:nth-child(even) {
+				@include media(">medium") {
+					.grid-item-content {
+						right: auto;
+						left: $base-margin;
+					}
+				}
+			}
+		}
+	}
+	figure.image-404 + .grid-item-content {
+		position: relative;
+		padding: $margin_2x;
+		bottom: unset;
+		left: unset;
+		max-width: unset;
+	}
+}

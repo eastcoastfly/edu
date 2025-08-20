@@ -1,0 +1,120 @@
+.blocks--wrapper {
+	.wp-block-eedee-block-gutenslider {
+		&.is-the-temporary-hero-slider {
+			//
+			//
+			//
+			.swiper-slide {
+				.eedee-background-div.bg-image {
+					img {
+						@extend %dry_transition;
+						opacity: 0;
+					}
+					&:after {
+						content: "";
+						position: absolute;
+						width: 100%;
+						height: 66%;
+						left: 0;
+						bottom: 0;
+						background: linear-gradient(
+							180deg,
+							rgba(0, 0, 0, 0) 0%,
+							rgba(0, 0, 0, 0.9) 68.88%
+						);
+						backdrop-filter: blur(1.5px);
+					}
+				}
+				&.swiper-slide-visible {
+					.eedee-background-div.bg-image {
+						img {
+							opacity: 1;
+						}
+					}
+				}
+			}
+
+			.slide-content {
+				position: relative;
+				overflow: hidden;
+				> .wp-block-group {
+					transition: all 2s $bezier;
+
+					transform: translateY(66%);
+
+					&.is-transitioned-into-view {
+						transform: translateY(0);
+					}
+				}
+			}
+			//
+			//
+			//
+			.eedee-gutenslider-pagination.is-using-dynamic-bullet-titles {
+				position: absolute !important;
+				bottom: max(var(--gutenslider-dot-y-offset), var(--wp--style--block-gap)) !important;
+				display: flex;
+				flex-flow: row nowrap;
+				gap: var(--wp--style--block-gap);
+				.swiper-pagination-bullet {
+					width: unset;
+					height: unset;
+					border-radius: unset;
+					color: white;
+					background-color: unset;
+					border: unset;
+				}
+			}
+
+			//
+			//
+			// ?		idk what this is
+			//
+			.eedee-gutenslider-nav {
+				position: absolute !important;
+				bottom: var(--gutenslider-dot-y-offset) !important;
+				background-color: unset !important;
+				border: 1px solid var(--wp--preset--color--neutral-3);
+				border-radius: 50%;
+				transform: unset !important;
+				&:before {
+					transition: all 0.3s $bezier;
+					color: var(--wp--preset--color--neutral-4);
+					font-size: 20px !important;
+					opacity: 0.8;
+				}
+				&:hover,
+				&:focus {
+					color: var(--wp--preset--color--white) !important;
+					background-color: var(--wp--preset--color--nu-red) !important;
+					border: 1px solid var(--wp--preset--color--neutral-4);
+					&::before {
+						color: var(--wp--preset--color--dark);
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// * Styling for CTA button in homepage hero
+body.home {
+	.blocks--wrapper {
+		> .wp-block-group.alignfull {
+			.wp-block-eedee-block-gutenslider {
+				+ .wp-block-buttons {
+					position: absolute;
+					z-index: 3;
+					left: 50%;
+					width: 100%;
+					top: calc(50% + var(--wp--preset--spacing--70));
+					transform: translate(-50%, 100%);
+					@include media("<small"){
+						top: calc(50% + var(--wp--preset--spacing--50));
+					}
+				}
+			}
+		}
+	}
+}

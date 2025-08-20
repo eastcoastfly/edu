@@ -1,0 +1,119 @@
+//
+//
+%the-scrollbar-drag-default-styling {
+	position: relative;
+	cursor: pointer;
+	z-index: 1;
+	// create the space to fill in with a cirlce
+	// ? note that transition-duration is set to 0 and must be 0 or the drag effect gets messed up
+	// ? to circumvent issues with this we put the drag background on a pseudo elem and used real <i> tags for the arrows
+	width: 80px !important;
+	height: 80px !important;
+	border-radius: 50%;
+	// center the two arrows within the circle
+	text-align: center;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	gap: 4px;
+	color: var(--wp--preset--color--white);
+	//
+	&:before {
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		content: "";
+		display: block;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		background-color: var(--wp--preset--color--dark);
+		color: var(--wp--preset--color--white);
+		transition: all 0.4s $bezier;
+	}
+	//
+	i[class*="fa-light"] {
+		@extend %dry_transition;
+		display: inline-block;
+		font-size: var(--wp--preset--font-size--16-24);
+	}
+	&:hover,
+	&:focus-within {
+		color: white !important;
+		@include nu__boxshadow(4);
+		&::before {
+			background-color: var(--wp--preset--color--nu-red) !important;
+		}
+		i[class*="fa-light"] {
+			&:first-child{
+				transform: translateX(-4px);
+			}
+			&:last-child{
+				transform: translateX(4px);
+			}
+		}
+	}
+
+	.has-dark-background-color &,
+	.has-black-background-color & {
+		color: var(--wp--preset--color--dark);
+		&:before {
+			background-color: var(--wp--preset--color--white);
+		}
+	}
+}
+%the-progressbar-default-styling {
+	position: absolute;
+	z-index: 0; //	needed to sit behind scrollbar drag
+	// top: 50%;
+	// transform: translateY(-50%);
+	transform: translateY(-40px) !important;
+	bottom: 0 !important;
+	left: 1% !important;
+	width: 98%;
+	height: 1px !important;
+	background-color: var(--wp--preset--color--neutral-4);
+	// 	?			needed to copy from initial styles - they fall off when this is moved outside the .swiper container
+	.swiper-pagination-progressbar-fill {
+		display: inline-block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		width: 95%;
+		transform: scale(0);
+		transform-origin: left top;
+		background-color: var(--wp--preset--color--nu-red);
+	}
+}
+
+//
+.blocks--wrapper {
+	//
+	// 			the scrollbar is built by swiper.js and configured by gutenslider
+	.swiper-scrollbar-drag {
+		@extend %the-scrollbar-drag-default-styling;
+	}
+	//
+	//			progress bar is built by swiper.js and configured by gutenslider
+	.swiper-pagination-progressbar {
+		@extend %the-progressbar-default-styling;
+	}
+
+	.has-dark-background-color,
+	.has-black-background-color {
+		.swiper-pagination-progressbar {
+			background-color: var(--wp--preset--color--neutral-4);
+		}
+	}
+
+	//
+	//				the scrollbar container is detached and appended via JS to move it outside the swiper container after it is initialized and all events are bound
+	.swiper-scrollbar-custom-container {
+		position: relative;
+		margin-top: var(--wp--style--block-gap) !important;
+	}
+}

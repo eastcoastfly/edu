@@ -1,0 +1,112 @@
+//
+//
+//
+.posts-grid .filteringform {
+	//
+	transition: all 0.5s $bezier;
+	opacity: 1;
+	&:not(.is-revealed) {
+		opacity: 0;
+	}
+
+	+ .nu__grid {
+		margin-top: $margin_4x;
+	}
+	//
+	//
+	//
+	form {
+		border: 1px solid var(--wp--preset--color--neutral-3);
+		background-color: var(--wp--preset--color--neutral-1);
+		color: var(--wp--preset--color--dark);
+		padding: $base-margin;
+		position: relative;
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: center;
+
+		// ? select fills the space it is in
+		select {
+			width: 100%;
+		}
+
+		.filters {
+			width: 100%;
+			display: flex;
+			justify-content: flex-end;
+			flex-flow: row wrap;
+			.filters-filter {
+				min-width: 220px;
+				flex: 1 0 auto;
+				margin: $base-margin 0 0 $base-margin;
+				> label {
+					display: block;
+					margin-bottom: $half-margin;
+				}
+			}
+		}
+		.submission {
+			margin: $base-margin 0 0 auto;
+			> * {
+				margin: 0;
+				+ * {
+					margin-left: $base-margin;
+				}
+			}
+		}
+	}
+
+	.selectize-input {
+		.item {
+			color: var(--wp--preset--color--white);
+			background-color: var(--wp--preset--color--dark);
+			font-size: 12px;
+			line-height: 16px;
+			padding: $half-margin;
+			border-radius: 24px;
+			letter-spacing: 0.5px;
+			font-weight: 300;
+			padding: $half-margin $base-margin;
+			margin: 0;
+			+ .item {
+				margin-left: $half-margin;
+			}
+			.remove {
+				border-left: unset;
+				margin: 0 $half-margin;
+			}
+		}
+	}
+
+	.filtering-navicon {
+		display: none;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+		padding: $base-margin;
+		border: 1px solid var(--wp--preset--color--dark);
+		.fa-xmark {
+			display: none;
+		}
+		&.is-revealed {
+			.fa-xmark {
+				display: block;
+			}
+			.fa-bars-filter {
+				display: none;
+			}
+		}
+
+		@include media("<medium") {
+			display: flex;
+			&:not(.is-revealed) {
+				+ form {
+					display: none;
+				}
+			}
+		}
+	}
+
+	//
+	//
+	//
+}

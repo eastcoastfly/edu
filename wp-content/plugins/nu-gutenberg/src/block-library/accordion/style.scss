@@ -1,0 +1,53 @@
+//
+@import '../../../../../themes/nu-start/__precomp/source/css/library';
+//
+
+/* 
+	Accordion Block styles
+*/
+.wp-block-nu-blocks-accordion {
+	margin: $margin_4x 0 auto 0;
+	&:first-of-type {
+		margin: 0 auto 0 auto;
+	}
+}
+
+.wp-block-nu-blocks-accordion {
+	//
+	//
+	//
+	// &.is-style-icon-appears-before-title .wp-block-nu-blocks-accordion-item {
+	&.is-style-icon-appears-before-title,
+	.wp-block-nu-blocks-accordion-item:not([class*='is-style-icon']) {
+		// plus sign on right
+		.wp-block-nublocks-accordion-item__title::after {
+			content: '\2b';
+			left: $base-margin;
+		}
+
+		// minus sign
+		details[open] {
+			.wp-block-nublocks-accordion-item__title::after {
+				content: '\f068';
+			}
+		}
+	}
+
+	//
+	//
+	//
+	&.is-style-icon-appears-after-title .wp-block-nu-blocks-accordion-item {
+		// angle right
+		.wp-block-nublocks-accordion-item__title::after {
+			content: '\f105';
+			right: $base-margin;
+			left: unset;
+		}
+		// angle down
+		details[open] {
+			.wp-block-nublocks-accordion-item__title::after {
+				content: '\f107';
+			}
+		}
+	}
+}

@@ -1,0 +1,79 @@
+//
+@import '../../../../../themes/nu-start/__precomp/source/css/library';
+//
+/* 
+  Accordion Item styles
+*/
+
+/* 
+	clean up some issues with default markup
+ */
+.wp-block-nu-blocks-accordion-item {
+	summary {
+		transition: all 0.1s ease-in-out;
+		&::marker,
+		&::-webkit-details-marker {
+			display: none;
+		}
+	}
+	details summary::-webkit-details-marker {
+		display: none;
+	}
+	.dashicon.dashicons {
+		display: none;
+	}
+	margin: $base-margin 0 0 0;
+	&:first-child {
+		margin: 0;
+	}
+	//
+}
+
+/* 
+
+*/
+.wp-block-nu-blocks-accordion-item {
+	margin: 0;
+	border-bottom: 1px solid var(--wp--preset--color--neutral-3);
+	//
+	.wp-block-nublocks-accordion-item__title {
+		font-weight: 400;
+		font-style: normal;
+		font-size: 18px;
+		line-height: 24px;
+		cursor: pointer;
+		transition: all 0.1s ease-in-out;
+		padding: $base-margin $margin_4x;
+		background-color: var(--wp--preset--color--neutral-1);
+		//
+		@include nu_fa_icon('\2b', after);
+		position: relative;
+		&:after {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			font-size: 20px;
+		}
+		&:hover {
+			background-color: var(--wp--preset--color--light);
+		}
+	}
+
+	.wp-block-nublocks-accordion-item__content {
+		transition: all 0.1s ease-in-out;
+		background-color: var(--wp--preset--color--white);
+		padding: $base-margin;
+		@include media(">=phone"){
+			padding: $margin_3x $margin_4x;
+		}
+	}
+
+	details[open] {
+		.wp-block-nublocks-accordion-item__title {
+			background-color: var(--wp--preset--color--white);
+			&:hover {
+				background-color: var(--wp--preset--color--light);
+			}
+		}
+	}
+}

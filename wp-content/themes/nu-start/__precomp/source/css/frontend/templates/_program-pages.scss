@@ -1,0 +1,95 @@
+//
+// * This is the overview group for the Program pattern
+.pattern--program-intro {
+	padding-left: var(--wp--custom--spacing--outer) !important;
+	padding-right: var(--wp--custom--spacing--outer) !important;
+	margin-top: 0;
+	padding-top: $margin_8x !important;
+	padding-bottom: $margin_4x !important;
+
+	.wp-block-columns {
+		.wp-block-column {
+			// Push the program image to the right
+			.wp-block-image {
+				text-align: right;
+			}
+		}
+
+		&:first-child {
+			.wp-block-column:last-child {
+				.wp-block-image {
+					text-align: right;
+				}
+			}
+		}
+
+		// ? stand in for maybe class to allow moving sections around
+		// the "4 cards" (tbd, must not render empty cards!)
+		&:last-child {
+			margin-top: $margin_4x;
+			gap: $half-margin;
+			.wp-block-column.has-background {
+				padding: $margin_2x;
+				margin: 0;
+			}
+			h4 {
+				font-weight: 400;
+			}
+		}
+	}
+
+	// TEST
+	// 4-column section
+	.wp-block-columns:nth-child(2) {
+		.wp-block-column.has-white-background-color {
+			padding-top: $margin_2x;
+			padding-bottom: $margin_2x;
+		}
+	}
+} // * end .pattern--program-intro
+
+.pattern--program-intro + .is-pattern--landing-page-has-sidebar {
+	--wp--style--global--wide-size: 1920px;
+
+	.wp-block-nu-blocks-accordion {
+		margin: $margin_2x 0 $base-margin 0;
+		max-width: 960px;
+	}
+	// traversal
+	> .wp-block-columns > .wp-block-column:last-child {
+		// sections
+		> .wp-block-group {
+			&:not(:first-child) {
+				margin-top: $margin_8x;
+			}
+
+			// section headings
+			> h3:first-child {
+				margin-bottom: $margin_2x;
+
+				+ h3 {
+					display: none;
+				}
+			}
+			hr + h3 {
+				display: none;
+			}
+
+			.wp-block-columns {
+				gap: $half-margin;
+				margin-bottom: $margin_2x;
+
+				> .wp-block-column:first-child:last-child {
+					flex: 0 1 33%;
+				}
+				.wp-block-column.has-background {
+					padding: $margin_2x;
+					margin: 0;
+					background-color: var(
+						--wp--preset--color--neutral-1
+					) !important;
+				}
+			}
+		}
+	}
+}

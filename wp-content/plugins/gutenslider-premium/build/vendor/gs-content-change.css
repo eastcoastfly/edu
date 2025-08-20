@@ -1,0 +1,116 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/blocks/gutenslider/style/content-change.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+.wp-block-eedee-block-gutenslider.content-change {
+  height: 100%;
+}
+.wp-block-eedee-block-gutenslider.content-change .slide-content {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--gutenslider-padding-y);
+  padding-bottom: var(--gutenslider-padding-y);
+  padding-left: var(--gutenslider-padding-x);
+  padding-right: var(--gutenslider-padding-x);
+}
+.wp-block-eedee-block-gutenslider.content-change .swiper-wrapper > *:not(.swiper-slide) {
+  display: none;
+}
+
+.wp-block-eedee-block-gutenslider.content-change.adaptive-height .swiper-wrapper {
+  align-content: center;
+}
+.wp-block-eedee-block-gutenslider.content-change.adaptive-height .eedee-background-div {
+  min-height: unset;
+}
+.wp-block-eedee-block-gutenslider.content-change.adaptive-height .swiper-slide {
+  height: unset;
+}
+.wp-block-eedee-block-gutenslider.content-change.adaptive-height .eedee-background-div video,
+.wp-block-eedee-block-gutenslider.content-change.adaptive-height .eedee-background-div img {
+  height: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/blocks/gutenslider/style/slides-auto.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************/
+.wp-block-eedee-block-gutenslider.slides-auto {
+  position: relative;
+}
+.wp-block-eedee-block-gutenslider.slides-auto .eedee-swiper-outer {
+  height: var(--gutenslider-min-height);
+}
+.wp-block-eedee-block-gutenslider.slides-auto .wp-block-eedee-block-gutenslide {
+  width: auto;
+  height: var(--gutenslider-min-height);
+  display: block;
+}
+.wp-block-eedee-block-gutenslider.slides-auto .swiper-wrapper {
+  height: var(--gutenslider-min-height);
+}
+.wp-block-eedee-block-gutenslider.slides-auto .swiper-wrapper > .swiper-slide {
+  height: var(--gutenslider-min-height);
+}
+.wp-block-eedee-block-gutenslider.slides-auto .swiper-wrapper > .swiper-slide.ed-bg-video {
+  width: auto !important;
+}
+.wp-block-eedee-block-gutenslider.slides-auto .swiper-wrapper > .swiper-slide.ed-bg-video .eedee-background-div {
+  width: calc(var(--ed-vw) / var(--ed-vh) * var(--gutenslider-min-height));
+}
+.wp-block-eedee-block-gutenslider.slides-auto .swiper {
+  width: 100%;
+  height: var(--gutenslider-min-height);
+}
+.wp-block-eedee-block-gutenslider.slides-auto .swiper-zoom-container {
+  width: auto;
+  height: var(--gutenslider-min-height);
+}
+.wp-block-eedee-block-gutenslider.slides-auto .swiper-slide .swiper-zoom-container > div {
+  height: var(--gutenslider-min-height);
+  width: auto;
+}
+.wp-block-eedee-block-gutenslider.slides-auto .wp-block-eedee-block-gutenslide {
+  min-width: var(--slide-min-width);
+}
+.wp-block-eedee-block-gutenslider.slides-auto .wp-block-eedee-block-gutenslide .slide-content {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: auto;
+}
+.wp-block-eedee-block-gutenslider.slides-auto .wp-block-eedee-block-gutenslide.embed-background iframe {
+  height: var(--gutenslider-min-height);
+  max-height: unset !important;
+}
+.wp-block-eedee-block-gutenslider.slides-auto .eedee-background-div {
+  position: relative;
+  height: var(--gutenslider-min-height);
+  width: auto;
+  justify-content: center;
+  align-content: center;
+  display: flex;
+}
+.wp-block-eedee-block-gutenslider.slides-auto .eedee-background-div .simpleParallax {
+  height: var(--gutenslider-min-height);
+}
+.wp-block-eedee-block-gutenslider.slides-auto .eedee-background-div.no-media-background {
+  min-width: 100%;
+}
+.wp-block-eedee-block-gutenslider.slides-auto .eedee-background-div.no-media-background .slide-content {
+  height: var(--gutenslider-min-height);
+}
+.wp-block-eedee-block-gutenslider.slides-auto .eedee-background-div img {
+  height: var(--gutenslider-min-height);
+  min-height: var(--gutenslider-min-height);
+}
+.wp-block-eedee-block-gutenslider.slides-auto .eedee-background-div video {
+  height: var(--gutenslider-min-height);
+  min-height: var(--gutenslider-min-height);
+}
+
+/*# sourceMappingURL=gs-content-change.css.map*/

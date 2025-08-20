@@ -1,0 +1,10 @@
+main#main {
+}
+.blocks--wrapper {
+	// ?		GSAP recommends the border - we add the margin to hide it
+	border-top: 1px solid transparent;
+	border-bottom: 1px solid transparent;
+	margin-top: -1px;
+	margin-bottom: -1px;
+	// ?		GSAP recommends the border - we add the margin to hide it
+}

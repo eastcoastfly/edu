@@ -1,0 +1,38 @@
+/*
+	Block styles
+	- loaded both in the back and front ends
+*/
+
+// wp core blocks
+@import "./breadcrumbs";
+// @import "./button";
+@import "./button2";
+@import "./cards";
+@import "./code-block";
+@import "./column";
+@import "./cover";
+@import "./gallery";
+@import "./gutenslider";
+@import "./image";
+@import "./mediatext";
+// @import "./navigation";
+@import "./navigation-block";
+@import "./paragraph";
+@import "./pullquote";
+@import "./separator";
+@import "./tabbed-content";
+@import "./table";
+
+
+// custom NU blocks
+@import "./posts-grid/posts-grid";
+
+//
+//
+//
+//
+.acf-block.event-info {
+	.event-type {
+		@extend %has-is-style-eyebrow;
+	}
+}

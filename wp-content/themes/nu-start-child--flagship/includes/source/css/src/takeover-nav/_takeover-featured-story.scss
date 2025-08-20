@@ -1,0 +1,14 @@
+main + .takeover-menu-container > .takeover-featured-story-container {
+	$appx-height-minus-banner: calc(100vh - 106px);
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	display: flex;
+	flex-flow: column nowrap;
+	height: $appx-height-minus-banner;
+	background-color: var(--wp--preset--color--dark);
+	@include media(">large") {
+		width: 20%;
+	}
+	@extend %dry_transition;
+}

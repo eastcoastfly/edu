@@ -1,0 +1,98 @@
+/** 
+*
+* *		Reset WP Forms styling and further customize to fit NU brand requirements
+*
+*/
+//
+
+div.wpforms-container-full {
+	form.wpforms-form {
+		input[type="checkbox"],
+		input[type="radio"] {
+			border-width: 1px;
+			width: 16px;
+			height: 16px;
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		// adjust labels
+		:is(.wpforms-field-sublabel, .wpforms-field-label-inline, .wpforms-field-label) {
+			letter-spacing: 0.33px;
+			font-weight: 400;
+			@include rfs(20px, line-height);
+			@include rfs(14px);
+			// color: var(--wp--preset--color--dark);
+		}
+
+		// ? reset wpforms included styles for various elements
+		// ? this codeblock should stay generic
+		.wpforms-field {
+			*::placeholder {
+				letter-spacing: 0.33px;
+				font-weight: 300;
+				@include rfs(20px, line-height);
+				@include rfs(14px);
+				opacity: 0.8;
+				// color: var(--wp--preset--color--dark);
+			}
+
+			:is(input, textarea, select, option) {
+				border-color: var(--wp--preset--color--neutral-3) !important;
+			}
+
+			//
+			select {
+				font-weight: 300;
+				@include rfs(20px, line-height);
+				@include rfs(14px);
+				option {
+					font-weight: inherit;
+					font-size: inherit;
+				}
+			}
+		}
+
+		.wpforms-field-textarea {
+			textarea {
+				// font-family: "Lato", sans-serif, "Material Icons";
+				min-height: 200px;
+			}
+		}
+		.wpforms-field-name {
+			.wpforms-field-row-block {
+				display: flex;
+				flex-flow: column-reverse nowrap;
+				label {
+					margin: 0;
+				}
+				input {
+					margin: 0;
+					margin-top: $half-margin;
+				}
+			}
+		}
+
+		// ? handle the submit button style and alignment
+		.wpforms-submit-container {
+			// ? really specific rather than using !important
+			button.wpforms-submit[type="submit"][name="wpforms[submit]"] {
+				@extend %nu__buttonstyle;
+				text-align: right;
+				font-weight: 400;
+				border: 1px solid var(--wp--preset--color--black);
+				background-color: var(--wp--preset--color--black);
+				color: white;
+
+				// * To keep padding like the other buttons on the site (from Oakland)
+				padding: 14px 24px !important;
+
+				&:is(:hover, :focus, :active) {
+					border: 1px solid var(--wp--preset--color--black);
+					background: white;
+					color: var(--wp--preset--color--black);
+				}
+			}
+		}
+	}
+}

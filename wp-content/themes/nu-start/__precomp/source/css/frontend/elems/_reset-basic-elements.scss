@@ -1,0 +1,81 @@
+//
+//
+//
+//
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+html {
+	height: 100%;
+	box-sizing: border-box;
+	// font-size: 16px;
+	// text-rendering: optimizeLegibility;
+	// -webkit-font-smoothing: antialiased;
+	// -moz-osx-font-smoothing: grayscale;
+}
+body {
+	// font-family: "Lato", sans-serif;
+	// @include font-size(1rem);
+	// font-weight: 400;
+	position: relative;
+	z-index: 1;
+	min-height: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+	> header,
+	> footer {
+		flex: none 0;
+	}
+	> main {
+		flex: 1 0 auto;
+	}
+}
+
+//
+// image elements
+video,
+img {
+	max-width: 100%;
+	height: auto;
+	vertical-align: bottom;
+	object-fit: cover;
+}
+
+figure {
+	margin-block-start: 0;
+	margin-block-end: 0;
+	margin-inline-start: 0;
+	margin-inline-end: 0;
+	max-width: 100%;
+	overflow: hidden;
+}
+figcaption {
+	color: inherit;
+}
+iframe {
+	border: none;
+	overflow: hidden;
+	max-width: 100%;
+}
+// styles below restricted to within the blocks wrapper -- avoid touching footer/header etc
+.blocks--wrapper {
+	a.button,
+	button.button {
+		@extend %nu__buttonstyle;
+	}
+
+	// ? most list (block) styles are in theme.json - below is what is not covered there
+	p {
+		ul,
+		ol {
+			list-style-position: inside;
+			padding-inline-start: 1ch;
+			> *:not(:first-child) {
+				margin-top: $half-margin;
+			}
+		}
+	}
+}

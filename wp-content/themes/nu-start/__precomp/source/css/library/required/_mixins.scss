@@ -1,0 +1,436 @@
+@mixin dry_gradient($degrees: 270deg) {
+	background: linear-gradient(
+		$degrees,
+		rgba(0, 0, 0, 0.8) 0%,
+		rgba(0, 0, 0, 0) 75%
+	);
+}
+@mixin link_hover_with_icon {
+	> i {
+		transition: transform 0.3s ease-out;
+		// @extend %dry_transition;
+		margin-left: 18px;
+	}
+	&:hover,
+	&:focus {
+		color: var(--wp--preset--color--nu-red) !important;
+		> i {
+			transform: translateX(8px);
+		}
+	}
+}
+
+//
+//
+//
+@mixin block-is-style-default($blockname) {
+	.#{$blockname} {
+		&.is-style-default,
+		&:not([class*="is-style-"]) {
+			@content;
+		}
+	}
+}
+//
+//
+//
+@mixin is-the-slider-arrows {
+	// square white buttons with black chevrons
+	border-radius: 0;
+	background-color: var(--wp--preset--color--light);
+	color: var(--wp--preset--color--dark);
+	width: $margin_3x;
+	height: $margin_3x;
+	transition: all 0.3s ease-in-out;
+	// v. centered and hz. on each side
+	position: absolute;
+	transform: translateY(-50%);
+	top: 50%;
+	bottom: unset;
+	left: unset;
+	right: unset;
+	&:before {
+		font-size: 1.15rem;
+		line-height: 1;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	&.eedee-gutenslider-prev {
+		left: 0;
+	}
+	&.eedee-gutenslider-next {
+		right: 0;
+	}
+}
+
+//
+//
+@mixin is-the-slider-bullets-container {
+	.swiper-pagination-bullet {
+		transition: all 0.3s ease-in-out;
+		width: 1rem;
+		height: 1rem;
+		border: 1px solid var(--wp--preset--color--dark);
+	}
+	.swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
+		background-color: transparent;
+		&:hover,
+		&:focus,
+		&:active {
+			opacity: 0.9;
+			background-color: transparent !important;
+		}
+	}
+}
+
+//
+//
+//
+@mixin nu_fa_icon($c: "", $el: before) {
+	position: relative;
+	&:#{$el} {
+		content: $c;
+		font: var(--fa-font-light);
+
+	}
+}
+
+@mixin button_hover_red {
+	> i {
+		transition: transform 0.3s ease-out;
+	}
+	&:hover,
+	&:focus {
+		border: 1px solid var(--wp--preset--color--nu-red) !important;
+		background-color: var(--wp--preset--color--nu-red) !important;
+		color: var(--wp--preset--color--white) !important;
+		box-shadow: 0px 0px 1px rgba(48, 49, 51, 0.05), 0px 8px 16px rgba(48, 49, 51, 0.1);
+		> i {
+			transform: translateX(8px);
+		}
+
+	}
+}
+
+
+@mixin link_hover_with_icon {
+	> i {
+		transition: transform 0.3s ease-out;
+	}
+	&:hover,
+	&:focus {
+		color: var(--wp--preset--color--nu-red) !important;
+		> i {
+			transform: translateX(8px);
+		}
+
+	}
+}
+
+//
+//
+@mixin add-top-level-outer-spacing() {
+	// the container is padded along the vertical screen edges
+	padding-left: var(--wp--custom--spacing--outer);
+	padding-right: var(--wp--custom--spacing--outer);
+	// child alignfull blocks must stretch to full-bleed
+	> .alignfull {
+		min-width: 100%;
+		width: unset;
+		max-width: unset;
+		margin-left: calc(var(--wp--custom--spacing--outer) * -1) !important;
+		margin-right: calc(var(--wp--custom--spacing--outer) * -1) !important;
+	}
+}
+
+//
+@mixin add-top-level-vertical-spacing() {
+	// most children push down by large margin
+	> *
+		+ *:not(
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			p,
+			.wp-block-buttons,
+			.wp-block-spacer,
+			.breadcrumbs
+		) {
+		margin-top: var(--wp--custom--spacing--large);
+	}
+
+	// typography has smallest margin
+	> p + p {
+		margin-top: $base-margin;
+	}
+	> p + .wp-block-buttons {
+		margin-top: $margin_2x;
+	}
+	// spacers have no margin
+	> * + .wp-block-spacer {
+		margin-top: 0;
+	}
+}
+
+/*
+	because the block may or may not be loaded when we call this in (the posts grid just calls it in for now)
+*/
+@mixin nu__date_time_block_styles() {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+
+	span {
+		letter-spacing: 0;
+		font-weight: normal;
+	}
+
+	//
+	// ? homogenize styles for all the metadata including iconography
+	//
+	p[class*="nu__datetime-"] {
+		color: #545454;
+		font-size: 14px;
+		line-height: 1;
+		margin: $half-margin 0 0 0;
+		span {
+			display: inline;
+			vertical-align: middle;
+		}
+		&:first-child {
+			margin: 0;
+		}
+
+		&.nu__datetime-times {
+			@include nu_fa_icon("\f017", before);
+		}
+		&.nu__datetime-dates {
+			margin-top: $half-margin;
+			@include nu_fa_icon("\f133", before);
+		}
+		&.nu__datetime-location {
+			margin-top: $half-margin;
+			@include nu_fa_icon("\f3c5", before);
+		}
+
+		&:before {
+			vertical-align: text-bottom;
+			display: inline-block;
+			margin-right: $half-margin;
+			font-size: inherit;
+			line-height: inherit;
+		}
+	}
+}
+
+@mixin flush_inner_content_vertical {
+	// reduces overall vertical space
+	> *:first-child {
+		margin-top: 0;
+	}
+	> *:last-child {
+		margin-bottom: 0;
+	}
+}
+
+@mixin center_absolute() {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@mixin displayedInvisible() {
+	visibility: hidden;
+	position: absolute;
+	left: -9999px;
+	height: 0;
+	overflow: hidden;
+	min-height: 0px;
+}
+
+// ? these shadows are approved by design ( matches figma v1 design review )
+@mixin nu__boxshadow($depth: 0) {
+	@if ($depth==0) {
+		box-shadow: 0px 1px 2px transparent;
+	}
+	@if ($depth==1) {
+		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+	}
+	@if ($depth==2) {
+		box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06);
+	}
+	@if ($depth==3) {
+		box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1),
+			0px 2px 4px -1px rgba(0, 0, 0, 0.06);
+	}
+	@if ($depth==4) {
+		box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+			0px 4px 6px -2px rgba(0, 0, 0, 0.05);
+	}
+	@if ($depth==5) {
+		box-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1),
+			0px 10px 10px -5px rgba(0, 0, 0, 0.04);
+	}
+	@if ($depth==6) {
+		box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+	}
+}
+
+@mixin accentUnderline($el: before, $h: 2px, $d: right) {
+	position: relative;
+
+	padding-bottom: #{$h}; // ? enable to add padding for the underline
+
+	&:#{$el} {
+		content: "";
+		display: block;
+		width: 0;
+		height: 0;
+		position: absolute;
+		border-bottom: $h solid currentColor;
+		bottom: -#{$h};
+
+		transition: all 0.1s ease-in-out;
+
+		@if $d==right {
+			left: 0;
+			right: auto;
+		} @else if $d==left {
+			right: 0;
+			left: auto;
+		}
+	}
+}
+
+// ? padding-top is used to manually proportion images that fill a specific size
+// ? <img> tags do not ever use this
+// ? div.bgimage--container uses this, with ANY inner content absolutely positioned.
+// ? for anything more complex than the bgimage case; essentially use a .content in its place
+@mixin aspect-ratio($w, $h) {
+	position: relative;
+
+	&:before {
+		display: block;
+		content: "";
+		width: 100%;
+		padding-top: (math.div($h, $w) * 100%);
+	}
+}
+
+//
+//
+//
+@mixin nuGrid($w, $c, $gX, $gY: $gX) {
+	$w: 100%;
+	//
+	> ul {
+		max-width: 100%;
+		display: grid;
+		grid-row-gap: $gX;
+		grid-column-gap: $gY;
+		grid-template-columns: repeat($c, 1fr);
+	}
+}
+
+//
+//
+//
+@mixin nu__responsive_grid_layout() {
+	// ? set margins and width variables
+	$gX: 30px;
+	$gY: 30px;
+	$w: 100%;
+
+	@for $n from 1 through 7 {
+		// ? any number of columns default layout
+		&.cols-#{$n} {
+			@include nuGrid($w, $n, $gX, $gY);
+		}
+	}
+	@include media("<=xlarge") {
+		// ? restrict max-cols in the layout to 5
+		@for $n from 6 through 7 {
+			&.cols-#{$n} {
+				@include nuGrid($w, 5, $gX, $gY);
+			}
+		}
+	}
+
+	@include media("<=large") {
+		// ? restrict max-cols in the layout to 4
+		@for $n from 5 through 7 {
+			&.cols-#{$n} {
+				@include nuGrid($w, 4, $gX, $gY);
+			}
+		}
+	}
+
+	@include media("<=medium") {
+		// ? restrict max-cols in the layout to 3
+		@for $n from 4 through 7 {
+			&.cols-#{$n} {
+				@include nuGrid($w, 3, $gX, $gY);
+			}
+		}
+	}
+
+	@include media("<=small") {
+		// ? restrict max-cols in the layout to 2
+		@for $n from 3 through 7 {
+			&.cols-#{$n} {
+				@include nuGrid($w, 2, $gX, $gY);
+			}
+		}
+	}
+
+	@include media("<=phone") {
+		// ? restrict max-cols in the layout to 1
+		@for $n from 2 through 7 {
+			&.cols-#{$n} {
+				@include nuGrid($w, 1, $gX, $gY);
+			}
+		}
+	}
+}
+
+// ? basics for aspect ratio for all items here
+@mixin nu__grid_item_cover_ratios {
+	&.has-very-wide-cover-image,
+	&.has-wide-cover-image,
+	&.has-tall-cover-image,
+	&.has-very-tall-cover-image,
+	&.has-square-cover-image {
+		figure {
+			position: relative;
+			overflow: hidden;
+			margin: 0;
+			img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+	&.has-square-cover-image figure {
+		@include aspect-ratio(1, 1);
+	}
+	&.has-wide-cover-image figure {
+		@include aspect-ratio(4, 3);
+	}
+	&.has-very-wide-cover-image figure {
+		@include aspect-ratio(16, 9);
+	}
+	&.has-tall-cover-image figure {
+		@include aspect-ratio(3, 4);
+	}
+	&.has-very-tall-cover-image figure {
+		@include aspect-ratio(9, 16);
+	}
+}

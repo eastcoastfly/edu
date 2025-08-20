@@ -1,0 +1,452 @@
+//
+//
+//
+.posts-grid {
+	--offset--reveal--cards--content: calc(100% - 80px);
+}
+
+#main .blocks--wrapper .posts-grid .nu__grid {
+	//			DRY gap
+
+	> ul {
+		grid-row-gap: var(--wp--style--block-gap);
+		grid-column-gap: $half-margin;
+	}
+
+	//			always hidden
+	.is-hanging-icon {
+		display: none;
+	}
+	.is-the-view-more-link {
+		margin: 0;
+		margin-top: $base-margin;
+		font-size: var(--wp--preset--font-size--16-24);
+		line-height: 1.6;
+		font-weight: 300;
+		@extend %dry_transition;
+		i[class*="fa-"] {
+			@extend %dry_transition;
+			margin: 0;
+			margin-left: $half-margin;
+		}
+	}
+
+	//
+	.primary-title {
+		margin-top: $half-margin;
+		font-size: var(--wp--preset--font-size--18-28);
+		line-height: 1.8;
+		color: var(--wp--preset--color--neutral-5);
+		font-weight: 300;
+	}
+
+	// 			DRY consistent transitions
+	.grid-item {
+		overflow: hidden;
+		border-radius: 0 0 2px 2px;
+
+		//
+		//
+		figure {
+			border-radius: 2px;
+			img {
+				@extend %dry_transition;
+			}
+		}
+
+		//
+		.grid-item-content {
+			padding: 24px 0;
+		}
+
+		//
+		// ?		if an item has an actual link - that starts with http(s)
+		// ?		then it gets a white background and some padding etc...
+		.contains-clickable-area {
+			&[href*="http"] {
+				//
+				//
+				~ figure {
+					border-radius: 2px 2px 0 0;
+				}
+
+				~ .grid-item-content {
+					.post-title span {
+						text-decoration-style: solid;
+						text-decoration-thickness: 1px;
+						text-decoration-line: underline;
+						text-underline-offset: 2px;
+						text-decoration-color: transparent;
+						@extend %dry_transition;
+					}
+					background-color: var(--wp--preset--color--white);
+					padding-left: 24px;
+					padding-right: 24px;
+				}
+
+				//
+				&:hover,
+				&:focus-within {
+					~ .grid-item-content {
+						//
+						.post-title {
+							span {
+								// border-bottom: 1px solid var(--wp--preset--color--dark);
+								text-decoration-color: var(--wp--preset--color--dark);
+							}
+						}
+						//
+						.is-the-view-more-link {
+							color: var(--wp--preset--color--nu-red);
+							i[class*="fa-"] {
+								color: var(--wp--preset--color--nu-red);
+								transform: translateX(8px);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		//
+		&:not(.nu_trustees, .nu_administration) {
+			//
+			@extend %dry_cardshadow;
+			&:hover,
+			&:focus-within {
+				figure img {
+					transform: scale(1.2);
+				}
+			}
+		}
+	}
+
+	.post-excerpt {
+		font-weight: 300;
+		color: var(--wp--preset--color--neutral-5);
+		font-size: var(--wp--preset--font-size--18-28);
+		line-height: 1.8;
+		margin: 0;
+		margin-top: 24px;
+		@include media("<=small") {
+			font-size: var(--wp--preset--font-size--16-24);
+			line-height: 1.6;
+		}
+	}
+
+	.post-title {
+		font-weight: 300;
+		font-size: var(--wp--preset--font-size--20-28);
+		color: var(--wp--preset--color--dark);
+		p {
+			margin: 0;
+		}
+	}
+	.full-name {
+		font-size: var(--wp--preset--font-size--20-28);
+	}
+
+	.grid-item {
+		//
+		// ?		Colleges
+		//
+		&.nu_colleges {
+			.grid-item-content {
+				display: flex;
+				flex-flow: column nowrap;
+				justify-content: flex-start;
+				> p {
+					font-weight: 300;
+					font-size: var(--wp--preset--font-size--20-28);
+					color: var(--wp--preset--color--dark);
+					line-height: 1.6;
+					margin: 0;
+				}
+			}
+			&.is-touch-disabled {
+				.contains-clickable-area {
+					pointer-events: none;
+				}
+				&:hover,
+				&:focus-within {
+					.post-title span {
+						// border-bottom: 1px solid var(--wp--preset--color--dark);
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+		//
+		// ?		Trustees
+		//
+		&.nu_trustees {
+			.image-404 ~ .grid-item-content {
+				text-align: center;
+			}
+		}
+		//
+		// ?		Campuses
+		//
+		&.nu_campuses {
+			//
+			//
+			.grid-item-content {
+				@include media(">=medium") {
+					max-width: calc(100% - var(--wp--preset--spacing--60));
+				}
+			}
+			&.is-touch-disabled {
+				.contains-clickable-area {
+					pointer-events: none;
+				}
+			}
+		}
+
+		//
+		//
+		// ?		News Items
+		//
+		//
+		&.nu_news {
+			//
+			display: flex;
+			flex-flow: column nowrap;
+			justify-content: flex-start;
+			//
+			figure {
+				max-height: unset;
+				flex: 0 0 auto;
+				// @include aspect-ratio(16,10);
+				@include aspect-ratio(3, 2); // ! MANDATED
+				img {
+					background-color: var(--wp--preset--color--dark);
+					object-fit: contain; // ! MANDATORY
+				}
+			}
+			//
+			.grid-item-content {
+				transform: unset !important;
+				position: static;
+				flex: 1 1 auto;
+				display: flex;
+				flex-flow: column nowrap;
+				.post-excerpt {
+					margin: 0 0 24px 0;
+				}
+				//
+				.publication-info {
+					margin-top: auto;
+					display: flex;
+					flex-direction: column;
+				}
+				p {
+					font-weight: 300;
+					font-size: var(--wp--preset--font-size--20-28);
+					color: var(--wp--preset--color--dark);
+					margin: 0;
+					line-height: 1.6;
+				}
+			}
+			//
+			.post-title {
+				display: none;
+			}
+		}
+		//
+		//
+		// ?		Administration Items
+		//
+		//
+		&.nu_administration {
+			&[data-haslink="true"] {
+				@extend %dry_cardshadow;
+				&:hover,
+				&:focus-within {
+					figure img {
+						transform: scale(1.2);
+					}
+				}
+			}
+			//
+			figure {
+			}
+			//
+			.grid-item-content {
+				padding: 24px;
+				padding-left: 0;
+			}
+			//
+			.post-title {
+			}
+			//
+			.post-excerpt {
+			}
+		}
+	}
+}
+
+.posts-grid .grid-item.has-disabled-clickable-area .grid-item-content {
+	background-color: transparent;
+}
+
+// vanilla posts style used on bot pages on the bottom
+
+//
+.posts-grid.bot-prefooter-grid {
+	> .nu__grid {
+		.grid-item.post.has-layout-vertical {
+			// overflow: hidden;
+			> a {
+				&:hover,
+				&:focus {
+					// box-shadow: 0px 8px 16px 0px rgba(48, 49, 51, 0.1);
+					~ .grid-item-content {
+						transform: translateY(0%);
+						p {
+							// color: var(--wp--preset--color--dark) !important;
+							opacity: 1;
+						}
+					}
+				}
+			}
+
+			> .grid-item-content {
+				bottom: 0;
+				left: 0;
+				padding: 24px;
+				max-width: calc(100% - var(--wp--preset--spacing--60));
+				transition: all 0.7s cubic-bezier(0.31, 0.11, 0.12, 0.99);
+				// transform: translateY(calc(100% - 80px));
+				transform: translateY(var(--offset--reveal--cards--content));
+				> p.post-title {
+					color: var(--wp--preset--color--dark);
+					font-size: var(--wp--preset--font-size--20-28);
+					font-weight: 300;
+					// line-height: 1.6;
+				}
+				> p.post-excerpt {
+					transition: all 0.7s cubic-bezier(0.31, 0.11, 0.12, 0.99);
+					opacity: 0;
+					font-weight: 300;
+					font-size: var(--wp--preset--font-size--16-24);
+					line-height: 1.8;
+				}
+				> p.post-author {
+					display: none;
+				}
+				> span.post-date {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+//bot horizontal nav
+
+nav.bot-page-nav {
+	.wp-block-navigation__container {
+		> .wp-block-navigation-item {
+			> .wp-block-navigation-item__content {
+				color: var(--wp--preset--color--dark);
+				font-size: var(--wp--preset--font-size--18-28);
+				font-weight: 400;
+				padding: 16px 16px 20px 16px;
+				&:hover,
+				&:focus {
+					border-bottom: 2px solid var(--wp--preset--color--nu-red);
+					color: var(--wp--preset--color--dark) !important;
+				}
+			}
+			&.current-menu-item {
+				> .wp-block-navigation-item__content {
+					border-bottom: 2px solid var(--wp--preset--color--nu-red);
+				}
+			}
+		}
+	}
+}
+
+//
+// * Dan's fix for Board of Trustees nav
+nav.bot-page-nav {
+	@include media("<medium") {
+		width: 100%;
+	}
+
+	// * The hamburger menu icon
+	> .wp-block-navigation__responsive-container-open {
+		@include media("<medium") {
+			display: none !important;
+		}
+	}
+
+	> .wp-block-navigation__responsive-container {
+		@include media("<medium") {
+			display: block;
+			position: relative;
+			width: 100%;
+			z-index: auto;
+		}
+
+		> .wp-block-navigation__responsive-close {
+			> .wp-block-navigation__responsive-dialog {
+				> .wp-block-navigation__responsive-container-close {
+					@include media("<medium") {
+						display: none;
+					}
+				}
+
+				.wp-block-navigation__responsive-container-content {
+					> .wp-block-navigation__container {
+						@include media("<medium") {
+							flex-flow: column !important;
+							gap: 1rem;
+						}
+
+						> .wp-block-navigation-item.wp-block-navigation-link {
+							@include media("<medium") {
+								width: 100%;
+							}
+
+							> .wp-block-navigation-item__content {
+								@include media("<medium") {
+									padding-left: 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+//
+// * Dan's fix for "Powered by Experience" section on Board of Trustees page
+.wp-block-group.alignfull.nu-slider-shadow {
+	&[style*="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--70)"] {
+		@include media("<small") {
+			padding-left: var(--wp--custom--spacing--outer) !important;
+			padding-right: var(--wp--custom--spacing--outer) !important;
+		}
+	}
+
+	.acf-block.posts-grid.bot-prefooter-grid {
+		.nu__grid {
+			ul {
+				@include media("<medium") {
+					grid-template-columns: auto;
+				}
+
+				> .grid-item {
+					&:hover {
+						.grid-item-content {
+							transform: translateY(0);
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,96 @@
+//
+// ? these styles are from the docs zoom example
+//
+.mfp-with-zoom .mfp-container,
+.mfp-with-zoom.mfp-bg {
+	opacity: 0;
+	transition: all 0.3s ease-out;
+}
+
+.mfp-with-zoom.mfp-ready .mfp-container {
+	opacity: 1;
+}
+.mfp-with-zoom.mfp-ready.mfp-bg {
+	opacity: 0.8;
+}
+
+.mfp-with-zoom.mfp-removing .mfp-container,
+.mfp-with-zoom.mfp-removing.mfp-bg {
+	opacity: 0;
+}
+//
+//
+//
+//
+//
+//
+body {
+	//
+	.mfp-container,
+	.mfp-close {
+		cursor: pointer !important;
+	}
+	//
+	.mfp-wrap,
+	.mfp-bg {
+		max-width: calc(100% - var(--sidebar--width));
+	}
+	//
+	.mfp-content {
+		max-width: 1024px;
+	}
+	//
+	.mfp-bg {
+		background-color: var(--wp--preset--color--black);
+		opacity: 0.9 !important;
+	}
+	//
+	.mfp-img {
+		max-height: 75vh !important;
+	}
+	//
+	.mfp-counter {
+		margin: 0 !important;
+		font-size: 14px !important;
+		line-height: 20px !important;
+	}
+	//
+	.mfp-wrap {
+		.mfp-arrow {
+			background: black;
+			color: white;
+			width: 48px;
+			height: 48px;
+			opacity: 1;
+			&::before {
+				display: none;
+			}
+			@include nu_fa_icon("\f060", after);
+			position: absolute;
+			&:after {
+				color: white;
+				font-size: 14px;
+				line-height: 14px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				border: unset;
+				width: unset;
+				height: unset;
+				margin: unset;
+				padding: unset;
+			}
+			&.mfp-arrow-left {
+				left: $margin_2x;
+			}
+			&.mfp-arrow-right {
+				left: auto;
+				right: $margin_2x;
+				&::after {
+					content: "\f061";
+				}
+			}
+		}
+	}
+}

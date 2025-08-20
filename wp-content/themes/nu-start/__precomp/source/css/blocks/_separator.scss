@@ -1,0 +1,12 @@
+//
+//
+//
+
+.wp-block-separator {
+	&.no-margin-top {
+		margin-top: 0 !important;
+	}
+}
+.wp-block-separator.alignfull.has-background {
+	padding: 0 !important;
+}

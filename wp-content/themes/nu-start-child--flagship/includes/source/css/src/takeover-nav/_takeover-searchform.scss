@@ -1,0 +1,89 @@
+//
+//
+//
+.takeover-nav-search {
+	position: relative;
+	z-index: 1;
+
+	.sitesearch-container {
+		@extend %dry_transition;
+		transform: translateX(0);
+		background-color: var(--wp--preset--color--dark);
+		color: var(--wp--preset--color--light);
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		padding: 0 var(--wp--preset--spacing--40);
+		form.search-form {
+			border: unset;
+			padding: unset;
+			height: unset;
+			label {
+				padding-left: 0;
+				padding-right: 0;
+			}
+
+			.search-submit-icon {
+				margin-left: 8px;
+			}
+			.search-field {
+				// * This is to avoid the search field bleeding off the left edge on phones
+				@include media(">=phone"){
+					min-width: 240px;
+				}
+				font-size: 16px;
+				font-style: italic;
+				font-weight: 300;
+				line-height: 1.8;
+				letter-spacing: 1px;
+				color: var(--wp--preset--color--light);
+				&::-moz-placeholder {
+					@include media("<=phone") {
+						font-size:12px;
+					}
+				}
+			}
+		}
+	}
+
+	//
+	.nu__sitesearch-close {
+		display: none;
+	}
+
+	.fa-xmark {
+		display: none;
+	}
+
+	.takeover-nav-search-button {
+
+		&:not(.has-revealed-searchform) {
+			+ .sitesearch-container {
+				visibility: hidden;
+			}
+		}
+
+		&.has-revealed-searchform {
+			.fa-search {
+				display: none;
+			}
+			.fa-xmark {
+				display: inline-block;
+			}
+			+ .sitesearch-container {
+				transform: translateX(-100%);
+			}
+		}
+	}
+
+}
+
+
+//
+// * To hide the extraneous sitesearch-container that is not part of the takeover nav
+.navlinks--container {
+	> .sitesearch-container {
+		display:none;
+	}
+}

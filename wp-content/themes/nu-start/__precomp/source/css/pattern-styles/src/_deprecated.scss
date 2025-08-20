@@ -1,0 +1,782 @@
+//
+// ? see charlotte - red circles on cards
+//
+.patterns--blurbs--card-style-with-offset-accent {
+	// * Add borders and padding (per Figma)
+	border: solid 1px var(--wp--preset--color--neutral-3);
+	border-top: solid 1px var(--wp--preset--color--nu-red);
+	position: relative;
+	padding: $margin_3x $margin_2x;
+
+	// * The element in the red circle ("1", "A", etc)
+	.is-the-offset-accent {
+		// * Add the red circle border and position it
+		border: solid 1px var(--wp--preset--color--nu-red);
+		border-radius: 50%;
+		margin: 0 auto;
+		position: absolute;
+		top: 0;
+		transform: translate(-50%, -50%);
+		left: 50%;
+
+		// * Add background color to make it not transparent
+		background-color: var(--wp--preset--color--white);
+		font-size: 32px;
+		font-weight: 300;
+
+		// * Hide overflow and touchups
+		overflow: hidden;
+
+		// * Overrides for Denise's changes
+		height: 80px;
+		width: 80px;
+		line-height: 74px;
+	}
+
+	// ! This might be hacky
+	h3 + p {
+		margin-top: 16px !important;
+	}
+}
+
+
+//
+// * This is on the Mills Institute page (four numbered boxes)
+// ? This pattern could really pertain to anything we want to have children with equal heights
+.patterns--features--equal-height-columns-with-offset-accent-blurbs {
+	// * A&R for better breakpoints
+	@include media("<medium") {
+		display: grid !important;
+		grid-template-columns: auto auto;
+	}
+	@include media("<phone") {
+		display: flex !important;
+	}
+
+	// * Add some breathing room at the top
+	padding-top: $margin_2x;
+
+	> .wp-block-column {
+		// * Add spacing on grid display in small/medium
+		@include media("<medium") {
+			margin-bottom: $margin_2x;
+		}
+		.patterns--blurbs--card-style-with-offset-accent {
+			@include media(">=phone") {
+				// * To make all the card heights the same
+				height: 100%;
+			}
+		}
+	}
+}
+
+
+//
+//
+//
+// * Blurb + image + image mosaic pattern (CAMPUS & LOCATIONS, THE ARTS)
+.patterns--pathways--blurb-image-image-mosaic {
+	> .wp-block-columns {
+		> .wp-block-column {
+			// * The blurb + image on the left
+			&:first-child {
+				height: 100%;
+			}
+
+			// * The vertical image on the right
+			&:not(:first-child) {
+				height: 100%;
+			}
+		}
+	}
+}
+
+//
+//
+// * The blurb + vertical image mosaic
+.temp--working-on-this-collage {
+	// ? Remove this to be same max-width as other WP blocks and groups on the page
+	margin-left: auto;
+	margin-right: auto;
+	.wp-block-column {
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: space-between;
+		> :only-child {
+			height: 100%;
+			&.wp-block-image {
+				img {
+					height: 100%;
+				}
+				@include media("<=small") {
+					display: none;
+				}
+			}
+		}
+		// all images forced to square on mobile
+		@include media("<=small") {
+			.wp-block-image {
+				@include aspect-ratio(1, 1);
+				img {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
+	}
+}
+
+//
+//
+//
+//
+//
+// * "Content With Sidebar" pattern
+// -- note that the sidebar could be on either side (.is-the-sidebar, .is-the-content)
+//
+.patterns--layouts--content-with-sidebar {
+	//
+	@include add-top-level-outer-spacing();
+
+	> .wp-block-columns {
+		@include media(">=medium") {
+			gap: max($margin_4x, 10%);
+		}
+
+		// * Stack sidebar menu on top for < 1024px (medium)
+		@include media("<medium") {
+			flex-direction: column;
+		}
+	}
+
+	// * The sidebar column
+	//
+	.is-the-sidebar {
+		@include media("<medium") {
+			// * Remove the CMS-set width of 280px
+			flex-basis: auto !important;
+			margin-bottom: 60px;
+			position: sticky;
+			top: 80px;
+			z-index: 2 !important;
+			background-color: var(--wp--preset--color--white);
+		}
+
+		// * Container for the sidebar menu items
+		.is-the-sidebar-group {
+			//
+			//
+			@include media(">=medium") {
+				position: sticky;
+				top: 160px;
+			}
+
+			// * The descriptor text (e.g. "On this page" or "Section Menu")
+			p.is-style-eyebrow {
+				@include media("<medium") {
+					border: solid 1px var(--wp--preset--color--neutral-1);
+					padding: 16px;
+					cursor: pointer;
+				}
+
+				&:after {
+					@include media("<medium") {
+						font: var(--fa-font-light);
+						content: "\f107";
+						font-size: 18px;
+						position: absolute;
+						right: 8px;
+						top: 14px;
+					}
+				}
+
+				&[data-content="close"] {
+					&:after {
+						@include media("<medium") {
+							font: var(--fa-font-light);
+							content: "\f00d";
+							font-size: 18px;
+							position: absolute;
+							right: 8px;
+							top: 14px;
+						}
+					}
+
+					+ .is-the-sidebar-menu {
+						@include media("<medium") {
+							display: block;
+						}
+					}
+				}
+			}
+
+			// * The navigation block itself
+			.is-the-sidebar-menu {
+				position: -webkit-sticky;
+				position: sticky !important;
+				top: 220px;
+				margin: 0;
+				z-index: 1;
+				position: relative;
+
+				@include media("<medium") {
+					display: none;
+					box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%),
+						0 4px 6px -2px rgb(0 0 0 / 5%);
+				}
+
+				@include media(">=medium") {
+					margin-top: $base-margin;
+				}
+
+				// * This is the toggle button that appears on <phone
+				.wp-block-navigation__responsive-container-open {
+					@include media("<medium") {
+						display: none;
+					}
+				}
+
+				// * The mobile navigation menu itself
+				.wp-block-navigation__responsive-container {
+					@include media("<medium") {
+						position: unset;
+						width: 100%;
+					}
+					//
+					// * This is all to get at the closing "X" that doesn't need to be here
+					.wp-block-navigation__responsive-close {
+						.wp-block-navigation__responsive-dialog {
+							.wp-block-navigation__responsive-container-close {
+								@include media("<medium") {
+									display: none;
+								}
+							}
+						}
+					}
+				}
+
+				// * "Section Menu" and dropdown arrow (p)
+				.is-the-sidebar-navicon {
+					// * Add nice padding for the item
+					padding: $half-margin 0;
+					i.icon {
+						display: none !important;
+					}
+
+					@include media("<large") {
+						// * Place border around item and flex text and chevron to the sides
+						border: 1px solid var(--wp--preset--color--neutral-1);
+						display: flex;
+						justify-content: space-between;
+						@include nu_fa_icon("\f107", after);
+						position: relative;
+						&:after {
+							position: absolute;
+							right: $half-margin;
+							top: $base-margin;
+							font-size: 16px;
+						}
+					}
+					// * Do not display on screens wider than medium
+					@include media(">=large") {
+						display: none;
+					}
+					// * The text content (e.g. 'Section Menu') of the navicon
+					.mobile-nav-text {
+						padding-left: $base-margin;
+					}
+					// * Chevron too close to right edge
+					.wp-block-navigation-submenu__toggle {
+						right: $half-margin !important;
+					}
+					// * If the section menu is opened on smaller than 1024px (additional class of .mobile-revealed)
+					&.mobile-revealed {
+						+ nav.wp-block-navigation {
+							@include media("<large") {
+								// * Then display the menu items
+								display: block;
+							}
+						}
+
+						// * Switch navicon to "close" X upon opening
+						&:after {
+							content: "\f00d";
+						}
+					}
+					//
+					// * Hide the section menu items if navicon not opened
+					+ nav.wp-block-navigation {
+						@include media("<large") {
+							display: none;
+						}
+					}
+				}
+
+				//
+				// * This is the flex container
+				.wp-block-navigation__container {
+					gap: 0;
+					// * to avoid the moving carat for dropdown submenu
+					width: 100%;
+					padding-left: unset;
+
+					// * The <li>
+					.wp-block-navigation-item {
+						margin-top: unset;
+						//
+						// * The <a>
+						> .wp-block-navigation-item__content {
+							padding-left: 24px;
+							padding-right: 24px;
+
+							//
+							&.is-active {
+								color: var(--wp--preset--color--black);
+							}
+						}
+
+						&:hover {
+							> .wp-block-navigation-item__content {
+								color: var(--wp--preset--color--black);
+							}
+						}
+
+						// * A navigation item with a dropdown submenu
+						&.has-child {
+							//
+							// * The dropdown arrow for a submenu
+							.wp-block-navigation-submenu__toggle {
+								top: 12px;
+								right: 8px;
+							}
+							//
+							// * The submenu container
+							.wp-block-navigation__submenu-container {
+								padding-left: unset;
+
+								> .wp-block-navigation-item {
+									> .wp-block-navigation-item__content {
+										padding-left: 48px;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		} // end .is-the-sidebar-group
+	} // end .is-the-sidebar
+
+	// * The right column of content
+	.is-the-content {
+		@include add-top-level-vertical-spacing();
+
+		// grid max-column default reduced
+		.nu__grid {
+			@include media("<=xlarge") {
+				// ? restrict max-cols in the layout to 4
+				@for $n from 4 through 6 {
+					$gX: 30px;
+					$gY: 30px;
+					$w: 100%;
+					&.cols-#{$n} {
+						@include nuGrid($w, 3, $gX, $gY);
+					}
+				}
+			}
+			@include media("<=medium") {
+				// ? restrict max-cols in the layout to 4
+				@for $n from 3 through 6 {
+					$gX: 30px;
+					$gY: 30px;
+					$w: 100%;
+					&.cols-#{$n} {
+						@include nuGrid($w, 2, $gX, $gY);
+					}
+				}
+			}
+			@include media("<=small") {
+				// ? restrict max-cols in the layout to 4
+				@for $n from 2 through 6 {
+					$gX: 30px;
+					$gY: 30px;
+					$w: 100%;
+					&.cols-#{$n} {
+						@include nuGrid($w, 1, $gX, $gY);
+					}
+				}
+			}
+		}
+
+		@include media("<=medium") {
+			max-width: 100%;
+			width: 100%;
+		}
+	} // end .is-the-content
+}
+//
+//
+//
+//
+
+
+
+
+
+//
+//
+//
+.patterns--pathways--start-with-three-simple-steps {
+	> .wp-block-group:last-child {
+		margin-top: $margin_4x;
+		> .wp-block-group {
+			&:not(:first-child) {
+				margin-top: $margin_2x;
+			}
+		}
+	}
+}
+
+//
+//
+.patterns--features--grid-of-statements {
+	.wp-block-columns {
+		gap: 0;
+		margin: 0;
+		.wp-block-column {
+			gap: 0;
+			margin: 0;
+			border: 1px solid transparent;
+			&:not(:first-child) {
+				margin-left: 0;
+			}
+		}
+	}
+}
+
+//
+//	rows of media+text blocks that alternate image on the left/right
+//
+.patterns--features--media-and-text-oscillating {
+	// ? increased vertical spacing
+	> .wp-block-media-text {
+		&:not(:first-child) {
+			margin-top: var(--wp--custom--spacing--large);
+		}
+	}
+
+	// ? over mobile breakpoint the image always fills height
+	@include media(">small") {
+		.wp-block-media-text__media {
+			&,
+			img {
+				height: 100%;
+			}
+		}
+	}
+}
+
+//
+//
+//
+.patterns--features--overview-and-2-cards-with-cta {
+	> * {
+		&:not(:first-child) {
+			margin-top: var(--wp--custom--spacing--outer);
+		}
+	}
+}
+
+//
+//
+.patterns--features--three-key-statements,
+.patterns--features--three-key-statements-with-intro-and-call-to-action {
+	@include media(">medium") {
+		> .wp-block-columns {
+			margin-top: $margin_4x;
+			gap: $margin_4x;
+		}
+		> .wp-block-buttons {
+			margin-top: $margin_4x;
+		}
+	}
+	@include media("<=phone") {
+		> .wp-block-columns {
+			margin: $margin_4x 0;
+		}
+	}
+}
+
+//
+//
+.patterns--features--three-statements-with-featured-image {
+	ul {
+		padding-inline-start: 20px;
+	}
+	@include media("<=small") {
+		> .wp-block-columns {
+			.wp-block-column {
+				> .wp-block-group.has-background {
+					padding: $margin_2x $base-margin;
+				}
+			}
+		}
+	}
+	@include media(">small") {
+		> .wp-block-columns {
+			margin-top: $margin_4x;
+			align-items: stretch;
+			> .wp-block-column {
+				align-self: unset;
+				> figure {
+					> img,
+					& {
+						height: 100%;
+					}
+				}
+			}
+		}
+		> .wp-block-columns {
+			.wp-block-column {
+				> .wp-block-group.has-background {
+					padding: $margin_2x $margin_4x;
+				}
+			}
+		}
+	}
+}
+
+//
+.patterns--features--2x2-statements-with-c2a {
+	@include media(">small") {
+		> .wp-block-group:last-child {
+			margin-top: $margin_4x;
+			padding: 0 var(--wp--custom--spacing--outer);
+
+			//
+			> .wp-block-columns {
+				gap: $margin_4x;
+				+ .wp-block-buttons,
+				+ .wp-block-columns {
+					margin-top: $margin_4x;
+				}
+			}
+		}
+	}
+}
+
+.patterns--icons--rows-of-features-with-icons {
+	i[class*="fa-"],
+	.svg-inline--fa {
+		+ * {
+			margin-left: $base-margin;
+		}
+	}
+}
+.patterns--icons--columns-of-features-with-icons {
+	@include media("<medium") {
+		i[class*="fa-"],
+		.svg-inline--fa {
+			+ * {
+				margin-left: $base-margin;
+			}
+		}
+	}
+	@include media(">=medium") {
+		.wp-block-column {
+			padding-left: $margin_3x;
+			position: relative;
+			i[class*="fa-"],
+			.svg-inline--fa {
+				position: absolute;
+				top: 0;
+				left: 0;
+				margin: 0 !important;
+			}
+		}
+	}
+}
+
+
+//
+//
+//
+
+
+//
+// * Mosaic with blurb + images
+.temp--working-on-this-collage {
+	// ? Remove this to be same max-width as other WP blocks and groups on the page
+	margin-left: auto;
+	margin-right: auto;
+	.wp-block-column {
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: space-between;
+		> :only-child {
+			height: 100%;
+			&.wp-block-image {
+				img {
+					height: 100%;
+				}
+				@include media("<=small") {
+					display: none;
+				}
+			}
+		}
+		// all images forced to square on mobile
+		@include media("<=small") {
+			.wp-block-image {
+				@include aspect-ratio(1, 1);
+				img {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
+	}
+}
+
+
+//
+//
+//
+//
+
+.patterns--content-teaser--latest-news-and-events,
+.patterns--showcase--latest-news-and-events {
+	// either latest news or events "row" collapses early (with main nav)
+	@include media("<=medium") {
+		> .wp-block-columns {
+			flex-wrap: wrap !important;
+			> .wp-block-column {
+				flex-basis: 100% !important;
+			}
+		}
+	}
+}
+
+//
+// * As seen on the OHDSI site
+.patterns--partnerships--row-of-logo-images {
+	> * {
+		&:not(:first-child) {
+			margin-top: var(--wp--custom--spacing--outer);
+		}
+	}
+	.wp-block-image {
+		min-width: 120px;
+		max-width: 200px;
+	}
+	> .wp-block-group {
+		flex-flow: row wrap;
+	}
+
+	.wp-block-group {
+		@include media(">=phone", "<medium") {
+			flex-wrap: nowrap !important;
+		}
+
+		.wp-block-image {
+			@include media(">=phone", "<small") {
+				flex-basis: 40%;
+				max-width: 100% !important;
+			}
+		}
+	}
+}
+//
+//
+//
+
+
+.patterns--features--row-of-images-as-icons {
+	> * {
+		&:not(:first-child) {
+			margin-top: var(--wp--custom--spacing--outer);
+		}
+	}
+	&.has-white-color {
+		.wp-block-image img {
+			filter: invert(1);
+			background-color: var(--wp--preset--color--white);
+			max-width: 64px;
+		}
+	}
+}
+
+//
+//
+//
+//
+//
+//jump nav above the accordion on faq page
+.jump-nav {
+	> p {
+		display: flex;
+		justify-content: space-between;
+		position: relative;
+		gap: $base-margin;
+		text-align: center;
+		padding: 0 $base-margin;
+		&:after {
+			content: "";
+			border-bottom: 2px solid #e5e5e5;
+			border-radius: 2px;
+			width: 100%;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+		}
+		a {
+			display: inline-block;
+			margin: 0;
+			text-decoration: none !important;
+			border-bottom: 2px solid rgba(0, 0, 0, 0);
+			// padding: 0 1vw;
+			font-weight: 400;
+			font-size: 16px;
+			letter-spacing: 0.03em;
+			color: #525252;
+			position: relative;
+			z-index: 2;
+			&:hover,
+			&:focus {
+				border-bottom: 2px solid black;
+			}
+			&.active {
+				border-bottom: 2px solid black;
+				color: black;
+			}
+		}
+
+		&.is-sticky-on-scroll {
+			background: var(--wp--preset--color--light);
+			top: 55px;
+			z-index: 1;
+		}
+	}
+	@media only screen and (max-width: 1200px) {
+		> p {
+			a {
+				padding: 0 0.5vw;
+				font-size: 14px;
+			}
+		}
+	}
+
+	@media only screen and (max-width: 640px) {
+		> p {
+			flex-direction: column;
+			&:after {
+				display: none;
+			}
+		}
+	}
+}

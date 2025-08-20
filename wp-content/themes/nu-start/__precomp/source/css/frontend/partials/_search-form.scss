@@ -1,0 +1,97 @@
+//
+// * search form
+// ? use fold all to see the structure and grouping
+//
+//
+// some resets
+.sitesearch-container {
+	text-align: center;
+
+	// ? exceptionally hard reset of browser styling
+	label,
+	input,
+	button {
+		all: unset;
+	}
+
+	/* clears the ‘X’ from Internet Explorer */
+	input[type="search"]::-ms-clear {
+		display: none;
+		width: 0;
+		height: 0;
+	}
+	input[type="search"]::-ms-reveal {
+		display: none;
+		width: 0;
+		height: 0;
+	}
+	/* clears the ‘X’ from Chrome */
+	input[type="search"]::-webkit-search-decoration,
+	input[type="search"]::-webkit-search-cancel-button,
+	input[type="search"]::-webkit-search-results-button,
+	input[type="search"]::-webkit-search-results-decoration {
+		display: none;
+	}
+
+	//
+	button.sitesearch-toggle {
+		cursor: pointer;
+		display: none;
+		.fa-xmark {
+			display: none;
+		}
+	}
+}
+
+//
+// most styles begin here
+//
+.sitesearch-container {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	align-items: center;
+
+	form.search-form {
+		// pill style outline on container
+		border: 1px solid var(--wp--preset--color--neutral-5);
+		border-radius: 48px;
+		padding: 4px 8px;
+		// alignment
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: flex-start;
+		align-items: center;
+		margin: 0 auto;
+		width: 100%;
+		height: 56px;
+
+		.search-submit-icon {
+			cursor: pointer;
+		}
+		> label {
+			display: block;
+			width: 100%;
+			padding: 0 $base-margin;
+		}
+		// search input fills space
+		.search-field {
+			display: block;
+			appearance: unset;
+			border: unset;
+			padding: unset;
+			text-align: left;
+		}
+	}
+}
+
+//
+// ? styles only for anywhere outside of the header
+//
+:not(.header .sitesearch-container) {
+	// hide/remove the default search submit <input>
+	// replaced by our <button> with an <i> icon
+	input.search-submit {
+		@extend %visuallyhidden;
+	}
+}

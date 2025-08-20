@@ -1,0 +1,101 @@
+/**
+ * Media Query Variables
+ *
+ * Usage:
+ *  @media only screen and ($at-least-s) and ($less-than-m) {
+ *   color: red;
+ *  }
+ *
+ * Example devices using viewport sizes:
+ *   - Ultra Wide: Desktops with large screens, television sets.
+ *   - Extra Extra Wide: Laptops with large screens, desktops with medium screens.
+ *   - Extra Wide: Laptops with large screens, desktops with medium screens.
+ *   - Wide: Tablets in landscape, laptops with small screens.
+ *   - Narrow: Smartphones in landscape, tablets in portrait. WordPress admin bar auto folds.
+ *   - Extra Narrow: Smartphones in portrait. WordPress admin bar goes big.
+ *   - Extra Extra Narrow: Smartwatches.
+ *
+ * @see https://www.cjcid.com/essays/ions-introduction/#table-viewports
+ * @see https://wptips.dev/better-sass-media-query/
+ * @see https://learn.microsoft.com/en-us/windows/apps/design/layout/screen-sizes-and-breakpoints-
+ * for-responsive-design
+ */
+
+/**
+ * Special.
+ */
+$break-zoomed-in: 280px;
+$is-portrait: "orientation: portrait";
+$is-landscape: "orientation: landscape";
+$is-retina: "min-resolution: 192dpi";
+
+
+/**
+ * Ultra-wide includes desktops with large screens, television sets.
+ * Ultra-wide width is 1440px up.
+ */
+$break-ultra-wide: 1441px;
+$less-than-ultra-wide: "max-width:" + ($break-ultra-wide - 0.1px);
+$at-least-ultra-wide: "min-width:" + $break-ultra-wide;
+$only-ultra-wide: "(min-width:" + $break-ultra-wide + ")";
+
+/**
+ * Extra-extra-wide includes desktops with large screens, television sets.
+ * Extra-wide width is 1280px-1440px.
+ */
+$break-extra-extra-wide: 1281px;
+$less-than-extra-extra-wide: "max-width:" + ($break-extra-extra-wide - 0.1px);
+$at-least-extra-extra-wide: "min-width:" + $break-extra-extra-wide;
+/* stylelint-disable max-line-length */
+$only-extra-extra-wide: "(min-width:" + $break-extra-extra-wide + ") and (max-width:" + ($break-ultra-wide - 0.1px);
+/* stylelint-enable max-line-length */
+
+/**
+ * Extra-wide includes laptops with large screens, desktops with medium screens.
+ * Extra-wide width is 1216px–1407px.
+ */
+$break-extra-wide: 1080.1px;
+$less-than-extra-wide: "max-width:" + ($break-extra-wide - 0.1px);
+$at-least-extra-wide: "min-width:" + $break-extra-wide;
+/* stylelint-disable max-line-length */
+$only-extra-wide: "(min-width:" + $break-extra-wide + ") and (max-width:" + ($break-extra-extra-wide - 0.1px);
+/* stylelint-enable max-line-length */
+
+/**
+ * Wide includes tablets in landscape, laptops with small screens.
+ * Wide width is 1024px–1215px.
+ */
+$break-wide: 960.1px;
+$less-than-wide: "max-width:" + ($break-wide - 0.1px);
+$at-least-wide: "min-width:" + $break-wide;
+$only-wide: "(min-width:" + $break-wide + ") and (max-width:" + ($break-extra-wide - 0.1px);
+
+/**
+ * Narrow includes smartphones in landscape, tablets in portrait.
+ * WordPress admin bar auto folds.
+ */
+$break-narrow: 782.1px;
+$less-than-narrow: "max-width:" + ($break-narrow - 0.1px);
+$at-least-narrow: "min-width:" + $break-narrow;
+$only-narrow: "(min-width:" + $break-narrow + ") and (max-width:" + ($break-wide - 0.1px);
+
+/**
+ * Extra-narrow includes smartphones in portrait.
+ * WordPress admin bar goes big.
+ */
+$break-extra-narrow: 600.1px;
+$less-than-extra-narrow: "max-width:" + ($break-extra-narrow - 0.1px);
+$at-least-extra-narrow: "min-width:" + $break-extra-narrow;
+/* stylelint-disable max-line-length */
+$only-extra-narrow: "(min-width:" + $break-extra-narrow + ") and (max-width:" + ($break-narrow - 0.1px);
+/* stylelint-enable max-line-length */
+
+/**
+  * Extra-extra-narrow includes smartwatches.
+ */
+$break-extra-extra-narrow: 480.1px;
+$less-than-extra-extra-narrow: "max-width:" + ($break-extra-extra-narrow - 0.1px);
+$at-least-extra-extra-narrow: "min-width:" + $break-extra-extra-narrow;
+/* stylelint-disable max-line-length */
+$only-extra-extra-narrow: "(min-width:" + $break-extra-extra-narrow + ") and (max-width:" + ($break-extra-narrow - 0.1px);
+/* stylelint-enable max-line-length */

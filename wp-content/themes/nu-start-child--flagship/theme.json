@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "settings": {},
+  "styles": {
+    "color": {
+      "text": "var(--wp--preset--color--neutral-6)",
+      "background": "var(--wp--preset--color--light)"
+    },
+    "typography": {
+      "fontSize": "var(--wp--preset--font-size--18-28)",
+      "fontFamily": "var(--wp--preset--font-family--ff-real-head)"
+    }
+  },
+  "templateParts": [],
+  "customTemplates": []
+}

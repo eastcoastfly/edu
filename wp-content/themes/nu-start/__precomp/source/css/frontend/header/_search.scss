@@ -1,0 +1,84 @@
+//
+// ?		modifications for the header
+// see @link /__precomp/source/css/frontend/partials/_search-form.scss
+//
+.header {
+	.sitesearch-container {
+		position: relative;
+		margin-left: $base-margin;
+
+		flex: 1 0 auto;
+		width: 100%;
+
+		flex: none;
+		width: 16px;
+
+		// form initially hidden
+		.search-form {
+			margin: 0;
+			width: max(33vw, 500px);
+			@include media("<phone") {
+				max-width: 95%;
+			}
+			transition: all 0.3s ease-out;
+			right: $margin_2x;
+			//
+			position: absolute;
+			z-index: 1;
+			color: var(--wp--preset--color--black);
+			background-color: var(--wp--preset--color--white);
+		}
+
+		// button to reveal hidden form
+		button.sitesearch-toggle {
+			display: block;
+			height: 100%;
+		}
+
+		// initial state of slide-out
+		&:not(.revealed) {
+			.search-form {
+				right: -9999px;
+			}
+		}
+
+		//
+		// ? search bar has been revealed in the header
+		//
+		&.revealed {
+			.search-form {
+				height: 48px !important;
+
+				> .search-submit-icon {
+					padding-left: 16px;
+				}
+
+				.search-field {
+					width: 100%;
+					text-align: center;
+				}
+			}
+			.sitesearch-toggle {
+				.fa-magnifying-glass {
+					display: none;
+				}
+				.fa-xmark {
+					display: block;
+				}
+			}
+		}
+
+		@include media("<=medium") {
+			margin: 0;
+			justify-content: center;
+			width: auto;
+			.sitesearch-toggle {
+				@include displayedInvisible;
+			}
+			.search-form {
+				position: relative;
+				right: 0 !important;
+			}
+		}
+	}
+}

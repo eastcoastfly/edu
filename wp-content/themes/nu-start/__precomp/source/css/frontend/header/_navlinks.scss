@@ -1,0 +1,566 @@
+//
+// ? basic reset for our nav element
+//
+nav.navlinks {
+	ul,
+	.menu {
+		display: flex;
+		list-style-type: none;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		line-height: inherit;
+	}
+	// ?
+	.sub-menu {
+		display: flex;
+		flex-flow: column nowrap;
+	}
+	a {
+		text-decoration: none;
+	}
+}
+
+.widget_nav_menu {
+	ul.menu {
+		padding: 0;
+	}
+	ul.sub-menu {
+		padding: 0;
+		padding-left: $base-margin;
+	}
+	ul {
+		list-style-type: none;
+		list-style: none;
+	}
+}
+
+// TODO: move this somewhere else
+// site logo
+header,
+footer {
+	a.logo {
+		height: 100%;
+		padding: 5px 0;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		border: none 0;
+		overflow: hidden;
+
+		&.logo--image {
+			display: block;
+			max-width: 300px;
+			width: 100%;
+			img,
+			svg {
+				display: block;
+				height: 100%;
+				max-width: 220px;
+			}
+		}
+		&.logo--text {
+			> span {
+				@include accentUnderline();
+			}
+		}
+		&:hover,
+		&:focus,
+		&:active {
+			&.logo--text {
+				> span {
+					&:before {
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+body.has-revealed-mobile-navmenu {
+	header.header a.logo {
+		z-index: 9;
+	}
+}
+
+
+//
+// ? additional traversal is needed to avoid targeting the utilitynav
+// ?
+//
+header.header {
+	.navicons {
+		height: 100%;
+		z-index: 999;
+		cursor: pointer;
+		span {
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+		// * Class for new FontAwesome icon
+		.fa-bars {
+			margin-top: ($base-margin + $half-margin);
+		}
+		// * Class for new FontAwesome icon
+		.fa-xmark {
+			display: none;
+		}
+		&.revealed {
+			.fa-xmark {
+				display: block;
+			}
+
+			// * Class for new FontAwesome icon
+			.fa-bars {
+				display: none;
+			}
+		}
+	}
+
+	.navlinks--container {
+		> .navlinks {
+			> .menu {
+				> .menu-item-has-children {
+					&:not(.revealed) {
+						.navlinks-showsubmenu {
+							@include nu_fa_icon("\f107", before);
+							position: absolute;
+							right: 0;
+							@include media("<medium") {
+								top: 12px;
+							}
+						}
+					}
+					&.revealed {
+						.navlinks-showsubmenu {
+							@include nu_fa_icon("\f104", before);
+							position: absolute;
+							right: 0;
+							@include media("<medium") {
+								top: 12px;
+							}
+						}
+						.sub-menu {
+							.menu-item-has-children {
+								&:not(.revealed) {
+									.navlinks-showsubmenu {
+										@include nu_fa_icon("\f107", before);
+										position: absolute;
+										right: 0;
+										@include media("<medium") {
+											top: 12px;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// ? navlinks with a submenu have a <button> element with this class to create our chevron
+	// ? this approach works best for ADA and complete control with ARIA and JS
+	.navlinks-showsubmenu {
+		// remove any innate styling for the <button>
+		all: unset;
+		appearance: none;
+		// reapply any styles we need
+		cursor: pointer;
+		margin: 0;
+		opacity: 0.8;
+	}
+
+	//
+	//
+	// ? directly target any menu item link
+	.menu-item > a {
+		transition: all 0.1s ease-in-out;
+		opacity: 0.8;
+
+		display: inline-block;
+		letter-spacing: 0.66px;
+		font-weight: 400;
+		white-space: nowrap;
+		> .link-text {
+			font-size: var(--wp--preset--font-size--14-20);
+			line-height: 20px;
+			display: inline-block;
+			vertical-align: middle;
+			@include accentUnderline();
+		}
+		&:hover,
+		&:active {
+			opacity: 1;
+			> .link-text {
+				&:before {
+					width: 100%;
+				}
+			}
+			+ .navlinks-showsubmenu {
+				opacity: 1;
+			}
+		}
+	}
+
+	// ? directly target any menu item that contains a submenu
+	.menu-item.menu-item-has-children {
+		position: relative;
+		display: flex;
+		flex-flow: row nowrap; // submenu are positioned absolutely and not affected
+		flex-flow: column nowrap; // submenu are positioned absolutely and not affected
+		// justify-content: space-between;
+		// align-items: center;
+
+		// hide submenu until revealed
+		.sub-menu {
+			flex-flow: column nowrap;
+			display: none;
+		}
+
+		&.revealed {
+			> .sub-menu {
+				display: flex;
+			}
+			> a + .navlinks-showsubmenu:after {
+				width: 100%;
+				height: 100%;
+				opacity: 1;
+			}
+		}
+	}
+
+	// ? handle the active state of some wordpress conditional classes
+	.menu-item {
+		&.current-page-ancestor,
+		&.current-menu-ancestor,
+		&.current-menu-parent,
+		&.current-menu-item {
+			> a {
+				opacity: 1;
+				.link-text {
+					&:before {
+						width: $base-margin;
+					}
+				}
+			}
+		}
+	}
+
+	// ? only target the core nav menu
+	> .container {
+		> .navlinks--container {
+			height: 100%;
+			display: flex;
+			flex-flow: row nowrap;
+			> .navlinks {
+			}
+		}
+	}
+
+	//
+	// ? only target the utility nav menu
+	//
+	> .utilitynav {
+		> .navlinks--container {
+			display: flex;
+			flex-flow: row nowrap;
+			> .navlinks {
+			}
+		}
+	}
+}
+
+//
+//
+// ?		desktop only
+//
+//
+@include media(">medium") {
+	header.header {
+		// * mobile navicons hidden by default
+		.navicons {
+			display: none;
+		}
+
+		// ? any floating element neeeds white background color
+		.sub-menu,
+		.navlinks,
+		& {
+			background-color: var(--wp--preset--color--white);
+		}
+		.sub-menu {
+			max-height: 66vh;
+			overflow-y: auto;
+			overflow-x: hidden;
+			// * From Kyle's change
+			.sub-menu {
+				overflow: hidden;
+				max-height: none;
+			}
+		}
+
+		// ? target any sub menu
+		.menu-item .sub-menu {
+			min-width: 240px;
+			padding: $margin_2x;
+			@include nu__boxshadow(2);
+			> li {
+				flex: 1 1 auto;
+			}
+			.menu-item {
+				&:not(:first-child) {
+					margin-top: $base-margin + $half-margin;
+				}
+			}
+			// nested submenu (on desktop) pushes space for the chevron
+			.menu-item.menu-item-has-children {
+				> a {
+					margin-right: $margin_3x;
+				}
+			}
+		}
+
+		// strict nested targeting to ensure selection of only the top-level nav items
+		.navlinks--container > .navlinks {
+			> .menu {
+				> .menu-item {
+					> .sub-menu {
+						position: absolute;
+						top: 100%;
+						right: 0;
+					}
+
+					// ? further nested items do not fly out
+					.menu-item.menu-item-has-children.revealed {
+						> .sub-menu {
+							min-width: 100%;
+							box-shadow: none;
+							padding: 0;
+							padding-left: $base-margin;
+							border-left: 1px solid rgba(204, 204, 204, 1);
+							margin-top: $base-margin;
+						}
+					}
+				}
+			}
+		}
+
+		> .container {
+			//
+			//
+			// ? target only the top-level nav items
+			.navlinks > .menu > .menu-item {
+				&.menu-item.menu-item-has-children {
+					padding-right: $margin_2x;
+					> .navlinks-showsubmenu {
+						transform: translateY(-50%);
+						top: 50%;
+					}
+				}
+
+				&.current-menu-item,
+				&.current-page-ancestor,
+				&.current-menu-ancestor,
+				&.current-menu-parent {
+					> a:before {
+						width: 100%;
+					}
+				}
+
+				&:not(:first-child) {
+					margin-left: $margin_2x;
+				}
+
+				> a {
+					height: var(--nu--siteheader--height);
+					@include accentUnderline();
+					// reposition the accent underline to the bottom
+					&:before {
+						bottom: 0;
+						left: auto;
+						right: 0;
+					}
+					> .link-text {
+						position: relative;
+						top: 50%;
+						transform: translateY(-50%);
+						&:before {
+							display: none;
+						}
+					}
+
+					&:hover {
+						&:before {
+							width: 100%;
+						}
+					}
+				}
+			}
+			//
+			&.submenus-open-using-button {
+			}
+			&.submenus-open-using-hover {
+				.menu-item.menu-item-has-children {
+					&:hover {
+						> .sub-menu {
+							display: flex;
+						}
+					}
+				}
+			}
+		}
+
+		//
+	}
+}
+
+//
+//
+// ?		mobile only
+//
+//
+@include media("<=medium") {
+	header.header > .container {
+		//
+		//
+		//
+		.menu-item {
+			padding: $half-margin 0;
+			&:not(:first-child) {
+				border-top: 1px solid rgba(236, 233, 230, 1);
+			}
+		}
+
+		.menu-item > a > .link-text {
+			font-size: var(--wp--preset--font-size--30-36);
+			@include rfs("30px", line-height);
+		}
+
+		//
+		//
+		//
+		.menu-item.menu-item-has-children {
+			flex-flow: row nowrap;
+			&.revealed {
+				flex-flow: row wrap;
+			}
+			.sub-menu {
+				box-shadow: none;
+				background-color: var(--wp--preset--color--white);
+			}
+			> .sub-menu {
+				width: 100%;
+				padding: 0 $base-margin;
+				margin-top: $base-margin;
+			}
+		}
+		//
+		//
+		//
+		> .navicons {
+			&.revealed {
+				top: $margin_4x;
+				right: ($base-margin + $half-margin);
+				transform: translateY(-100%);
+				position: absolute;
+				z-index: 1;
+				height: auto;
+				span {
+					transform: translate(0, 0);
+					top: 50%;
+				}
+			}
+		}
+
+		//
+		//
+		//
+
+		> .navlinks--container {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100vh;
+			overflow: hidden;
+
+			//
+			//
+			//
+			> .navlinks {
+				height: calc(100% - 54px);
+				overflow-y: auto;
+				> .menu {
+					flex-flow: column nowrap;
+				}
+			}
+		}
+		//
+		//
+		//
+		> .navlinks--container.revealed {
+			display: flex;
+			flex-flow: column nowrap;
+			padding-top: ($margin_4x + $base-margin);
+			background-color: rgba(244, 242, 240, 1);
+			// ? reverse order and set new margins
+			> .navlinks {
+				order: 1;
+				margin: 0;
+				padding: $margin_2x $base-margin;
+				> ul {
+					margin-bottom: $margin_8x;
+				}
+			}
+		}
+
+		//
+		//
+	}
+}
+
+//
+// ? handle the modal view
+// this needs some serious help!
+//
+body {
+	@include media("<medium") {
+		&.has-revealed-mobile-navmenu {
+			height: 100%;
+			max-height: 100%;
+			overflow: hidden;
+			.itsglobalheader--container {
+				display: none;
+			}
+		}
+		&.admin-bar {
+			header.header > .container > .navlinks--container.revealed {
+				// * Remove this excessive space in the mobile nav
+				// margin-top: 44px;
+			}
+		}
+	}
+}
+//
+//
+//
+// * Hotfix for mobile menu "close" icon
+// * The issue comes from the global nav disappearing in the class below
+body.is-using-minimal-header-view {
+	header.header {
+		> .container {
+			> .navicons.revealed {
+				// * So just move the icon down a bit
+				@include media("<medium") {
+					top: $margin_3x;
+				}
+			}
+		}
+	}
+}

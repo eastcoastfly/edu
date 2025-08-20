@@ -1,0 +1,14 @@
+//
+//
+//
+.blocks--wrapper {
+	//	?
+	.has-black-background-color {
+		.swiper-scrollbar .swiper-scrollbar-drag {
+			color: black;
+			&::before {
+				background-color: white;
+			}
+		}
+	}
+}

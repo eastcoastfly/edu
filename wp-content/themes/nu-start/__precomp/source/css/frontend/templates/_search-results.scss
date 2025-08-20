@@ -1,0 +1,265 @@
+//
+// ==============================================================
+// * Code in this sections is all related to WP search results
+// ==============================================================
+//
+:is(body.search-results, body.search-no-results) {
+	.blocks--wrapper {
+		@media screen and (min-width: 1401px) {
+			max-width: 1200px;
+			margin-left: auto;
+			margin-right: auto;
+			padding: 0 !important;
+		}
+		@media screen and (max-width: 1400px) {
+			max-width: 90%;
+			margin-left: auto;
+			margin-right: auto;
+			padding: 0 !important;
+		}
+
+		.search-results-info {
+			margin-top: 80px;
+			text-align: center;
+
+			.search-error {
+				color: var(--wp--preset--color--nu-red);
+			}
+
+			//
+			+ .acf-block.posts-grid {
+				margin-top: 60px;
+			}
+
+			.sitesearch-container {
+				width: 100%;
+
+				.search-form {
+					width: 100%;
+					height: 56px;
+
+					.search-submit-icon {
+						margin-left: 16px;
+
+						~ label {
+							padding: 0 8px;
+							width: calc(100% - 86px) !important;
+							all: unset;
+							font-size: 18px;
+							text-align: left;
+							padding-left: 18px;
+						}
+					}
+
+					// * The search form and input
+					.search-field {
+					}
+				}
+
+				// * Hide search icon in middle of search bar (on WP results page)
+				.nu__sitesearch_toggle {
+					&:before {
+						display: none;
+					}
+				}
+			}
+
+			// * The blurb of "Your search for blahblah returned 7 results"
+			.returned-results {
+				color: var(--wp--preset--color--black);
+				font-size: var(--wp--preset--font-size--30-36);
+				font-weight: 700;
+				@include media(">=phone") {
+					margin-top: $margin_5x;
+				}
+				@include media("<phone") {
+					margin-top: $margin_3x;
+					margin-left: auto;
+					margin-right: auto;
+					max-width: 80%;
+					text-align: center;
+					font-size: var(--wp--preset--font-size--20-28);
+				}
+			}
+
+			// * "Displaying results 1 to 10"
+			.results-range {
+				color: var(--wp--preset--color--neutral-5);
+				font-size: var(--wp--preset--font-size--16-24);
+			}
+
+			// * Styling for the search results posts grid itself
+			+ .acf-block.posts-grid {
+				.grid-item-content {
+					background-color: var(--wp--preset--color--neutral-1);
+					.is-hanging-icon {
+						background-color: var(--wp--preset--color--white);
+						bottom: 0;
+						top: unset;
+					}
+					.post-title {
+						font-size: var(--wp--preset--font-size--20-28);
+						font-weight: 700;
+					}
+
+					.post-breadcrumb {
+						font-size: var(--wp--preset--font-size--14-20);
+						margin-top: 0;
+
+						.fa-chevron-right {
+							margin: 0 4px;
+						}
+					}
+
+					.post-excerpt {
+						font-size: var(--wp--preset--font-size--16-24);
+						max-width: 90%;
+						font-weight: 400;
+						color: var(--wp--preset--color--black);
+					}
+				}
+
+				// * Styling for pagination below the results
+				.pagination {
+					> .page-numbers {
+						li {
+							.page-numbers {
+								border: none !important;
+								border-radius: 0 !important;
+								font-size: var(
+									--wp--preset--font-size--16-24
+								) !important;
+								color: var(--wp--preset--color--neutral-6);
+
+								// * The current page number
+								&.current {
+									background-color: transparent;
+									color: var(
+										--wp--preset--color--black
+									) !important;
+									border-bottom: solid 1px #000 !important;
+									padding-bottom: $margin_3x;
+									margin-top: 1px;
+								}
+
+								// * Move prev/next arrows (per Figma)
+								&.prev {
+									padding-right: $margin_4x;
+									&:hover {
+										color: var(
+											--wp--preset--color--black
+										) !important;
+									}
+								}
+								&.next {
+									padding-left: $margin_4x;
+									&:hover {
+										color: var(
+											--wp--preset--color--black
+										) !important;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	//
+	//
+	// * Styling for the searchbar itself (on search results)
+	.nu__searchbar-container {
+		> #nu__searchbar-form {
+			> div {
+				border: solid 1px var(--wp--preset--color--black);
+				border-radius: 50px;
+				padding: 8px 16px;
+				@include media("<large") {
+					margin-right: 0 !important;
+				}
+
+				// * Hide the text "Search Northeastern University site"
+				.label.focus {
+					display: none !important;
+				}
+
+				:is(button[type="submit"], #query, .reset) {
+					margin-top: 0 !important;
+				}
+
+				#query {
+					height: 46px;
+					font-size: 24px;
+				}
+			}
+		}
+	}
+}
+
+//
+// =======================================
+// * Copied from the file in /partials
+// =======================================
+//
+body.search {
+	.returned-results {
+		color: var(--wp--preset--color--neutral-4);
+	}
+	.results-range {
+		color: var(--wp--preset--color--neutral-4);
+	}
+}
+
+//
+//
+// * Styling for the "Search" heading section
+#main {
+	> .main-heading-search {
+		padding: 0 var(--wp--custom--spacing--outer);
+		border-bottom: solid 1px var(--wp--preset--color--neutral-3);
+		h1 {
+			// font-family: "Lato";
+			font-size: 48px;
+			font-weight: 700;
+			margin: 48px 0 16px 0;
+		}
+
+		// * Pathway to unhide the x on WP search form
+		+ .blocks--wrapper {
+			> .search-results-info {
+				.search-field {
+				}
+				.nu__sitesearch-close {
+					display: block !important;
+					cursor: pointer;
+					color: var(--wp--preset--color--white);
+					background-color: var(--wp--preset--color--black);
+					border-radius: 50%;
+					width: 18px;
+					line-height: 18px;
+					font-size: 12px;
+					margin-right: 12px;
+
+					&:hover {
+						background-color: var(--wp--preset--color--neutral-3);
+					}
+				}
+			}
+		}
+	}
+}
+
+//
+//
+// * Hotfix to hide the extra "X" in the nav menu search
+.navlinks--container {
+	.sitesearch-container {
+		&.revealed {
+			.nu__sitesearch-close {
+				display: none;
+			}
+		}
+	}
+}

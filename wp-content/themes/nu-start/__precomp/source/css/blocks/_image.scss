@@ -1,0 +1,228 @@
+// 
+// 
+// 
+// 
+// 
+%the-card-link-floating-icon {
+	display: block;
+	position: relative;
+	@include nu_fa_icon("\f08e", after);
+	&:after {
+		position: absolute;
+		top: 16px;
+		left: 18px;
+		z-index: 2;
+		color: white;
+		font-size: 14px;
+		line-height: 14px;
+	}
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-color: var(--wp--preset--color--dark);
+		width: 48px;
+		height: 48px;
+		z-index: 1;
+	}
+}
+
+// * default styling for the buttons block (container)
+// @include block-is-style-default("wp-block-image") {
+// }
+
+.wp-block-image {
+	a {
+		img {
+			transition: all 0.3s $bezier;
+			transform: scale(1);
+		}
+		&:hover {
+			img {
+				transform: scale(1.2);
+			}
+		}
+	}
+}
+
+//
+// only target image blocks that are not in the gallery block
+//
+.wp-block-image:not(.wp-block-gallery .wp-block-image) {
+	&:not(.video) {
+		> a[target="_blank"] {
+			@extend %the-card-link-floating-icon;
+			&::before,
+			&::after {
+				top: unset;
+				left: unset;
+			}
+			&:after {
+				color: black;
+				bottom: 16px;
+				right: 16px;
+			}
+			&::before {
+				bottom: 0;
+				right: 0;
+				background-color: white;
+			}
+		}
+	}
+	&.video {
+		img {
+			height: 450px;
+		}
+		> a[target="_blank"] {
+			@extend %the-card-link-floating-icon;
+			&:before {
+				width: 100%;
+				height: 100%;
+				opacity: 0.2;
+			}
+			&:after {
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				content: "\f04b";
+				font-size: 24px;
+				line-height: 24px;
+			}
+		}
+	}
+}
+
+// * is-style-floating-cite just has the citation float over the image
+.wp-block-image.is-style-floating-cite {
+	position: relative;
+	// the cite
+	figcaption {
+		position: absolute;
+		z-index: 1;
+		background-color: var(--wp--preset--color--light);
+		padding: $base-margin;
+		bottom: $base-margin;
+		right: $base-margin;
+		margin: 0;
+		@include media(">=phone") {
+			max-width: 55%;
+		}
+		@include media("<phone") {
+			max-width: 100%;
+			// * Move it below the image to not crowd it
+			position: static;
+		}
+	}
+}
+
+.js__magnific.wp-block-image {
+	//
+	//
+	//
+	&.video > a {
+		&:before {
+			opacity: 0.3;
+		}
+		&:after {
+			content: "\f04b";
+			opacity: 1;
+		}
+	}
+}
+.js__magnific.wp-block-image > a,
+.js__magnific .wp-block-image > a {
+	display: block;
+	//
+	//
+	//
+	&:before,
+	&:after,
+	.wp-element-caption {
+		transition: all 0.3s $bezier;
+	}
+	//
+	//
+	//
+	&:before {
+		content: "";
+		display: block;
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: var(--wp--preset--color--dark);
+		opacity: 0;
+	}
+
+	//
+	//
+	//
+	@include nu_fa_icon("\2b", after);
+	//
+	&:after {
+		position: absolute;
+		z-index: 2;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+		font-size: 1.25rem;
+		line-height: 1;
+		opacity: 0;
+		color: var(--wp--preset--color--white);
+	}
+
+	img {
+		transition: all 0.3s $bezier;
+	}
+
+	//
+	//
+	//
+	+ figcaption.wp-element-caption {
+		background: unset;
+		font-size: 14px;
+		letter-spacing: 0.02em;
+		transition: 0.3s ease;
+		transform: translateY(100%);
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		text-align: left;
+		padding: $base-margin;
+		margin: 0;
+		.gallery-image-title {
+			font-size: var(--wp--preset--font-size--16-24);
+			line-height: 1.6;
+			font-weight: 700;
+		}
+	}
+
+	//
+	//
+	//
+	&:hover {
+		img {
+			transform: scale(1.2);
+		}
+		//
+		//
+		&::before {
+			opacity: 0.6;
+		}
+		//
+		//
+		&::after {
+			opacity: 1;
+		}
+		//
+		//
+		+ figcaption.wp-element-caption {
+			z-index: 9;
+			transform: translateY(0);
+			pointer-events: none;
+		}
+	}
+}

@@ -1,0 +1,391 @@
+/*!**************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/blocks/gutenslider/style/adaptive-height.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************/
+.wp-block-eedee-block-gutenslider.adaptive-height .swiper-wrapper {
+  min-height: unset;
+}
+.wp-block-eedee-block-gutenslider.adaptive-height .swiper-wrapper.on-first-slide {
+  height: unset !important;
+}
+.wp-block-eedee-block-gutenslider.adaptive-height .wp-block-eedee-block-gutenslide {
+  height: unset;
+  width: 100%;
+  align-self: center;
+}
+.wp-block-eedee-block-gutenslider.adaptive-height .wp-block-eedee-block-gutenslide .slide-content {
+  min-height: unset;
+}
+.wp-block-eedee-block-gutenslider.adaptive-height .eedee-background-div {
+  height: 100%;
+  position: relative;
+}
+.wp-block-eedee-block-gutenslider.adaptive-height .eedee-background-div > img {
+  width: 100%;
+  height: 100%;
+}
+.wp-block-eedee-block-gutenslider.adaptive-height .eedee-background-div > video {
+  width: 100%;
+  height: 100%;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/blocks/gutenslider/style/navigation.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * Breakpoints & Media Queries
+ */
+/**
+ * Often re-used variables
+ */
+/**
+ * Breakpoint mixins
+ */
+#start-resizable-editor-section {
+  display: none;
+}
+
+.wp-block-eedee-block-gutenslider .swiper-vertical ~ .eedee-gutenslider-next {
+  transform: rotate3d(0, 0, 1, 90deg);
+}
+.wp-block-eedee-block-gutenslider .swiper-vertical ~ .eedee-gutenslider-prev {
+  transform: rotate3d(0, 0, 1, 90deg);
+}
+.wp-block-eedee-block-gutenslider .eedee-gutenslider-nav {
+  display: block;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  position: absolute;
+  z-index: 20;
+  padding: 0;
+  transform: translate(0);
+  background: transparent !important;
+  width: var(--gutenslider-arrow-size-sm);
+  height: var(--gutenslider-arrow-size-sm);
+}
+.wp-block-eedee-block-gutenslider .eedee-gutenslider-nav.swiper-button-disabled {
+  opacity: 0.1;
+  cursor: default;
+}
+.wp-block-eedee-block-gutenslider .eedee-gutenslider-nav.swiper-button-disabled:hover .bg,
+.wp-block-eedee-block-gutenslider .eedee-gutenslider-nav.swiper-button-disabled:hover #bg {
+  background: var(--gutenslider-arrow-bg-color);
+  fill: var(--gutenslider-arrow-bg-color);
+}
+.wp-block-eedee-block-gutenslider .eedee-gutenslider-nav.swiper-button-disabled:hover .arrow,
+.wp-block-eedee-block-gutenslider .eedee-gutenslider-nav.swiper-button-disabled:hover #arrow {
+  stroke: none;
+  fill: var(--gutenslider-arrow-color);
+}
+.wp-block-eedee-block-gutenslider .eedee-gutenslider-nav svg {
+  width: var(--gutenslider-arrow-size-sm);
+  height: var(--gutenslider-arrow-size-sm);
+  fill: transparent;
+  stroke: transparent;
+}
+.wp-block-eedee-block-gutenslider .eedee-gutenslider-nav svg .bg,
+.wp-block-eedee-block-gutenslider .eedee-gutenslider-nav svg #bg {
+  background: var(--gutenslider-arrow-bg-color);
+  fill: var(--gutenslider-arrow-bg-color);
+}
+.wp-block-eedee-block-gutenslider .eedee-gutenslider-nav svg .arrow,
+.wp-block-eedee-block-gutenslider .eedee-gutenslider-nav svg #arrow {
+  stroke: none;
+  fill: var(--gutenslider-arrow-color);
+}
+.wp-block-eedee-block-gutenslider .eedee-gutenslider-nav svg:hover .bg,
+.wp-block-eedee-block-gutenslider .eedee-gutenslider-nav svg:hover #bg {
+  background: var(--gutenslider-arrow-bg-hover-color);
+  fill: var(--gutenslider-arrow-bg-hover-color);
+}
+.wp-block-eedee-block-gutenslider .eedee-gutenslider-nav svg:hover .arrow,
+.wp-block-eedee-block-gutenslider .eedee-gutenslider-nav svg:hover #arrow {
+  stroke: none;
+  fill: var(--gutenslider-arrow-hover-color);
+}
+.wp-block-eedee-block-gutenslider.arrows-sm .eedee-gutenslider-nav {
+  display: block;
+}
+.wp-block-eedee-block-gutenslider.arrows-sm-none .eedee-gutenslider-nav {
+  display: none;
+}
+.wp-block-eedee-block-gutenslider.arrow-position-top-bottom .eedee-gutenslider-prev {
+  top: var(--gutenslider-arrow-y-offset-sm);
+  transform: translateX(-50%);
+  left: calc(50% + var(--gutenslider-arrow-x-offset-sm));
+}
+.wp-block-eedee-block-gutenslider.arrow-position-top-bottom .swiper-vertical ~ .eedee-gutenslider-prev {
+  transform: translateX(-50%) rotate3d(0, 0, 1, 90deg);
+}
+.wp-block-eedee-block-gutenslider.arrow-position-top-bottom .eedee-gutenslider-next {
+  bottom: var(--gutenslider-arrow-y-offset-sm);
+  transform: translateX(-50%);
+  left: calc(50% + var(--gutenslider-arrow-x-offset-sm));
+}
+.wp-block-eedee-block-gutenslider.arrow-position-top-bottom .swiper-vertical ~ .eedee-gutenslider-next {
+  transform: translateX(-50%) rotate3d(0, 0, 1, 90deg);
+}
+.wp-block-eedee-block-gutenslider.arrow-position-sides .eedee-gutenslider-prev {
+  top: calc(50% + var(--gutenslider-arrow-y-offset-sm));
+  transform: translateY(-50%);
+  left: var(--gutenslider-arrow-x-offset-sm);
+}
+.wp-block-eedee-block-gutenslider.arrow-position-sides .swiper-vertical ~ .eedee-gutenslider-prev {
+  transform: translateY(-50%) rotate3d(0, 0, 1, 90deg);
+}
+.wp-block-eedee-block-gutenslider.arrow-position-sides .eedee-gutenslider-next {
+  top: calc(50% + var(--gutenslider-arrow-y-offset-sm));
+  transform: translateY(-50%);
+  right: var(--gutenslider-arrow-x-offset-sm);
+}
+.wp-block-eedee-block-gutenslider.arrow-position-sides .swiper-vertical ~ .eedee-gutenslider-next {
+  transform: translateY(-50%) rotate3d(0, 0, 1, 90deg);
+}
+.wp-block-eedee-block-gutenslider.arrow-position-top-left .eedee-gutenslider-prev {
+  top: calc(var(--gutenslider-arrow-y-offset-sm) + 10px);
+  left: var(--gutenslider-arrow-x-offset-sm);
+}
+.wp-block-eedee-block-gutenslider.arrow-position-top-left .eedee-gutenslider-next {
+  top: calc(var(--gutenslider-arrow-y-offset-sm) + 10px);
+  left: calc(var(--gutenslider-arrow-x-offset-sm) + var(--gutenslider-arrow-size-sm) + var(--gutenslider-arrow-x-spacing));
+}
+.wp-block-eedee-block-gutenslider.arrow-position-top-right .eedee-gutenslider-prev {
+  left: auto;
+  top: calc(var(--gutenslider-arrow-y-offset-sm) + 10px);
+  right: calc(var(--gutenslider-arrow-x-offset-sm) + var(--gutenslider-arrow-size-sm) + var(--gutenslider-arrow-x-spacing));
+}
+.wp-block-eedee-block-gutenslider.arrow-position-top-right .eedee-gutenslider-next {
+  top: calc(var(--gutenslider-arrow-y-offset-sm) + 10px);
+  right: var(--gutenslider-arrow-x-offset-sm);
+}
+.wp-block-eedee-block-gutenslider.arrow-position-bottom-left .eedee-gutenslider-prev {
+  top: auto;
+  bottom: calc(var(--gutenslider-arrow-y-offset-sm) + 10px);
+  left: var(--gutenslider-arrow-x-offset-sm);
+}
+.wp-block-eedee-block-gutenslider.arrow-position-bottom-left .eedee-gutenslider-next {
+  top: auto;
+  bottom: calc(var(--gutenslider-arrow-y-offset-sm) + 10px);
+  left: calc(var(--gutenslider-arrow-x-offset-sm) + var(--gutenslider-arrow-size-sm) + var(--gutenslider-arrow-x-spacing));
+}
+.wp-block-eedee-block-gutenslider.arrow-position-bottom-right .eedee-gutenslider-prev {
+  top: auto;
+  left: auto;
+  bottom: calc(var(--gutenslider-arrow-y-offset-sm) + 10px);
+  right: calc(var(--gutenslider-arrow-x-offset-sm) + var(--gutenslider-arrow-size-sm) + var(--gutenslider-arrow-x-spacing));
+}
+.wp-block-eedee-block-gutenslider.arrow-position-bottom-right .eedee-gutenslider-next {
+  top: auto;
+  bottom: calc(var(--gutenslider-arrow-y-offset-sm) + 10px);
+  right: var(--gutenslider-arrow-x-offset-sm);
+}
+@media (min-width: 600px) {
+  .wp-block-eedee-block-gutenslider.arrows-md .eedee-gutenslider-nav {
+    display: block;
+  }
+  .wp-block-eedee-block-gutenslider.arrows-md-none .eedee-gutenslider-nav {
+    display: none;
+  }
+  .wp-block-eedee-block-gutenslider .eedee-gutenslider-nav {
+    width: var(--gutenslider-arrow-size-md);
+    height: var(--gutenslider-arrow-size-md);
+  }
+  .wp-block-eedee-block-gutenslider .eedee-gutenslider-nav svg {
+    width: var(--gutenslider-arrow-size-md);
+    height: var(--gutenslider-arrow-size-md);
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-top-bottom .eedee-gutenslider-prev {
+    top: var(--gutenslider-arrow-y-offset-md);
+    left: calc(50% + var(--gutenslider-arrow-x-offset-md));
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-top-bottom .swiper-vertical ~ .eedee-gutenslider-prev {
+    transform: translateX(-50%) rotate3d(0, 0, 1, 90deg);
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-top-bottom .eedee-gutenslider-next {
+    bottom: var(--gutenslider-arrow-y-offset-md);
+    left: calc(50% + var(--gutenslider-arrow-x-offset-md));
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-top-bottom .swiper-vertical ~ .eedee-gutenslider-next {
+    transform: translateX(-50%) rotate3d(0, 0, 1, 90deg);
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-sides .eedee-gutenslider-prev {
+    top: calc(50% + var(--gutenslider-arrow-y-offset-md));
+    left: var(--gutenslider-arrow-x-offset-md);
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-sides .eedee-gutenslider-next {
+    top: calc(50% + var(--gutenslider-arrow-y-offset-md));
+    right: var(--gutenslider-arrow-x-offset-md);
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-top-left .eedee-gutenslider-prev {
+    top: calc(var(--gutenslider-arrow-y-offset-md) + 10px);
+    left: var(--gutenslider-arrow-x-offset-md);
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-top-left .eedee-gutenslider-next {
+    top: calc(var(--gutenslider-arrow-y-offset-md) + 10px);
+    left: calc(var(--gutenslider-arrow-x-offset-md) + var(--gutenslider-arrow-size-md) + var(--gutenslider-arrow-x-spacing));
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-top-right .eedee-gutenslider-prev {
+    top: calc(var(--gutenslider-arrow-y-offset-md) + 10px);
+    right: calc(var(--gutenslider-arrow-x-offset-md) + var(--gutenslider-arrow-size-md) + var(--gutenslider-arrow-x-spacing));
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-top-right .eedee-gutenslider-next {
+    top: calc(var(--gutenslider-arrow-y-offset-md) + 10px);
+    right: var(--gutenslider-arrow-x-offset-md);
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-bottom-left .eedee-gutenslider-prev {
+    bottom: calc(var(--gutenslider-arrow-y-offset-md) + 10px);
+    left: var(--gutenslider-arrow-x-offset-md);
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-bottom-left .eedee-gutenslider-next {
+    bottom: calc(var(--gutenslider-arrow-y-offset-md) + 10px);
+    left: calc(var(--gutenslider-arrow-x-offset-md) + var(--gutenslider-arrow-size-md) + var(--gutenslider-arrow-x-spacing));
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-bottom-right .eedee-gutenslider-prev {
+    bottom: calc(var(--gutenslider-arrow-y-offset-md) + 10px);
+    right: calc(var(--gutenslider-arrow-x-offset-md) + var(--gutenslider-arrow-size-md) + var(--gutenslider-arrow-x-spacing));
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-bottom-right .eedee-gutenslider-next {
+    bottom: calc(var(--gutenslider-arrow-y-offset-md) + 10px);
+    right: var(--gutenslider-arrow-x-offset-md);
+  }
+}
+@media (min-width: 960px) {
+  .wp-block-eedee-block-gutenslider.arrows-lg .eedee-gutenslider-nav {
+    display: block;
+  }
+  .wp-block-eedee-block-gutenslider.arrows-lg-none .eedee-gutenslider-nav {
+    display: none;
+  }
+  .wp-block-eedee-block-gutenslider .eedee-gutenslider-nav {
+    width: var(--gutenslider-arrow-size);
+    height: var(--gutenslider-arrow-size);
+  }
+  .wp-block-eedee-block-gutenslider .eedee-gutenslider-nav svg {
+    width: var(--gutenslider-arrow-size);
+    height: var(--gutenslider-arrow-size);
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-top-bottom .eedee-gutenslider-prev {
+    top: var(--gutenslider-arrow-y-offset);
+    left: calc(50% + var(--gutenslider-arrow-x-offset));
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-top-bottom .swiper-vertical ~ .eedee-gutenslider-prev {
+    transform: translateX(-50%) rotate3d(0, 0, 1, 90deg);
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-top-bottom .eedee-gutenslider-next {
+    bottom: var(--gutenslider-arrow-y-offset);
+    left: calc(50% + var(--gutenslider-arrow-x-offset));
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-top-bottom .swiper-vertical ~ .eedee-gutenslider-next {
+    transform: translateX(-50%) rotate3d(0, 0, 1, 90deg);
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-sides .eedee-gutenslider-prev {
+    top: calc(50% + var(--gutenslider-arrow-y-offset));
+    left: var(--gutenslider-arrow-x-offset);
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-sides .eedee-gutenslider-next {
+    top: calc(50% + var(--gutenslider-arrow-y-offset));
+    right: var(--gutenslider-arrow-x-offset);
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-top-left .eedee-gutenslider-prev {
+    top: calc(var(--gutenslider-arrow-y-offset) + 10px);
+    left: var(--gutenslider-arrow-x-offset);
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-top-left .eedee-gutenslider-next {
+    top: calc(var(--gutenslider-arrow-y-offset) + 10px);
+    left: calc(var(--gutenslider-arrow-x-offset) + var(--gutenslider-arrow-size) + var(--gutenslider-arrow-x-spacing));
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-top-right .eedee-gutenslider-prev {
+    top: calc(var(--gutenslider-arrow-y-offset) + 10px);
+    right: calc(var(--gutenslider-arrow-x-offset) + var(--gutenslider-arrow-size) + var(--gutenslider-arrow-x-spacing));
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-top-right .eedee-gutenslider-next {
+    top: calc(var(--gutenslider-arrow-y-offset) + 10px);
+    right: var(--gutenslider-arrow-x-offset);
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-bottom-left .eedee-gutenslider-prev {
+    bottom: calc(var(--gutenslider-arrow-y-offset) + 10px);
+    left: var(--gutenslider-arrow-x-offset);
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-bottom-left .eedee-gutenslider-next {
+    bottom: calc(var(--gutenslider-arrow-y-offset) + 10px);
+    left: calc(var(--gutenslider-arrow-x-offset) + var(--gutenslider-arrow-size) + var(--gutenslider-arrow-x-spacing));
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-bottom-right .eedee-gutenslider-prev {
+    bottom: calc(var(--gutenslider-arrow-y-offset) + 10px);
+    right: calc(var(--gutenslider-arrow-x-offset) + var(--gutenslider-arrow-size) + var(--gutenslider-arrow-x-spacing));
+  }
+  .wp-block-eedee-block-gutenslider.arrow-position-bottom-right .eedee-gutenslider-next {
+    bottom: calc(var(--gutenslider-arrow-y-offset) + 10px);
+    right: var(--gutenslider-arrow-x-offset);
+  }
+}
+.wp-block-eedee-block-gutenslider #end-resizable-editor-section {
+  display: none;
+}
+
+.wp-block-eedee-block-gutenslider.arrow-mb-difference .eedee-gutenslider-nav {
+  mix-blend-mode: difference;
+}
+.wp-block-eedee-block-gutenslider.arrow-mb-color-burn .eedee-gutenslider-nav {
+  mix-blend-mode: color-burn;
+}
+.wp-block-eedee-block-gutenslider.arrow-mb-color-dodge .eedee-gutenslider-nav {
+  mix-blend-mode: color-dodge;
+}
+.wp-block-eedee-block-gutenslider.arrow-mb-exclusion .eedee-gutenslider-nav {
+  mix-blend-mode: exclusion;
+}
+.wp-block-eedee-block-gutenslider.arrow-mb-saturation .eedee-gutenslider-nav {
+  mix-blend-mode: saturation;
+}
+.wp-block-eedee-block-gutenslider.arrow-follow-mouse .eedee-gutenslider-prev {
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+.wp-block-eedee-block-gutenslider.arrow-follow-mouse .swiper-container-vertical ~ .eedee-gutenslider-prev {
+  transform: translateY(-50%) rotate3d(0, 0, 1, 90deg);
+}
+.wp-block-eedee-block-gutenslider.arrow-follow-mouse .eedee-gutenslider-next {
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+}
+.wp-block-eedee-block-gutenslider.arrow-follow-mouse .swiper-container-vertical ~ .eedee-gutenslider-next {
+  transform: translateY(-50%) rotate3d(0, 0, 1, 90deg);
+}
+@media (hover: hover) and (pointer: fine) {
+  .wp-block-eedee-block-gutenslider.arrow-follow-mouse .eedee-gutenslider-next svg {
+    transform: scale(0) translateX(-100%);
+    transform-origin: 50% 50%;
+  }
+  .wp-block-eedee-block-gutenslider.arrow-follow-mouse .eedee-gutenslider-prev svg {
+    transform: scale(0) translateX(100%);
+    transform-origin: 50% 50%;
+  }
+  .wp-block-eedee-block-gutenslider.arrow-follow-mouse .eedee-gutenslider-nav {
+    transition: tranform 0.3s;
+    overflow: hidden;
+    opacity: 0;
+  }
+  .wp-block-eedee-block-gutenslider.arrow-follow-mouse .eedee-gutenslider-nav svg {
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .wp-block-eedee-block-gutenslider.arrow-follow-mouse .eedee-gutenslider-nav:not(.ed-active) {
+    opacity: 0 !important;
+  }
+  .wp-block-eedee-block-gutenslider.arrow-follow-mouse .eedee-gutenslider-nav.ed-active {
+    transition: opacity 0.3s;
+    opacity: 1;
+  }
+  .wp-block-eedee-block-gutenslider.arrow-follow-mouse .eedee-gutenslider-nav.ed-active svg {
+    transform: scale(1) translateX(0);
+  }
+}
+
+/*# sourceMappingURL=gs-navigation.css.map*/

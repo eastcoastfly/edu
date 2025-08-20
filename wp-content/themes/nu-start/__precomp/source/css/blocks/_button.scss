@@ -1,0 +1,145 @@
+//
+//
+//
+
+// 		prepare a map of our preset colors to pass into an @each loop
+$palette: (
+	"black",
+	"white",
+	"dark",
+	"light",
+	"primary",
+	"secondary",
+	"nu-red",
+	"neutral-1",
+	"neutral-2",
+	"neutral-3",
+	"neutral-4",
+	"neutral-5",
+	"neutral-6"
+);
+
+.wp-block-buttons {
+	//
+	//
+	//
+	.wp-block-button__link.wp-element-button {
+		transition: all 0.3s $bezier;
+		> i:last-child {
+			margin-left: $base-margin;
+		}
+	}
+	//
+	//
+	//
+}
+
+//
+//		the default button state
+//
+@include block-is-style-default("wp-block-button") {
+	//
+	//
+	//
+	@each $color in $palette {
+		.wp-block-button__link.has-background.has-#{$color}-background-color {
+			border-color: var(--wp--preset--color--#{$color}) !important;
+			&:hover {
+				border: 1px solid var(--wp--preset--color--#{$color}) !important;
+				background-color: var(--wp--preset--color--white) !important;
+				color: var(--wp--preset--color--#{$color}) !important;
+			}
+		}
+	}
+}
+
+// * is-style-outline styles
+.wp-block-button.is-style-outline {
+	@each $color in $palette {
+		.wp-block-button__link.has-#{$color}-color {
+			border-color: var(--wp--preset--color--#{$color}) !important;
+			&:hover {
+				color: var(--wp--preset--color--white) !important;
+				background-color: var(--wp--preset--color--#{$color}) !important;
+				border-color: var(--wp--preset--color--#{$color}) !important;
+			}
+			&.has-white-color {
+				&:hover {
+					color: var(--wp--preset--color--black) !important;
+				}
+			}
+		}
+	}
+}
+
+// * hover styles
+.wp-block-button:not(.has-text-color):not(.has-background) {
+	//
+	&:not(.is-style-outline) {
+		> .wp-block-button__link {
+			border: 1px solid transparent;
+			background-color: var(--wp--preset--color--black);
+			&:hover {
+				border-color: var(--wp--preset--color--nu-red);
+				background-color: var(--wp--preset--color--nu-red);
+				color: var(--wp--preset--color--white);
+			}
+		}
+	}
+	//
+	&.is-style-outline {
+		//
+		> .wp-block-button__link {
+			border: 1px solid var(--wp--preset--color--black);
+			&:hover {
+				border-color: var(--wp--preset--color--nu-red);
+				background-color: var(--wp--preset--color--nu-red);
+				color: var(--wp--preset--color--white);
+			}
+		}
+	}
+}
+
+/* 
+
+	misc modifiers and utilty level stylng
+
+*/
+// * ensure FontAwesome icons inherit coloring from their container
+.wp-block-buttons {
+	i[class*="fa-"],
+	.svg-inline--fa {
+		color: inherit;
+	}
+}
+
+
+// ? auto-add a newtab icon
+// .wp-block-button__link[target="_blank"] {
+// 	position: relative;
+// 	@include nu_fa_icon("\f08e", after);
+// 	// pin this small icon to the top right rather than flow inline with text
+// 	&:after {
+// 		position: absolute;
+// 		top: 4px;
+// 		right: 4px;
+// 		font-size: smaller;
+// 	}
+// }
+
+// ? auto-add a phone icon before tel: button
+.wp-block-button__link[href*="tel:"] {
+	@include nu_fa_icon("\f095", before);
+	&:before {
+		margin-right: $base-margin;
+		vertical-align: middle;
+	}
+}
+// ? auto-add an email icon before mailto: button
+.wp-block-button__link[href*="mailto:"] {
+	@include nu_fa_icon("\f0e0", before);
+	&:before {
+		margin-right: $base-margin;
+		vertical-align: middle;
+	}
+}

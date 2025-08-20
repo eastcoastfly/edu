@@ -1,0 +1,146 @@
+//
+//
+//
+.blocks--wrapper {
+	//
+	.wp-block-eedee-block-gutenslider.is-style-draggable {
+		//
+		.gutenslider-divider-bottom,
+		.gutenslider-divider-top {
+			display: none;
+		}
+		//
+		.swiper {
+			overflow: visible !important;
+		}
+		//
+		.slide-content {
+			overflow: hidden;
+
+			@include media("<small") {
+				// * to align tops of news items
+				justify-content: flex-start !important;
+			}
+
+			//
+			// .nu__grid.cols-1 {
+
+				// ! Commenting this out to fix that strange offset space
+				// padding-bottom: 24px;
+
+				.grid-item-content {
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					padding: 24px;
+					color: var(--wp--preset--color--dark);
+
+					@include media("<small") {
+						min-height: 280px;
+					}
+
+					//
+					.is-hanging-icon {
+						display: none;
+					}
+
+					.post-title {
+						font-weight: 300;
+						font-size: var(--wp--preset--font-size--20-28);
+						color: var(--wp--preset--color--dark);
+					}
+				}
+			// }
+		}
+	}
+	.wp-block-eedee-block-gutenslider.is-style-draggable {
+		.posts-grid {
+			height: 100%;
+			.nu__grid.cols-1 {
+				height: 100%;
+				> ul {
+					height: 100%;
+					> li {
+						height: 100%;
+					}
+				}
+			}
+		}
+	}
+
+	//
+	//
+	//
+	.wp-block-eedee-block-gutenslider.is-style-draggable {
+		// hide the content
+		// @include media(">=small") {
+		.nu__grid {
+			.grid-item {
+				// set the default state
+				.grid-item-content {
+					transition: all 0.7s $bezier;
+					transform: translateY(var(--offset--reveal--cards--content));
+					.post-date,
+					.post-author,
+					.post-excerpt {
+						transition: all 0.7s $bezier;
+						opacity: 0;
+					}
+				}
+
+				//
+				&:hover,
+				&:focus-within {
+					.grid-item-content {
+						transform: translateY(0%);
+						.post-date,
+						.post-author,
+						.post-excerpt {
+							opacity: 1;
+						}
+					}
+				}
+			}
+		}
+		// }
+		// then fly it out
+	}
+
+	//
+	//	?		auto-appended to the first group block above the slider
+	//
+	.is-the-draggable-slider-container {
+		> .wp-block-columns {
+			@include media("<medium") {
+				flex-flow: column nowrap !important;
+				> .wp-block-column {
+					flex-basis: 100% !important;
+				}
+
+				// limit the overall height of each slide
+				.posts-grid .nu__grid figure {
+					max-height: 400px;
+				}
+			}
+			@include media("<small") {
+				> div {
+					p {
+						padding-right: 0 !important;
+					}
+				}
+			}
+		}
+	}
+}
+
+.campus-page-slider {
+	.is-the-draggable-slider-container{
+		.wp-block-eedee-block-gutenslider.is-style-draggable {
+			.slide-content {
+				.nu__grid.cols-1 {
+					padding-bottom:0;
+				}
+			}
+		}
+	}
+}

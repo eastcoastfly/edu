@@ -1,0 +1,159 @@
+//
+//
+// * Styling for text that separates to open an image carousel (e.g. "Like A Husky")
+.container-separating-text-image-carousel {
+
+  position: relative;
+  padding-top:0 !important;
+
+  @include media("<small"){
+    padding-bottom: 75vh !important;
+  }
+
+  @include media(">=small"){
+    padding-bottom: 85vh !important;
+  }
+
+  @include media("<phone"){
+    height:400px;
+  }
+
+  // * To deal with the new CTA button setup
+  .wp-block-buttons {
+    justify-content: center;
+    z-index: 3;
+    position: absolute;
+    @include media("<small"){
+      top: 40vh;
+    }
+    @include media(">=small"){
+      top: 50vh;
+    }
+  }
+
+  .separating-text-image-carousel {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    height: 0 !important;
+
+
+    @include media("<phone"){
+      display:none;
+    }
+
+    > p {
+      margin-top: unset !important;
+      font-size: var(--wp--preset--font-size--56-67);
+      font-weight: 400;
+      display: flex;
+      flex-basis: 0;
+
+      &:nth-child(2) {
+        justify-content: end;
+        align-items: end;
+      }
+    }
+
+    > .wp-block-group {
+      position: absolute;
+      top: 0;
+      border-radius:2px;
+      transform: translateY(-50%);
+      z-index: -1;
+      overflow: hidden;
+      opacity: 0;
+      background-color: var(--wp--preset--color--dark);
+      margin-block-start: 0 !important;
+      @include media(">=large") {
+        width: 50vw;
+        height:30vw;
+      }
+      @include media("<large") {
+        width: 80vw;
+        height: 48vw;
+      }
+      @include media("<phone") {
+        width: 90vw;
+        height:120vw;
+      }
+
+      > .wp-block-group {
+        margin: 0;
+        width: 100%;
+        position: relative;
+
+        @include media(">=large") {
+          aspect-ratio: 5/3;
+        }
+        @include media("<large") {
+          aspect-ratio: 5/3;
+        }
+        @include media("<phone") {
+          aspect-ratio: 3/4;
+        }
+
+        // * The div with only text in it ("Plenty of room to do your own thing")
+        &:first-child {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          > p {
+            font-size: var(--wp--preset--font-size--20-28);
+            font-weight: 300;
+          }
+        }
+
+        > .wp-block-image {
+          width: 100%;
+
+          @include media(">=large") {
+            aspect-ratio: 5/3;
+          }
+          @include media("<large") {
+            aspect-ratio: 5/3;
+          }
+          @include media("<phone") {
+            aspect-ratio: 3/4;
+          }
+
+          > img {
+            width: 100%;
+
+            @include media(">=large") {
+              aspect-ratio: 5/3;
+            }
+            @include media("<large") {
+              aspect-ratio: 5/3;
+            }
+            @include media("<phone") {
+              aspect-ratio: 3/4;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  // * Show this on mobile only
+  .cta-mobile-view {
+    @include media (">=phone"){
+      display:none;
+    }
+
+    text-align:center;
+
+    > p {
+      font-size: var(--wp--preset--font-size--56-67);
+      font-weight: 400;
+    }
+
+    > .wp-block-buttons {
+      justify-content:center;
+    }
+
+  }
+}

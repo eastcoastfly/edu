@@ -1,0 +1,104 @@
+//
+//
+//
+
+$palette: (
+	"black",
+	"white",
+	"nu-red",
+);
+
+.wp-block-buttons {
+	//
+	//
+	//
+	.wp-block-button__link.wp-element-button {
+		transition: all 0.3s $bezier;
+		> i:last-child {
+			margin-left: $base-margin;
+		}
+	}
+	//
+	//
+	//
+}
+
+//
+//		the default button state
+//
+@include block-is-style-default("wp-block-button") {
+	//
+	//
+	//
+	@each $color in $palette {
+		.wp-block-button__link.has-background.has-#{$color}-background-color {
+			border-color: var(--wp--preset--color--#{$color}) !important;
+			@include button_hover_red();
+		}
+	}
+}
+
+// * is-style-outline styles
+.wp-block-button.is-style-outline {
+	@each $color in $palette {
+		.wp-block-button__link.has-#{$color}-color {
+			border-color: var(--wp--preset--color--#{$color}) !important;
+			@include button_hover_red();
+		}
+	}
+}
+
+// * hover styles
+.wp-block-button:not(.has-text-color):not(.has-background) {
+	//
+	&:not(.is-style-outline) {
+		> .wp-block-button__link {
+			border: 1px solid transparent;
+			background-color: var(--wp--preset--color--black);
+			@include button_hover_red();
+		}
+	}
+	//
+	&.is-style-outline {
+		//
+		> .wp-block-button__link {
+			border: 1px solid var(--wp--preset--color--black);
+			@include button_hover_red();
+		}
+	}
+}
+
+
+/*
+
+	misc modifiers and utilty level stylng
+
+*/
+// * ensure FontAwesome icons inherit coloring from their container
+.wp-block-buttons {
+	i[class*="fa-"],
+	.svg-inline--fa {
+		color: inherit;
+	}
+}
+
+
+// ? auto-add a phone icon before tel: button
+.wp-block-button__link[href*="tel:"] {
+	@include nu_fa_icon("\f095", before);
+	&:before {
+		margin-right: $base-margin;
+		vertical-align: middle;
+	}
+}
+// ? auto-add an email icon before mailto: button
+.wp-block-button__link[href*="mailto:"] {
+	@include nu_fa_icon("\f0e0", before);
+	&:before {
+		margin-right: $base-margin;
+		vertical-align: middle;
+	}
+}
+
+
+

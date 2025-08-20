@@ -1,0 +1,460 @@
+//
+//
+//
+//
+// * WordPress Core Navigation Block (NU Brand Guidelines Stylesheet)
+// ? This file is appended to the native block stylesheet whenever it loads (block is present)
+//
+.blocks--wrapper {
+	//
+	//
+	//
+	.wp-block-navigation {
+		// ? rotate the chevron when toggled
+		.wp-block-navigation-submenu__toggle {
+			transition: all 0.1s ease-in-out;
+			&[aria-expanded="true"] {
+				transform: rotate(90deg);
+			}
+		}
+
+		//
+		// * Vertical navigation style
+		//
+		&.is-vertical {
+			.wp-block-navigation-item__content {
+				font-size: var(--wp--preset--font-size--14-20);
+				line-height: 20px;
+				opacity: 0.8;
+			}
+			.wp-block-navigation-item__label {
+				font-size: inherit;
+				line-height: inherit;
+			}
+
+			// override core default fly out to the right
+			.wp-block-navigation-item {
+				position: relative;
+				flex-flow: column nowrap;
+				align-items: flex-start;
+			}
+
+			// flush items together and against container
+			> .wp-block-navigation__container {
+				gap: 0;
+				width: 100%;
+			}
+
+			// square up the chevron
+			.wp-block-navigation-submenu__toggle {
+				background-color: transparent !important;
+				position: absolute;
+				top: $half-margin;
+				right: 0;
+				z-index: 1;
+				margin: 0;
+				min-width: 24px;
+				min-height: 24px;
+				opacity: inherit;
+				// slightly increase chevron size
+				svg {
+					width: 14px !important;
+					height: 14px !important;
+				}
+			}
+
+			// align submenu items with an inset
+			.wp-block-navigation__submenu-container {
+				.wp-block-navigation-item__content {
+					padding-right: ($base-margin + $half-margin);
+					padding-left: ($base-margin + $half-margin);
+				}
+			}
+
+			//
+			.wp-block-navigation-item {
+				width: 100%;
+				flex: 1 0 auto;
+				// ? Hide submenu on original hover
+				&:hover {
+					.wp-block-navigation__submenu-container {
+						display: none;
+					}
+
+					// ? Do not hide submenu if icon is clicked to true
+					.is-active,
+					button[aria-expanded="true"] {
+						+ .wp-block-navigation__submenu-container {
+							display: block;
+						}
+					}
+				}
+			}
+			.wp-block-navigation-item__content {
+				width: 100%;
+				&.is-currently-active {
+					&.wp-block-navigation-item__content {
+						border-left: solid 2px var(--wp--preset--color--nu-red);
+					}
+				}
+			}
+			.wp-block-navigation-item {
+				// ? Push submenu to next line
+				&.has-child.open-on-hover-click {
+					// ? Push the arrow button to the right
+					flex: 1 0 auto;
+					width: 100%;
+					flex-flow: row wrap;
+
+					// ? Remove border from submenu
+					.wp-block-navigation__submenu-container {
+						border: none !important;
+						width: 100%;
+					}
+					&.submenu-revealed {
+						> .wp-block-navigation-item__content {
+							border-left: solid 2px var(--wp--preset--color--nu-red);
+						}
+					}
+				}
+			}
+
+			// ? top level nav items
+			> .wp-block-navigation__container {
+				> li > a {
+					padding-left: $base-margin;
+				}
+			}
+
+			.wp-block-navigation-item {
+				&:is(
+						.is-active,
+						.current-menu-item,
+						.current-page-ancestor,
+						.current-menu-ancestor,
+						.current-menu-parent
+					) {
+					> .wp-block-navigation-item__content {
+						background-color: var(--wp--preset--color--neutral-1);
+					}
+				}
+				&:is(.is-active, .current-menu-item) {
+					> .wp-block-navigation-item__content {
+						border-left: 2px solid var(--wp--preset--color--nu-red) !important;
+					}
+				}
+
+				// &.is-active,
+				// &.current-menu-item,
+				// &.current-page-ancestor,
+				// &.current-menu-ancestor,
+				// &.current-menu-parent {
+				// 	> .wp-block-navigation-item__content {
+				// 		border-left: 2px solid var(--wp--preset--color--nu-red) !important;
+				// 		background-color: var(--wp--preset--color--neutral-1);
+				// 	}
+				// }
+			}
+			.wp-block-navigation-item__content {
+				border-left: solid 2px var(--wp--preset--color--neutral-1);
+				flex: 1 0 auto;
+				padding: $base-margin 0;
+				&.is-active,
+				&:hover {
+					border-left: solid 2px var(--wp--preset--color--nu-red);
+					background-color: var(--wp--preset--color--neutral-1);
+					opacity: 1;
+				}
+			}
+
+			// ? disable fly-out behavior from Core - instead drop down in DOM
+			.has-child :is(.wp-block-navigation__submenu-container) {
+				position: relative;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background-color: unset;
+				color: inherit;
+			}
+			//
+			//
+			//
+
+			.wp-block-navigation-item.has-child.is-opened {
+				background-color: var(--wp--preset--color--neutral-1);
+			}
+		}
+
+		//
+		// * Horizontal nav style
+		//
+		&:not(.is-vertical) {
+			//
+			.wp-block-navigation-item__content {
+				border-bottom: 2px solid transparent;
+				padding: $margin_2x 0;
+				padding: $base-margin 0;
+				&:hover,
+				&:focus {
+					border-bottom: 2px solid var(--wp--preset--color--black);
+				}
+			}
+			.current-menu-item :where(.wp-block-navigation-item__content) {
+				border-bottom: 2px solid var(--wp--preset--color--black);
+			}
+			.wp-block-navigation-item__label {
+				font-size: var(--wp--preset--font-size--14-20);
+				line-height: 20px;
+				padding: 0 4px;
+				letter-spacing: 0.33px;
+			}
+
+			//
+			// * This is for the "Our Team"-style filter
+			// * Avoid targeting the sidebar menu
+			//
+			&.no-wrap {
+				> .wp-block-navigation__container {
+					@include media("<phone") {
+						// * Let the items wrap so they don't bleed outside the screen edges
+						flex-wrap: wrap;
+					}
+				}
+			}
+		}
+	} // end .wp-block-navigation
+
+	//
+	// * This was from the misc.scss file
+	//
+	.wp-block-post-navigation-link {
+		position: relative;
+
+		// ? label only visible inside link, two spans with classes
+		.post-navigation-link__label {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			font-style: italic;
+			font-size: 12px;
+			line-height: 16px;
+		}
+		//
+		.post-navigation-link__label {
+			+ .post-navigation-link__title {
+				display: block;
+				margin-top: 24px;
+			}
+		}
+	}
+
+	// * Container for the sidebar menu items
+	.is-the-sidebar-group {
+		//
+		//
+		@include media(">=medium") {
+			position: sticky;
+			top: 160px;
+		}
+
+		// * The descriptor text (e.g. "On this page" or "Section Menu")
+		p.is-style-eyebrow {
+			@include media("<=medium") {
+				border: solid 1px var(--wp--preset--color--neutral-1);
+				padding: 16px;
+				cursor: pointer;
+			}
+
+			&:after {
+				@include media("<=medium") {
+					font: var(--fa-font-light);
+					content: "\f107";
+					font-size: 18px;
+					position: absolute;
+					right: 8px;
+					top: 14px;
+				}
+			}
+
+			&[data-content="close"] {
+				&:after {
+					@include media("<=medium") {
+						font: var(--fa-font-light);
+						content: "\f00d";
+						font-size: 18px;
+						position: absolute;
+						right: 8px;
+						top: 14px;
+					}
+				}
+
+				+ .is-the-sidebar-menu {
+					@include media("<=medium") {
+						display: block;
+					}
+				}
+			}
+		}
+
+		// * The navigation block itself
+		.is-the-sidebar-menu {
+			position: -webkit-sticky;
+			position: sticky !important;
+			top: 220px;
+			margin: 0;
+			z-index: 1;
+			position: relative;
+
+			@include media("<=medium") {
+				display: none;
+				box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%),
+					0 4px 6px -2px rgb(0 0 0 / 5%);
+			}
+
+			@include media(">=medium") {
+				margin-top: $base-margin;
+			}
+
+			// * This is the toggle button that appears on <phone
+			.wp-block-navigation__responsive-container-open {
+				@include media("<=medium") {
+					display: none;
+				}
+			}
+
+			// * The mobile navigation menu itself
+			.wp-block-navigation__responsive-container {
+				@include media("<=medium") {
+					position: unset;
+					width: 100%;
+				}
+				//
+				// * This is all to get at the closing "X" that doesn't need to be here
+				.wp-block-navigation__responsive-close {
+					.wp-block-navigation__responsive-dialog {
+						.wp-block-navigation__responsive-container-close {
+							@include media("<=medium") {
+								display: none;
+							}
+						}
+					}
+				}
+			}
+
+			// * "Section Menu" and dropdown arrow (p)
+			.is-the-sidebar-navicon {
+				// * Add nice padding for the item
+				padding: $half-margin 0;
+				i.icon {
+					display: none !important;
+				}
+
+				@include media("<large") {
+					// * Place border around item and flex text and chevron to the sides
+					border: 1px solid var(--wp--preset--color--neutral-1);
+					display: flex;
+					justify-content: space-between;
+					@include nu_fa_icon("\f107", after);
+					position: relative;
+					&:after {
+						position: absolute;
+						right: $half-margin;
+						top: $base-margin;
+						font-size: 16px;
+					}
+				}
+				// * Do not display on screens wider than medium
+				@include media(">=large") {
+					display: none;
+				}
+				// * The text content (e.g. 'Section Menu') of the navicon
+				.mobile-nav-text {
+					padding-left: $base-margin;
+				}
+				// * Chevron too close to right edge
+				.wp-block-navigation-submenu__toggle {
+					right: $half-margin !important;
+				}
+				// * If the section menu is opened on smaller than 1024px (additional class of .mobile-revealed)
+				&.mobile-revealed {
+					+ nav.wp-block-navigation {
+						@include media("<large") {
+							// * Then display the menu items
+							display: block;
+						}
+					}
+
+					// * Switch navicon to "close" X upon opening
+					&:after {
+						content: "\f00d";
+					}
+				}
+				//
+				// * Hide the section menu items if navicon not opened
+				+ nav.wp-block-navigation {
+					@include media("<large") {
+						display: none;
+					}
+				}
+			}
+
+			//
+			// * This is the flex container
+			.wp-block-navigation__container {
+				gap: 0;
+				// * to avoid the moving carat for dropdown submenu
+				width: 100%;
+				padding-left: unset;
+
+				// * The <li>
+				.wp-block-navigation-item {
+					margin-top: unset;
+					//
+					// * The <a>
+					> .wp-block-navigation-item__content {
+						padding-left: 24px;
+						padding-right: 24px;
+
+						//
+						&.is-active {
+							color: var(--wp--preset--color--black);
+						}
+					}
+
+					&:hover {
+						> .wp-block-navigation-item__content {
+							color: var(--wp--preset--color--black);
+						}
+					}
+
+					// * A navigation item with a dropdown submenu
+					&.has-child {
+						//
+						// * The dropdown arrow for a submenu
+						.wp-block-navigation-submenu__toggle {
+							top: 12px;
+							right: 8px;
+						}
+						//
+						// * The submenu container
+						.wp-block-navigation__submenu-container {
+							padding-left: unset;
+
+							> .wp-block-navigation-item {
+								> .wp-block-navigation-item__content {
+									padding-left: 48px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.wp-block-navigation.is-content-justification-right {
+			text-align: right;
+		}
+	} // end .is-the-sidebar-group
+} // end .blocks--wrapper

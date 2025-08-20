@@ -1,0 +1,467 @@
+//
+//
+// * Landing Page Hero
+.pattern--heroes-landing-page {
+	> .wp-block-cover {
+		padding-right: var(--wp--custom--spacing--outer);
+		padding-left: var(--wp--custom--spacing--outer);
+	}
+
+	//
+	> .wp-block-group {
+		padding-right: var(--wp--custom--spacing--outer);
+		padding-left: var(--wp--custom--spacing--outer);
+		margin-top: 0 !important;
+	}
+	.wp-block-cover__inner-container {
+		> .has-background {
+			padding: $margin_4x !important;
+			margin: $margin_4x 0;
+		}
+	}
+	@include media(">=medium") {
+		.wp-block-cover__inner-container {
+			display: flex;
+			> .has-background {
+				flex: 0 1 max(50%, 800px);
+			}
+		}
+	}
+	+ .alignfull.has-background {
+		margin-top: 0;
+		//
+		a.wp-block-button__link {
+			&:hover {
+				background-color: var(--wp--preset--color--white) !important;
+				color: var(--wp--preset--color--black) !important;
+			}
+		}
+	}
+	@include media("<phone") {
+		> .wp-block-cover {
+			> .wp-block-cover__inner-container {
+				.wp-block-group.has-background {
+					// * Decrease the padding around hero text on mobile
+					padding: $margin_2x !important;
+				}
+			}
+		}
+	}
+	@include media(">=medium") {
+		.wp-block-cover {
+			overflow: hidden;
+		}
+		.wp-block-cover__image-background {
+			animation: image-in 4s both;
+			animation-delay: 250ms;
+		}
+		.patterns--blurbs--basic-section-headline,
+		.is-the-floating-card {
+			* {
+				animation: fade-in-up 2s both $bezier;
+				animation-delay: 200ms;
+			}
+			~ * {
+				animation: fade-in-up 3s both $bezier;
+				animation-delay: 400ms;
+			}
+		}
+	}
+}
+
+/* 
+	smallest hero, designed as a banner across related sub-pages
+*/
+//
+.pattern--heroes-internal-page {
+	//
+	> .wp-block-cover {
+		border-bottom: 1px solid var(--wp--preset--color--neutral-3);
+		overflow: hidden;
+	}
+
+	//
+	> .wp-block-group {
+		margin-top: 0 !important;
+		padding-right: var(--wp--custom--spacing--outer);
+		padding-left: var(--wp--custom--spacing--outer);
+	}
+
+	.wp-block-cover__inner-container {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+		overflow: hidden;
+
+		> .has-background {
+			padding: ($half-margin + $base-margin) 0;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			margin-bottom: 0;
+			padding-left: var(--wp--custom--spacing--outer);
+			padding-right: var(--wp--custom--spacing--outer);
+			overflow: hidden;
+			animation: fade-in-up 2s both $bezier;
+			animation-delay: 200ms;
+		}
+	}
+	+ .alignfull.has-background {
+		margin-top: 0;
+		//
+		a.wp-block-button__link {
+			&:hover {
+				background-color: var(--wp--preset--color--white) !important;
+				color: var(--wp--preset--color--black) !important;
+			}
+		}
+	}
+}
+
+//
+//
+// * Extra Tall Hero, Homepage Hero
+.pattern--heroes-homepage-extratall,
+.pattern--heroes-homepage-tall {
+	> .wp-block-cover {
+		border-bottom: 1px solid var(--wp--preset--color--light);
+		border-bottom: 1px solid var(--wp--preset--color--neutral-3);
+		padding-right: var(--wp--custom--spacing--outer);
+		padding-left: var(--wp--custom--spacing--outer);
+	}
+
+	//
+	> .wp-block-group {
+		padding-right: var(--wp--custom--spacing--outer);
+		padding-left: var(--wp--custom--spacing--outer);
+		margin-top: 0 !important;
+	}
+
+	//
+	.wp-block-cover__inner-container {
+		> .has-background {
+			padding: $margin_4x !important;
+			margin: $margin_4x 0;
+		}
+	}
+	@include media(">=medium") {
+		.wp-block-cover__inner-container {
+			> .has-background {
+				max-width: max(50%, 800px);
+			}
+		}
+	}
+	+ .alignfull.has-background {
+		margin-top: 0;
+		padding-top: $margin_4x;
+		padding-bottom: $margin_4x;
+		//
+		a.wp-block-button__link {
+			&:hover {
+				background-color: var(--wp--preset--color--white) !important;
+				color: var(--wp--preset--color--black) !important;
+			}
+		}
+	}
+	@include media("<=medium") {
+		> .wp-block-cover[style*="min-height"] {
+			min-height: unset !important;
+		}
+	}
+	@include media("<phone") {
+		> .wp-block-cover {
+			height: calc(100vh - var(--header--offset--top));
+
+			> .wp-block-cover__inner-container {
+				.wp-block-group.has-background {
+					// * Decrease the padding around hero text on mobile
+					padding: $margin_2x !important;
+				}
+			}
+		}
+	}
+}
+
+//
+//
+
+.blocks--wrapper {
+	.patterns--heroes--split-with-spillover-heading {
+		padding: 0 !important;
+		overflow: hidden;
+		// ? use a single cms entry point for the coloration
+		--bgcolor: var(--wp--preset--color--white);
+
+		&.has-black-background-color {
+			--bgcolor: var(--wp--preset--color--dark);
+		}
+
+		// ? required custom classed group contains the elements that spill over the image
+		.is-the-floating-card {
+			background-color: var(--bgcolor);
+		}
+
+		// ? enforce and strech to fill the viewport height
+		> .wp-block-columns {
+			// height: calc(
+			// 	100vh - var(--nu--siteheader--height) -
+			// 		var(--nu--siteheader--offset)
+			// );
+			@include media(">medium") {
+				height: var(--nu--full--screen--height);
+				> .wp-block-column {
+					&:first-child {
+						transform: translateY(-#{$margin_4x});
+					}
+				}
+			}
+			> .wp-block-column {
+				// align contents with the l/r edges of the rest of the page content
+				&:first-child {
+					padding-left: var(--wp--custom--spacing--outer);
+					position: relative;
+					z-index: 1;
+
+					h1 + p {
+						margin-top: 56px;
+					}
+					h1 ~ p {
+						max-width: 720px;
+					}
+					h1 {
+						strong {
+							font-weight: bolder;
+						}
+					}
+					@include media("<=medium") {
+						padding: var(--wp--custom--spacing--large) 0;
+					}
+				}
+
+				&:first-child {
+					// consistent vertical margins
+					> * {
+						margin-left: var(--wp--custom--spacing--outer);
+					}
+				}
+
+				&:last-child {
+					margin-left: 0 !important;
+					background-color: white;
+					@include media("<=medium") {
+						display: none;
+					}
+				}
+			}
+		}
+
+		.wp-block-image {
+			height: 100%;
+			width: 100%;
+			> img {
+				width: 100%;
+				height: 100%;
+			}
+			margin-left: 0 !important;
+			position: relative;
+			overflow: hidden;
+
+			// ? float a border over the image, because the <figure> element resists it
+			&:after {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 0;
+				animation: border-in 5s both $bezier;
+				animation-delay: 500ms;
+			}
+			img {
+				animation: image-in 4s both;
+				animation-delay: 500ms;
+			}
+		}
+
+		//
+		//
+		//
+		@include media(">=medium") {
+			.patterns--blurbs--basic-section-headline,
+			.is-the-floating-card {
+				padding: $margin_4x $margin_2x;
+				padding-left: 0;
+				position: relative;
+				z-index: 3;
+				margin: 0;
+				margin-top: 0 !important;
+				margin-left: 0;
+				width: calc(100% + #{$margin_4x});
+				* {
+					animation: fade-in-up 2s both $bezier;
+					animation-delay: 250ms;
+				}
+				+ * {
+					margin-top: 0;
+				}
+				~ * {
+					animation: fade-in-up 4s both $bezier;
+					animation-delay: 500ms;
+				}
+			}
+		}
+	}
+}
+
+//
+//
+// * Originally from the index.scss file of heroes>src
+// * Animated Hero
+.patterns--heroes--another-animated-hero {
+	// style only when the desktop nav is visibile
+	@include media(">=medium") {
+		// full-screen-height
+		// height: var(--nu--full--screen--height);
+		min-height: var(--nu--full--screen--height);
+		> .wp-block-cover {
+			// height: 100%;
+			min-height: var(--nu--full--screen--height) !important;
+		}
+
+		// animate border-in via a pseudo element to avoid disrupting markup
+		.wp-block-cover:after {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 0;
+			animation: border-in 3s both $bezier;
+			animation-delay: 300ms;
+		}
+	}
+
+	.wp-block-cover {
+		overflow: hidden;
+		position: relative;
+	}
+
+	// always animate the image in
+	.wp-block-cover__image-background {
+		animation: image-in 3s both $bezier;
+		animation-delay: 500ms;
+	}
+
+	// align content edge with the rest of the page
+	> .wp-block-group,
+	> .wp-block-cover {
+		padding-right: var(--wp--custom--spacing--outer);
+		padding-left: var(--wp--custom--spacing--outer);
+	}
+
+	//
+	> .wp-block-group {
+		margin-top: 0 !important;
+	}
+
+	//
+	//
+	> .wp-block-cover {
+		&.has-custom-content-position {
+			&.is-position-top-right {
+				.wp-block-cover__inner-container {
+					margin-right: 0;
+				}
+			}
+			&.is-position-top-left {
+				.wp-block-cover__inner-container {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+
+	//
+	// * Most of this is from Oakland child theme (Kyle)
+	.wp-block-cover__inner-container {
+		position: relative;
+		z-index: 1;
+		> .has-background {
+			padding: $margin_4x !important;
+			margin: $margin_4x 0;
+			animation: fade-in-up 2s both $bezier;
+			animation-delay: 200ms;
+			> * {
+				animation: fade-in-up 4s both $bezier;
+				animation-delay: 400ms;
+			}
+			// * From Oakland child theme (Kyle)
+			$bezier: cubic-bezier(0.31, 0.11, 0.12, 0.99);
+			* {
+				animation: text-in 4s both $bezier;
+				animation-delay: 200ms;
+			}
+			p {
+				animation: text-in 4s both $bezier;
+				animation-delay: 400ms;
+			}
+		}
+	}
+	@include media(">=medium") {
+		.wp-block-cover__inner-container {
+			> .has-background {
+				max-width: max(50%, 800px);
+			}
+		}
+	}
+	+ .alignfull.has-background {
+		margin-top: 0;
+		padding-top: $margin_4x;
+		padding-bottom: $margin_4x;
+		//
+		a.wp-block-button__link {
+			&:hover {
+				background-color: var(--wp--preset--color--white) !important;
+				color: var(--wp--preset--color--black) !important;
+			}
+		}
+	}
+	@include media("<phone") {
+		> .wp-block-cover {
+			> .wp-block-cover__inner-container {
+				.wp-block-group.has-background {
+					// * Decrease the padding around hero text on mobile
+					padding: $margin_2x !important;
+				}
+			}
+		}
+	}
+}
+
+//
+// ? basic hero with breadcrumbs (scaffold)
+.pattern--hero-basic-breadcrumbs {
+	//
+	> .wp-block-cover {
+		border-bottom: 1px solid var(--wp--preset--color--light);
+		padding-right: var(--wp--custom--spacing--outer);
+		padding-left: var(--wp--custom--spacing--outer);
+		border-bottom: 1px solid var(--wp--preset--color--neutral-3);
+	}
+
+	//
+	> .wp-block-group {
+		padding-right: var(--wp--custom--spacing--outer);
+		padding-left: var(--wp--custom--spacing--outer);
+		margin: 0;
+	}
+	+ .alignfull.has-background {
+		margin-top: 0;
+		padding-top: $margin_4x;
+		padding-bottom: $margin_4x;
+	}
+}

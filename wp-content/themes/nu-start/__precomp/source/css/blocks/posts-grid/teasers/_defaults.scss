@@ -1,0 +1,323 @@
+//
+//
+//
+//
+//
+//
+//
+.posts-grid .nu__grid {
+	@include nu__responsive_grid_layout();
+	overflow: visible;
+	> * {
+		max-width: 100%;
+	}
+	> ul {
+		margin: 0;
+		margin-block-start: 0px;
+		margin-block-end: 0px;
+		padding: 0;
+		padding-inline-start: 0px;
+		padding-inline-end: 0px;
+		list-style-type: none;
+		list-style: none;
+		> li {
+			margin-top: 0;
+		}
+	}
+	figure {
+		position: relative;
+		img {
+			object-fit: cover;
+			// position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			transition: all 0.1s ease-in-out;
+		}
+	}
+}
+
+//
+.posts-grid .grid-item {
+	// ? basics for all items
+	position: relative;
+	display: flex;
+	@include nu__grid_item_cover_ratios();
+
+	// ? disabled clickable area
+	&.has-disabled-clickable-area {
+		.contains-clickable-area {
+			display: none;
+		}
+	}
+
+	&.is-loaded-by-ajax {
+		opacity: 0;
+	}
+
+	// ? disabled featured image
+	figure.image-404 + .grid-item-content,
+	.grid-item-content:only-child {
+		flex: 1 0 auto;
+		height: 100%;
+		padding-top: $margin_2x;
+		padding-bottom: $margin_2x;
+	}
+
+	//
+	.contains-clickable-area {
+		z-index: 1;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: block;
+		text-decoration: none;
+		border: 0px solid transparent;
+		background-color: transparent;
+		background: none;
+		@include nu__boxshadow(0);
+		&:hover {
+			border: 0px solid transparent;
+			// @include nu__boxshadow(5);
+			//
+			//
+			~ figure img {
+				transform: scale(1.2);
+			}
+			~ .grid-item-content {
+				.post-title span {
+					// text-decoration: 1px solid underline;
+				}
+			}
+		}
+	}
+
+	&.nu_initiatives {
+		.contains-clickable-area {
+			pointer-events: none;
+		}
+	}
+
+	.page-category,
+	.featured-tags {
+		color: var(--wp--preset--color--neutral-4);
+		margin-bottom: $base-margin;
+		@extend %has-is-style-eyebrow;
+	}
+
+	// ? elements that do exist
+
+	.grid-item-content {
+		position: relative;
+		flex: 1;
+		background-color: var(--wp--preset--color--light);
+		padding: ($base-margin + $half-margin) $margin_2x;
+		// flush edge
+		> :first-child {
+			margin-top: 0;
+		}
+		// flush edge, because hanging-icon will always be last child
+		> :nth-last-child(2) {
+			margin-bottom: 0;
+		}
+		max-width: 100%;
+	}
+
+	.post-title {
+		margin-block-start: unset;
+		margin-block-end: unset;
+		> span {
+			transition: all 0.1s ease-in-out;
+		}
+	}
+
+	// ? post-excerpt (and primary title)
+	//
+	//
+	.post-excerpt,
+	.primary-title {
+		margin-top: $base-margin;
+		font-size: var(--wp--preset--font-size--14-20);
+		line-height: 20px;
+		font-weight: 300;
+		p {
+			font-size: inherit;
+			line-height: inherit;
+			font-weight: inherit;
+			margin-block: 0 0;
+			margin-inline: 0 0;
+			+ p {
+				margin-top: $half-margin;
+			}
+		}
+	}
+	.post-author,
+	.post-date {
+		font-size: 12px;
+		line-height: 16px;
+		margin: 0;
+		display: block;
+	}
+
+	// ? elements that may not exist
+	.post-excerpt {
+		max-width: max(400px, 80%);
+		margin: $base-margin 0;
+		p,
+		& {
+			color: var(--wp--preset--color--neutral-5);
+			strong {
+				color: var(--wp--preset--color--black);
+			}
+		}
+		> :only-child {
+			margin: 0;
+		}
+	}
+
+	figure {
+		overflow: hidden;
+		img {
+			transform: scale(1);
+			transition: all 0.1s ease-in-out;
+		}
+		// broken image figure element supports some absolutely positioned post content teasers
+		&.image-404 {
+			background-color: var(--wp--preset--color--neutral-3);
+			opacity: 0.15;
+			display: none;
+			min-width: 0;
+			min-height: 0;
+		}
+	}
+
+	//
+	.is-hanging-icon {
+		z-index: 1;
+		position: absolute;
+		background-color: inherit;
+		top: 0;
+		right: 0;
+		transform: translate(0, -100%);
+		//
+		padding: $half-margin $base-margin;
+		background-color: inherit;
+	}
+
+	// move icon down into content area if there is no image area to support it
+	&.has-layout-horizontal,
+	.image-404 + .grid-item-content {
+		.is-hanging-icon {
+			transform: translateY(0);
+		}
+	}
+
+	// ? if no items are returned the broken item is shown
+	&.broken {
+		&:only-child {
+			flex: 1 0 100% !important;
+			width: 100% !important;
+			grid-column: 1/5;
+			p {
+				text-align: center;
+				padding: $base-margin;
+				font-style: italic;
+			}
+		}
+	}
+
+	//
+	// ? image height not restricted
+	//
+	&.has-auto-cover-image {
+	}
+
+	//
+}
+
+//
+//
+.posts-grid .nu__grid .grid-item.has-layout-vertical {
+	flex-flow: column nowrap;
+	// ? vertical layout has a smaller title font size
+	.post-title {
+		font-size: var(--wp--preset--font-size--20-28);
+		line-height: 1.8;
+		font-weight: 600;
+	}
+	.image-404 ~ .grid-item-content {
+		.post-title {
+			font-size: var(--wp--preset--font-size--30-36);
+			line-height: 1.6;
+			font-weight: 300;
+		}
+	}
+}
+
+//
+//
+//
+.posts-grid .nu__grid .grid-item.has-layout-horizontal {
+	flex-flow: row nowrap;
+
+	@include media("<=large") {
+		flex-flow: column nowrap;
+	}
+	// ? horizontal layout has a larger title font size
+	.post-title {
+		font-size: var(--wp--preset--font-size--30-36);
+		line-height: 1.8;
+		font-weight: 300;
+	}
+
+	figure {
+		flex: 1 1 auto;
+		min-width: 30%;
+		max-width: 50%;
+	}
+	.grid-item-content {
+		flex: 1 1 70%;
+	}
+
+	//
+	&.has-image-align-right {
+		@include media(">medium") {
+			figure {
+				order: 1;
+			}
+			.grid-item-content {
+				order: 0;
+			}
+		}
+	}
+	//
+	&.has-image-align-alternate {
+		&:nth-child(even) {
+			@include media(">medium") {
+				figure {
+					order: 1;
+				}
+				.grid-item-content {
+					order: 0;
+				}
+			}
+		}
+	}
+
+	// ? collapse with figure always above
+	@include media("<=medium") {
+		> figure {
+			width: 100%;
+			flex: 1 0 auto;
+			max-width: 100%;
+			@include aspect_ratio(16, 9);
+		}
+		> .grid-item-content {
+			width: 100%;
+			margin: 0 !important;
+		}
+	}
+}

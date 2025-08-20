@@ -1,0 +1,44 @@
+body.login {
+	background: rgba(0, 0, 0, 1) !important;
+}
+
+body.login div#login h1 a {
+	background-image: url("https://brand.northeastern.edu/global/assets/logos/northeastern/svg/northeastern-logo.svg");
+	width: 315px;
+	background-size: 315px 85px;
+	height: 85px;
+}
+
+body.login #login_error,
+.login .message {
+	border-left: 4px solid rgba(224, 39, 47, 1) !important;
+}
+
+body.login #backtoblog a,
+.login #nav a {
+	color: rgba(255, 255, 255, 1) !important;
+}
+
+body.login #backtoblog a:hover,
+.login #nav a:hover {
+	color: rgba(224, 39, 47, 1) !important;
+	text-decoration: underline;
+}
+
+.wp-core-ui .button-primary {
+	background: rgba(224, 39, 47, 1) !important;
+	border-color: none !important;
+	border-radius: 0 !important;
+	text-shadow: none !important;
+	box-shadow: none !important;
+	border: none;
+	min-width: 100px;
+}
+
+body.login label {
+	color: rgba(51, 62, 71, 1) !important;
+}
+
+p#backtoblog {
+	display: none;
+}

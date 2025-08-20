@@ -1,0 +1,39 @@
+//
+//	? large style
+//
+p.is-style-large {
+	font-weight: 300;
+	font-size: var(--wp--preset--font-size--24-32);
+	line-height: 1.8;
+}
+
+//
+//	? eyebrow style
+//
+p.is-style-eyebrow {
+	font-weight: 400;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--neutral-5);
+	font-size: var(--wp--preset--font-size--12-16);
+	line-height: 16px;
+}
+
+//
+//
+//
+.blocks--wrapper {
+	p > i[class*="fa-"],
+	.svg-inline--fa {
+		margin-left: $base-margin;
+		margin-right: $base-margin;
+		// if first child, flush to the left edge of the container
+		&:first-child {
+			margin-left: 0;
+		}
+		// unmodified text is not an element, so last child must also match not only child
+		&:last-child:not(:only-child) {
+			margin-right: 0;
+		}
+	}
+}

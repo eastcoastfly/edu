@@ -1,0 +1,80 @@
+//
+//
+//
+ .takeover-nav {
+	//
+	//
+	//
+	.takeover-banner-nav-container {
+		position: absolute;
+
+		@include media(">=phone"){
+			bottom: 0;
+		}
+
+		@include media("<phone"){
+			bottom: 0px;
+		}
+			
+		left: 0;
+		width: 100%;
+		background-color: var(--wp--preset--color--dark);
+		color: var(--wp--preset--color--white);
+		padding: var(--wp--preset--spacing--20) var(--wp--custom--spacing--large);
+		height: var(--takeover-nav-button-height);
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: center;
+		align-items: center;
+		
+		@include media(">=phone"){
+			height:80px;
+		}
+		
+		@include media("<phone"){
+			height:70px;
+		}
+		//
+		//
+		//
+		.navlinks {
+			//
+			@include media("<1368px"){
+
+				overflow-x: scroll;
+			}
+			.menu {
+				gap: var(--wp--preset--spacing--50);
+				justify-content: space-between;
+				width: 94vw;
+				> .menu-item {
+					flex: 1 0 auto;
+					text-align: center;
+				}
+			}
+
+			a {
+				@extend %dry_transition;
+				font-size: var(--wp--preset--font-size--16-24);
+				@include media("<=small") {
+					font-size: var(--wp--preset--font-size--14-20);
+				}
+				font-weight: 400;
+				line-height: 1.6;
+				&:hover,
+				&:focus-within {
+					color: var(--wp--preset--color--nu-red);
+				}
+			}
+		}
+	}
+}
+
+html, body.has-revealed-takeover-nav { 
+	height: 100%; 
+	
+	.takeover-nav {
+		min-height: -webkit-fill-available;   
+		height: 100%;
+	}
+} 

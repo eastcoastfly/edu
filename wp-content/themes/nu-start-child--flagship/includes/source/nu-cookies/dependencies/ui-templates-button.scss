@@ -1,0 +1,81 @@
+@import "./mixins";
+
+/**
+ * UI Button Templates
+ * Provides placeholder classes to allow for universal styling across the
+ * differing structures of UI elements across the site.
+ *
+ * @since 1.5
+ */
+
+%is-button {
+	align-items: center;
+	border: 1px solid;
+	cursor: pointer;
+	display: inline-flex;
+	font-family: var(--wp--preset--font-family--small);
+	font-size: var(--wp--preset--font-size--small, small);
+	font-weight: 400;
+	justify-content: center;
+	margin: 0;
+	padding: 8px 11px 6px;
+	text-decoration: none !important;
+	text-transform: none !important;
+	user-select: none;
+}
+
+%has-style-filled-button {
+	background-color: var(--wp--custom--ui--handle);
+	border-color: var(--wp--custom--ui--handle);
+	color: var(--wp--custom--ui--on-handle);
+	outline-color: transparent;
+
+	&:active {
+		--wp--custom--ui--handle: var(--wp--custom--ui--handle-lessen);
+	}
+
+	&:where(:hover, :focus, :focus-within) {
+		--wp--custom--ui--handle: var(--wp--custom--ui--handle-emphasize);
+	}
+}
+
+%has-style-unfilled-button {
+	background-color: transparent;
+	color: var(--wp--custom--ui--handle);
+	position: relative;
+	z-index: 0;
+
+	&::before {
+		--button--background-opacity: 0;
+
+		background-color: var(--wp--custom--ui--track-base);
+		content: "";
+		inset: 0;
+		opacity: var(--button--background-opacity);
+		position: absolute;
+		z-index: -1;
+	}
+
+	&:active::before {
+		--button--background-opacity: 0.6;
+	}
+
+	&:where(:hover, :focus, :focus-within)::before {
+		--button--background-opacity: 0.4;
+	}
+}
+
+%has-style-outlined-button {
+
+	@extend %has-style-unfilled-button;
+
+	border-color: var(--wp--custom--ui--handle);
+}
+
+%has-style-text-button {
+
+	@extend %has-style-unfilled-button;
+
+	border-color: transparent;
+}
+

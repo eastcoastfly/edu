@@ -1,0 +1,206 @@
+//
+//
+//
+//
+//
+//
+//
+body.is-using-page-sidebar {
+	$sidebarWidth: 280px;
+	$duration: 0.3s;
+	$transition: all $duration ease-in-out;
+
+	// ? handle the "tucked away" behavior for the body
+	max-width: calc(100% - $sidebarWidth);
+	&.page-sidebar-is-tucked-away {
+		max-width: 100%;
+	}
+	// ? handle the "tucked away" behavior for the sidebar and toggle
+	.page-sidebar-container.is-tucked-away {
+		transform: translateX(100%);
+		// toggle slides out from the sidebar to remain on screen
+		.page-sidebar-toggle {
+			transform: translateX(-100%);
+			// and the chevron flips
+			i {
+				transform: translate(-50%, -50%) scaleX(-1);
+			}
+		}
+	}
+
+	// ? add the same transition to the sidebar, sidebar toggle and body
+	&,
+	.page-sidebar-container {
+		transition: $transition;
+		.page-sidebar-toggle {
+			i,
+			& {
+				transition: $transition;
+			}
+		}
+	}
+}
+
+body.is-using-page-sidebar {
+	$sidebarWidth: 280px;
+	$duration: 0.3s;
+	$transition: all $duration ease-in-out;
+
+	.page-sidebar-container {
+		> div {
+			max-height: calc(100% - var(--wp--custom--spacing--large));
+			overflow-x: hidden;
+			overflow-y: auto;
+		}
+	}
+
+	// a simple chevron toggle to hide and show the sidebar
+	.page-sidebar-container .page-sidebar-toggle {
+		cursor: pointer;
+		position: absolute;
+		top: var(--nu--siteheader--height);
+		left: 0;
+		width: 48px;
+		height: 48px;
+		background-color: var(--wp--preset--color--dark);
+		color: var(--wp--preset--color--white);
+		border: 1px solid var(--wp--preset--color--neutral-6);
+		z-index: 9;
+		i {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+
+	// navlinks styles - should be integrated within refactoring the nav overall
+	.page-sidebar-container .navlinks {
+		margin-top: $margin_2x;
+		padding: $margin_2x;
+		max-height: 90%;
+		overflow: auto;
+		ul.menu {
+			flex-flow: column nowrap;
+		}
+		ul.sub-menu {
+			padding: 0;
+			margin-top: $half-margin;
+		}
+
+		li {
+			border-left: 4px solid transparent;
+			a {
+				display: block;
+				transition: $transition;
+				font-size: 14px;
+				line-height: 22px;
+				padding: 5px 0;
+				opacity: 0.8;
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+		li.menu-item-type-custom {
+			a[href="#"] {
+				@extend %has-is-style-eyebrow;
+				color: var(--wp--preset--color--neutral-4);
+				pointer-events: none;
+			}
+		}
+		> .menu {
+			margin: 0;
+			gap: $margin_2x;
+			display: flex;
+			flex-flow: column nowrap;
+		}
+		.current-menu-item {
+			background-color: var(--wp--preset--color--neutral-6);
+			// * these nudges are offset by border thickness (+4)
+			margin-left: -52px;
+			margin-right: -48px;
+			padding-right: 48px;
+			padding-left: 52px;
+			//
+			border-left: 4px solid var(--wp--preset--color--nu-red);
+		}
+	}
+
+	.nu__page-sidebar.widget_block {
+		padding: 0 48px;
+	}
+
+	//
+	//
+	.page-sidebar-container {
+		position: fixed;
+		z-index: 99;
+		top: 0;
+		right: 0;
+		height: 100%;
+		width: $sidebarWidth;
+		padding-top: var(--nu--siteheader--height);
+	}
+
+	// handle color for light/dark mode
+	&.is-dark-header {
+		.page-sidebar-container {
+			color: var(--wp--preset--color--white);
+			background-color: var(--wp--preset--color--dark);
+		}
+	}
+
+	// ?
+	// ?
+	// ?		MOBILE
+	// ?
+	// ?
+	// ?
+	@include media("<=medium") {
+		max-width: 100%;
+		// tucked-away class added to sidebar by toggle
+		.page-sidebar-container {
+			transform: translateX(100%);
+			// toggle slides out from the sidebar to remain on screen
+			.page-sidebar-toggle {
+				transform: translate(-100%, -100%);
+				// and the chevron flips
+				i {
+					transform: translate(-50%, -50%) scaleX(-1);
+				}
+			}
+			// behavior is inverted for mobile
+			&.is-tucked-away {
+				$sidebarWidth: min(360px, 80vw);
+				transform: translateX(0);
+				width: $sidebarWidth;
+				.page-sidebar-toggle {
+					transform: translate(0, -100%);
+					// and the chevron flips
+					i {
+						transform: translate(-50%, -50%) scaleX(1);
+					}
+				}
+			}
+		}
+	}
+}
+
+// ?
+// ?
+// ?		OTHER CONSIDERATIONS
+// ?
+// ?
+// ?
+@include media(">medium") {
+	#wpadminbar ~ .page-sidebar-container {
+		.page-sidebar-toggle {
+			top: calc(var(--nu--adminbar--height) + var(--nu--siteheader--height));
+		}
+
+		padding-top: calc(
+			var(--nu--adminbar--height) + var(--nu--siteheader--height)
+		);
+	}
+}

@@ -1,0 +1,80 @@
+
+
+//
+.blocks--wrapper {
+	//
+	.has-full-width-spillover-bg {
+		position: relative;
+		padding-bottom: var(--wp--custom--spacing--large);
+		//
+		// * The "empty" space above the dark background
+		&:before {
+			position: absolute;
+			content: "";
+			width: 100vw;
+			left: 50%;
+			transform: translateX(-50%);
+			bottom: 0;
+			@include media(">=small") {
+				height: calc(100% - var(--spillover--background--height));
+			}
+			@include media("<small") {
+				height: calc(100% + 48px);
+			}
+			height: var(--spillover--background--height);
+			background-color: var(--spillover--background--color);
+		}
+		//
+		// * Any child of the spillover should be above the background
+		> * {
+			position: relative;
+			z-index: 1;
+		}
+		//
+		//
+		// * Spillover background for a tabbed content block
+		&.contains-tabs {
+			--spillover--background--height: 43px;
+
+			&:before {
+				@include media(">=small") {
+					height: calc(100% - var(--spillover--background--height));
+				}
+			}
+		}
+		//
+		//
+		// * Spillover background for a Gutenslider
+		&.contains-slider {
+			&:before {
+				@include media(">=small") {
+					height: 60%;
+				}
+			}
+		}
+		//
+		//
+		// * CARDS
+		.acf-block.cards {
+			.wp-block-image:first-child {
+				&,
+				img {
+					height: var(--spillover--background--height);
+				}
+			}
+		}
+		//
+		//
+		// * POSTS GRIDS
+		.nu__grid {
+			padding: 0;
+
+			.grid-item {
+				figure {
+					height: var(--spillover--background--height);
+				}
+			}
+		}
+	}
+}
+//

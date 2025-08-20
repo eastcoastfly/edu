@@ -1,0 +1,56 @@
+//
+//
+//
+//
+
+// 		this line tracks scroll progress - basically translating 100% document length to 100vh
+#vertical-scroll-line {
+	background-color: var(--wp--preset--color--neutral-4);
+	display: block;
+	position: fixed;
+	margin-top: 0;
+	left: 50%;
+	top: 0;
+	height: 0%;
+	width: 1px;
+	transform: translateX(-50%);
+	transition: all 0.15s linear;
+	// just for debugging
+	// z-index: 0;
+	// background-color: var(--wp--preset--color--nu-red);
+	// width: 2px;
+	// height: 100%;
+}
+
+//
+// ?		NOTES
+// ?		- general linework rules are to add an extra group around whatever you see the line going over
+// ?		- then, add bg and padding to that invisible container (spacing-40 is used)
+// ?		- if a section has a full-width bg color then we drop that down a layer and lift up its children
+// ?		- some other edge cases too
+.blocks--wrapper {
+	// general case, all groups w/ background up one layer
+	.wp-block-group.has-background {
+		position: relative;
+		z-index: 1;
+	}
+	// 	special case for full-bleed background color back down to base layer
+	> .alignfull.wp-block-group.has-background {
+		z-index: unset;
+	}
+	// 	special case for hero groups up one layer
+	// 	- we can't put the line behind transparent inner__container
+	> .alignfull.wp-block-group:first-child {
+		z-index: 1;
+	}
+	// 	special case for cover blocks (including our banners) up a layer
+	// 	- we can't put the line behind transparent inner__container
+	// 	- we don't want the line to completely draw over the image (we just want little accents)
+	.wp-block-cover {
+		z-index: 1;
+	}
+	// 	special case for prefooter group up one layer
+	.wp-block-group.has-background.prefooter {
+		z-index: 1;
+	}
+}

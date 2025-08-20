@@ -1,0 +1,57 @@
+//
+//
+//
+.grid-item.nu_people {
+	// remove default margins from name
+	.full-name {
+		margin: 0;
+	}
+	// pad the content area
+	.grid-item-content {
+		padding: $margin_2x;
+	}
+	// custom margin push title down from name
+	.primary-title {
+		margin-top: $base-margin;
+		font-size: var(--wp--preset--font-size--14-20);
+		line-height: 20px;
+		font-weight: 300;
+	}
+
+	.view-profile-link {
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0;
+		margin-top: $margin_2x;
+		@include nu_fa_icon("\f061", after);
+		&:after {
+			font-size: 20px;
+			line-height: 20px;
+			margin-left: $half-margin;
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+
+	&.has-disabled-clickable-area {
+		.is-hanging-icon {
+			display: none;
+		}
+		.has-inline-icon {
+			a,
+			span {
+				display: inline-block;
+				vertical-align: middle;
+			}
+			span {
+				margin-right: $base-margin;
+				font-size: 20px;
+				line-height: 20px;
+			}
+			a {
+				font-size: var(--wp--preset--font-size--14-20);
+				line-height: 20px;
+			}
+		}
+	}
+}

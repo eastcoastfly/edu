@@ -1,0 +1,21 @@
+/* 
+
+*/
+//
+body:not(.search) .posts-grid .grid-item.nu_events {
+	.grid-item-content {
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: space-between;
+		.nu__datetime {
+			margin-top: $base-margin;
+		}
+	}
+
+	.event-type {
+		@extend %has-is-style-eyebrow;
+		+ * {
+			margin-top: $base-margin;
+		}
+	}
+}
